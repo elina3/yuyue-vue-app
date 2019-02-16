@@ -2,6 +2,7 @@
 const path = require('path')
 const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const px2rem = require('postcss-px2rem')
 const packageConfig = require('../package.json')
 
 exports.assetsPath = function (_path) {
@@ -25,7 +26,13 @@ exports.cssLoaders = function (options) {
   const postcssLoader = {
     loader: 'postcss-loader',
     options: {
-      sourceMap: options.sourceMap
+      sourceMap: options.sourceMap,
+      plugins: [
+        px2rem({
+          remUnit: 375 / 20,
+          remPrecision: 5
+        })
+      ]
     }
   }
 

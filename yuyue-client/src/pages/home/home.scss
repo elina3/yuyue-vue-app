@@ -1,0 +1,90 @@
+@import '../../assets/css/define.scss';
+
+.home-page {
+  .yy-img-header {
+      
+    .home-title {
+      overflow: hidden;
+      background-color: #fff;
+      .logo,
+      .text {
+        display: inline-block;
+        float: left;
+        height: 4rem;
+      }
+
+      .logo {
+        width: 25%;
+
+        img {
+          margin-top: 0.5rem;
+          height: 3rem;
+          width: auto;
+        }
+
+      }
+
+      .text {
+        width: 75%;
+
+        span {
+          display: block;
+          line-height: 1.5rem;
+          font-weight: bold;
+          color: $color-primary-blue;
+          text-align: left;
+
+          &:nth-child(1) {
+            margin-top: 0.5rem;
+          }
+        }
+      }
+    }
+
+    .home-picture {
+      position: relative;
+      overflow: hidden;
+      height: 12rem;
+      background-color: $color-grey-background;
+
+      img {
+        width: 100%;
+        height: auto;
+
+        &.background {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  .yy-grid {    
+    border: none;
+    margin: 0 auto;
+
+    .weui-grids {
+      border: none !important;
+      border-radius: 1.5rem;
+      background: #fff;
+      width: 96%;
+      margin: 0 auto;
+
+      .weui-grid {
+        img {
+          display: block;
+          margin: 0.5rem auto;
+          margin-top: 1rem;
+          width: 45%;
+          height: auto;
+        }
+
+        span {
+          margin-bottom: 1rem;
+          display: block;
+        }
+      }
+    }
+  }
+}

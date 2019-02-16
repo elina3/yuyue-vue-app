@@ -1,0 +1,51 @@
+*{
+  margin:0;
+  padding:0;
+}
+$font-color-lighter: #CCCCCC;
+
+$color-primary-blue: #3A80D7;
+$color-grey-background: #efeef5;
+
+$color-warn: #EC646E;
+$color-error: #FF332B;
+$color-orange: #FFB449;
+
+$border-lighter-color: #EEE;
+$border-light-color: #E8EDF1;
+$border-normal-color: #dadfe8;
+$border-dark-color: #ACB5C3;
+
+$border-input-color: #D3D9E3;
+
+$line-color: #f2f2f2;
+
+
+$font-color-dark: #333;
+$font-color-middle: #666;
+$font-color-light: #999;
+
+
+button, input{
+  outline: none;
+}
+//这些是文本框的
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder{
+  color: $font-color-lighter;
+  padding-left:10px;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder{
+  color: $font-color-lighter;
+  padding-left:10px;
+}
+input:-moz-placeholder, textarea:-moz-placeholder{
+  color:$font-color-lighter;
+  padding-left:10px;
+}
+input::-moz-placeholder, textarea::-moz-placeholder{
+  color:$font-color-lighter;
+  padding-left:10px;
+}
+
+
+
