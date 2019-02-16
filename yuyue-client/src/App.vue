@@ -23,6 +23,6 @@ html, body{
   text-align: center;
   color: #2c3e50;
   background: #efeef5;
-  height: 100%;
+  min-height: 100%;
 }
 </style>
