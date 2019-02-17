@@ -6,7 +6,10 @@ import 'we-vue/lib/style.css'
 import App from './App'
 
 import router from './router'
+
 Vue.use(WeVue)
+/* 实例化参数 */
+Vue.use(require('vue-wechat-title'))
 
 Vue.config.productionTip = false
 

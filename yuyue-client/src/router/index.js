@@ -22,41 +22,65 @@ export default new Router({
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      title: '医院服务'
+    }
   },
   {
     path: '/hospital',
     name: 'Hospital',
-    component: Hospital
+    component: Hospital,
+    meta: {
+      title: '医院介绍'
+    }
   },
   {
     path: '/department/list',
     name: 'DepartmentList',
-    component: DepartmentList
+    component: DepartmentList,
+    meta: {
+      title: '科室列表'
+    }
   },
   {
     path: '/department',
     name: 'Department',
-    component: Department
+    component: Department,
+    meta: {
+      title: '科室矩阵'
+    }
   },
   {
     name: '个人中心/我的预约',
     path: '/me/appointment',
-    component: Appointment
+    component: Appointment,
+    meta: {
+      title: '我的预约'
+    }
   },
   {
     name: '个人中心/我的报告',
     path: '/me/report',
-    component: Report
+    component: Report,
+    meta: {
+      title: '我的报告'
+    }
   },
   {
     name: '个人中心/我的候诊',
     path: '/me/waiting',
-    component: Waiting
+    component: Waiting,
+    meta: {
+      title: '我的候诊'
+    }
   },
   {
     name: '个人中心/我的就诊卡',
     path: '/me/medical_card',
-    component: MedicalCard
+    component: MedicalCard,
+    meta: {
+      title: '我的就诊卡'
+    }
   }]
 })

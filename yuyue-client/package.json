@@ -20,6 +20,7 @@
     "scss-loader": "^0.0.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
+    "vue-wechat-title": "^2.0.5",
     "we-vue": "^2.2.7"
   },
   "devDependencies": {

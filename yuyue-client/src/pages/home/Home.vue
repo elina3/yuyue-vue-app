@@ -50,8 +50,8 @@
           <span>医院导航</span>
         </wv-grid-item>
         <wv-grid-item to="/">
-          <img src="../../assets/images/home/导诊.png" >
-          <span>导诊</span>
+          <img src="../../assets/images/home/微自诊.png" >
+          <span>微自诊</span>
         </wv-grid-item>
         <wv-grid-item url="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzI4NTE3ODYyNA==#wechat_redirect">
           <img src="../../assets/images/home/最新消息.png" >
