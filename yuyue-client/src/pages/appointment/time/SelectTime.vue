@@ -15,7 +15,7 @@
           </div>
       </div>
       <div class="date-select">
-          <span @click="openPicker()">{{pickerValue}}</span>
+          <span @click="openPicker()">{{pickerValue.Format('yyyy-MM-dd')}}</span>
            <wv-datetime-picker
                 ref="picker"
                 type="date"

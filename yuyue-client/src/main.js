@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import WeVue from 'we-vue'
 import 'we-vue/lib/style.css'
+import '../static/js/global'
 import App from './App'
 
 import router from './router'
