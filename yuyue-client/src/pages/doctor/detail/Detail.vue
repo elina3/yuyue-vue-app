@@ -52,7 +52,7 @@ export default {
         min-height: 100%;
         .doctor-title-area{
             padding: 0 0.5rem;
-            background: url('../../../assets/images/doctor/background.jpeg') no-repeat top left;
+            background: url('/assets/images/doctor/background.jpeg') no-repeat top left;
             background-size: cover;
             width: 100%;
             height: 10rem;
