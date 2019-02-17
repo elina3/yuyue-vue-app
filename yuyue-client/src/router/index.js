@@ -6,6 +6,8 @@ import Hospital from '@/pages/hospital/Hospital'
 import Department from '@/pages/department/Department'
 import DepartmentList from '@/pages/department/list/List'
 import DepartmentDetail from '@/pages/department/detail/Detail'
+import DoctorList from '@/pages/doctor/list/List'
+import DoctorDetail from '@/pages/doctor/detail/Detail'
 
 import Appointment from '@/pages/me/appointment/Appointment'
 import Report from '@/pages/me/report/Report'
@@ -34,6 +36,22 @@ export default new Router({
     component: Hospital,
     meta: {
       title: '医院介绍'
+    }
+  },
+  {
+    path: '/doctor/list',
+    name: 'DoctorList',
+    component: DoctorList,
+    meta: {
+      title: '专家介绍'
+    }
+  },
+  {
+    path: '/doctor/detail/:id',
+    name: 'DoctorDetail',
+    component: DoctorDetail,
+    meta: {
+      title: '专家详情'
     }
   },
   {
