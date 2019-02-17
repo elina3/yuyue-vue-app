@@ -4,7 +4,7 @@
           <label></label>
           <strong>心血管内科{{$route.params.id}}</strong>
 
-          <wv-button class="yy-default-button" type="primary" :plain='true' :mini='true'>专家</wv-button>
+          <wv-button class="yy-default-button" type="primary" :plain='true' :mini='true' @click="jump()">专家</wv-button>
       </div>
       <div class="detail">
           <div class="picture-area">
@@ -22,13 +22,14 @@ export default {
   name: 'DepartmentDetail',
   data () {
     return { msg: '', thumb: '/static/images/department/default.png' }
+  },
+  methods: {
+    jump () {
+      this.$router.push({ path: '/doctor/list?id=12' })
+    }
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
-</style>
 <style lang="scss" scoped>
 @import '../../../assets/css/define';
     .department-detail-page{
