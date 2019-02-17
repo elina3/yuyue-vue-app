@@ -35,7 +35,7 @@
           <span>就医流程</span>
         </wv-grid-item>
 
-        <wv-grid-item to="/">
+        <wv-grid-item to="/appointment/select-department">
           <img src="../../assets/images/home/预约.png" >
           <span>预约</span>
         </wv-grid-item>

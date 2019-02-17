@@ -9,7 +9,11 @@ import DepartmentDetail from '@/pages/department/detail/Detail'
 import DoctorList from '@/pages/doctor/list/List'
 import DoctorDetail from '@/pages/doctor/detail/Detail'
 
-import Appointment from '@/pages/me/appointment/Appointment'
+import SelectDepartment from '@/pages/appointment/department/SelectDepartment'
+import SelectDoctor from '@/pages/appointment/doctor/SelectDoctor'
+import SelectTime from '@/pages/appointment/time/SelectTime'
+
+import MyAppointmentList from '@/pages/appointment/my_list/List'
 import Report from '@/pages/me/report/Report'
 import Waiting from '@/pages/me/waiting/Waiting'
 import MedicalCard from '@/pages/me/medical_card/MedicalCard'
@@ -79,9 +83,33 @@ export default new Router({
     }
   },
   {
+    name: '预约/选科室',
+    path: '/appointment/select-department',
+    component: SelectDepartment,
+    meta: {
+      title: '选科室'
+    }
+  },
+  {
+    name: '预约/选医生',
+    path: '/appointment/select-doctor/:id',
+    component: SelectDoctor,
+    meta: {
+      title: '选医生'
+    }
+  },
+  {
+    name: '预约/选时间',
+    path: '/appointment/select-time/:id',
+    component: SelectTime,
+    meta: {
+      title: '预约'
+    }
+  },
+  {
     name: '个人中心/我的预约',
     path: '/me/appointment',
-    component: Appointment,
+    component: MyAppointmentList,
     meta: {
       title: '我的预约'
     }
