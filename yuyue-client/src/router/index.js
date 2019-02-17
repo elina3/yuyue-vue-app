@@ -5,6 +5,7 @@ import Home from '@/pages/home/Home'
 import Hospital from '@/pages/hospital/Hospital'
 import Department from '@/pages/department/Department'
 import DepartmentList from '@/pages/department/list/List'
+import DepartmentDetail from '@/pages/department/detail/Detail'
 
 import Appointment from '@/pages/me/appointment/Appointment'
 import Report from '@/pages/me/report/Report'
@@ -41,6 +42,14 @@ export default new Router({
     component: DepartmentList,
     meta: {
       title: '科室列表'
+    }
+  },
+  {
+    path: '/department/detail/:id',
+    name: 'DepartmentDetail',
+    component: DepartmentDetail,
+    meta: {
+      title: '科室详情'
     }
   },
   {
