@@ -12,6 +12,7 @@ import DoctorDetail from '@/pages/doctor/detail/Detail'
 import SelectDepartment from '@/pages/appointment/department/SelectDepartment'
 import SelectDoctor from '@/pages/appointment/doctor/SelectDoctor'
 import SelectTime from '@/pages/appointment/time/SelectTime'
+import SureAppointment from '@/pages/appointment/sure/SureAppointment'
 
 import MyAppointmentList from '@/pages/appointment/my_list/List'
 import Report from '@/pages/me/report/Report'
@@ -104,6 +105,14 @@ export default new Router({
     component: SelectTime,
     meta: {
       title: '预约'
+    }
+  },
+  {
+    name: '预约/选时间',
+    path: '/appointment/sure',
+    component: SureAppointment,
+    meta: {
+      title: '确认预约'
     }
   },
   {

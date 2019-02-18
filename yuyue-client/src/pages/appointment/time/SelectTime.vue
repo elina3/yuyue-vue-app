@@ -16,12 +16,20 @@
       </div>
       <div class="date-select">
           <span @click="openPicker()">{{pickerValue.Format('yyyy-MM-dd')}}</span>
+          <div>
+
+          </div>
            <wv-datetime-picker
                 ref="picker"
                 type="date"
                 v-model="pickerValue">
             </wv-datetime-picker>
       </div>
+      <wv-panel class="select-time-range" title="请选择就诊时段">
+        <wv-cell title="08:00-09:30" is-link to="/appointment/sure"></wv-cell>
+        <wv-cell title="09:30-10:00" is-link to="/appointment/sure"></wv-cell>
+      </wv-panel>
+
   </div>
 </template>
 <script>
@@ -138,6 +146,9 @@ export default {
                 text-align: left;
                 text-indent: 1rem;
             }
+        }
+        .select-time-range{
+            padding: 0 0.5rem;
         }
     }
 </style>
