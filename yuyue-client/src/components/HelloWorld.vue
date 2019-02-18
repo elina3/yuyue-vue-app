@@ -46,21 +46,33 @@
       </li>
     </ul>
 
-   <week-select @onClickDate="onClickDate"></week-select>
+   <!-- <week-select @onClickDate="onClickDate"></week-select> -->
+   <week-range :init-dates="dateObjs" @onClickDate="onClickDate"></week-range>
 
   </div>
 </template>
 
 <script>
-import weekSelect from './WeekSelect'
+import weekRange from './WeekRange'
 export default {
   name: 'HelloWorld',
   components: {
-    weekSelect
+    weekRange
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      dateObjs: [
+        {date: new Date('2019-2-17')},
+        {date: new Date('2019-2-18'), disabled: true},
+        {date: new Date('2019-2-19')},
+        {date: new Date('2019-2-20')},
+        {date: new Date('2019-2-21')},
+        {date: new Date('2019-2-22')},
+        {date: new Date('2019-2-23')},
+        {date: new Date('2019-2-24')},
+        {date: new Date('2019-2-25')}
+      ]
     }
   },
   methods: {

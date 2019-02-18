@@ -1,39 +1,37 @@
 <template>
   <div>
      <div class="date-filter-area">
-       <span @click="openPicker()">{{filterDate.Format('yyyy-MM-dd')}}</span>
-        <wv-datetime-picker
-                ref="picker"
-                type="date"
-                @confirm="sure"
-                v-model="filterDate">
-            </wv-datetime-picker>
+       <span>{{currentClickDate && currentClickDate.Format('yyyy-MM-dd')}}</span>
      </div>
      <div class="week-panel">
-      <button @click="prevDate()"> <img src="../assets/images/appointment/上页.png"/> </button>
       <ul>
-        <li :class="item.selected ? 'selected' : ''" :key="index" v-for="(item, index) in weekDay" @click="clickDate(item)">
+        <li :class="[item.selected ? 'selected' : '', item.disabled ? 'disabled' : '']" :key="index" v-for="(item, index) in weekDay" @click="clickDate(item)">
           <span>{{item.name}}</span>
           <span class="date-string" :class="item.now ? 'today' : ''">{{item.dateNumber}}</span>
         </li>
       </ul>
-      <button  @click="nextDate()"> <img src="../assets/images/appointment/下页.png"/> </button>
      </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: [
+    'initDates'
+  ],
   data () {
     return {
       filterDate: new Date(),
       currentClickDate: null,
       todayString: new Date().Format('yyyy-MM-dd'),
-      weekDay: []
+      weekDay: this.initDates
     }
   },
   methods: {
     clickDate (dateItem) {
+      if (dateItem.disabled) {
+        return
+      }
       this.weekDay.forEach(function (item) {
         item.selected = false
       })
@@ -50,9 +48,6 @@ export default {
       let newDate = new Date(new Date().setDate(this.weekDay[6].date.getDate() + 7))
       this.refreshBoard(newDate)
     },
-    openPicker () {
-      this.$refs.picker.open()
-    },
     sure (value) {
       // alert(value)
       this.refreshBoard(value)
@@ -60,23 +55,22 @@ export default {
     isToday (newDate) {
       return newDate.Format('yyyy-MM-dd') === this.todayString
     },
-    refreshBoard (newDate) {
-      this.weekDay = [{name: '日'}, {name: '一'}, {name: '二'}, {name: '三'}, {name: '四'}, {name: '五'}, {name: '六'}]
-      let theDateIndex = newDate.getDay()
-      for (let i = 0; i < 7; i++) {
-        if (i < theDateIndex) {
-          //  筛选的这天之前
-          this.weekDay[i].date = new Date(new Date().setDate(newDate.getDate() - (theDateIndex - i)))
-        } else if (i > theDateIndex) {
-          //  筛选的这天之后
-          this.weekDay[i].date = new Date(new Date().setDate(newDate.getDate() + (i - theDateIndex)))
-        } else {
-          //  筛选出的这一天
-          this.weekDay[i].date = new Date(newDate.Format('yyyy-MM-dd'))
-        }
-        //  标记面板的今天
-        this.weekDay[i].now = this.isToday(this.weekDay[i].date)
+    refreshBoard () {
+      const weekNames = ['日', '一', '二', '三', '四', '五', '六']
+      // this.weekDay = [
+      //   {date: new Date('2019-2-17')},
+      //   {date: new Date('2019-2-18'), disabled: true},
+      //   {date: new Date('2019-2-19')},
+      //   {date: new Date('2019-2-20')},
+      //   {date: new Date('2019-2-21')},
+      //   {date: new Date('2019-2-22')},
+      //   {date: new Date('2019-2-23')},
+      //   {date: new Date('2019-2-24')},
+      //   {date: new Date('2019-2-25')}
+      // ]
+      for (let i = 0; i < this.weekDay.length; i++) {
         this.weekDay[i].dateNumber = this.weekDay[i].date.Format('d')
+        this.weekDay[i].name = weekNames[this.weekDay[i].date.getDay()]
         if (this.currentClickDate) {
           if (this.weekDay[i].date.Format('yyyy-MM-dd') === this.currentClickDate.Format('yyyy-MM-dd')) {
             this.weekDay[i].selected = true
@@ -86,46 +80,42 @@ export default {
     }
   },
   mounted () {
-    this.filterDate = new Date()
-    this.refreshBoard(this.filterDate)
+    console.log(this.weekDay)
+    this.refreshBoard()
+    this.clickDate(this.weekDay[0])
   }
 }
 </script>
-
 <style lang="scss" scoped>
 @import '../assets/css/define';
+.date-filter-area{
+  background: $color-grey-background;
+}
 .week-panel{
-  button, ul{
-    display: inline-block;
-    float: left;
-    height: 3rem;
-  }
-  button{
-    width: 5%;
-    background: $color-green;
-    color: #fff;
-    border: none;
-    img{
-      display: block;
-      width: 80%;
-      height: auto;
-      margin: 0 auto;
-    }
-  }
+  width: 100%;
   ul{
-    width: 90%;
+    width: 100%;
+    height: 4rem;
+    display: -webkit-box;
+    -webkit-overflow-scrolling:touch;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
   ul li{
-    display: inline-block;
-    float: left;
     width: 14%;
-    height: 100%;
+    height: 90%;
     text-decoration: none;
+    list-style: none;
     span{
       display: block;
     }
     span.today{
       color: red;
+    }
+    &.disabled{
+      .date-string{
+        color: $font-color-light;
+      }
     }
     &.selected{
       .date-string{

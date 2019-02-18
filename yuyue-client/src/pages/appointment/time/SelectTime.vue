@@ -15,15 +15,7 @@
           </div>
       </div>
       <div class="date-select">
-          <span @click="openPicker()">{{pickerValue.Format('yyyy-MM-dd')}}</span>
-          <div>
-
-          </div>
-           <wv-datetime-picker
-                ref="picker"
-                type="date"
-                v-model="pickerValue">
-            </wv-datetime-picker>
+          <week-range :init-dates="dateObjs" @onClickDate="onClickDate"></week-range>
       </div>
       <wv-panel class="select-time-range" title="请选择就诊时段">
         <wv-cell title="08:00-09:30" is-link to="/appointment/sure"></wv-cell>
@@ -33,15 +25,31 @@
   </div>
 </template>
 <script>
-
+import weekRange from '../../../components/WeekRange'
 export default {
   name: 'DoctorDetail',
+  components: {
+    weekRange
+  },
   data () {
-    return { msg: '', thumb: '/static/images/department/default.png', pickerValue: new Date() }
+    return {
+      msg: '',
+      thumb: '/static/images/department/default.png',
+      pickerValue: new Date(),
+      dateObjs: [{date: new Date('2019-2-17')},
+        {date: new Date('2019-2-18'), disabled: true},
+        {date: new Date('2019-2-19')},
+        {date: new Date('2019-2-20')},
+        {date: new Date('2019-2-21')},
+        {date: new Date('2019-2-22')},
+        {date: new Date('2019-2-23')},
+        {date: new Date('2019-2-24')},
+        {date: new Date('2019-2-25')}]
+    }
   },
   methods: {
-    openPicker () {
-      this.$refs.picker.open()
+    onClickDate (date) {
+      console.log(date)
     }
   }
 }
