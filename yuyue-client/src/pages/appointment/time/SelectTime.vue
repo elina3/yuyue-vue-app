@@ -10,7 +10,7 @@
                 <p>主任医师</p>
                 <span class="orange">专家门诊</span> <span class="green">30元</span>
 
-                <wv-button class="yy-default-button" type="primary" :plain='true' :mini='true'>医生简介</wv-button>
+                <wv-button  @click="jump" class="yy-default-button" type="primary" :plain='true' :mini='true'>医生简介</wv-button>
               </div>
           </div>
       </div>
@@ -50,6 +50,9 @@ export default {
   methods: {
     onClickDate (date) {
       console.log(date)
+    },
+    jump () {
+      this.$router.push({ path: '/doctor/detail/12' })
     }
   }
 }

@@ -10,7 +10,7 @@
                 <p>主任医师 心外科</p>
                 <span class="orange">专家门诊</span> <span class="green">30元</span>
 
-                <wv-button class="yy-default-button" type="primary" :plain='true' :mini='true'>预约</wv-button>
+                <wv-button @click="jump()" class="yy-default-button" type="primary" :plain='true' :mini='true'>预约</wv-button>
               </div>
           </div>
       </div>
@@ -37,6 +37,11 @@ export default {
   name: 'DoctorDetail',
   data () {
     return { msg: '', thumb: '/static/images/department/default.png' }
+  },
+  methods: {
+    jump () {
+      this.$router.push({ path: '/appointment/select-time/1' })
+    }
   }
 }
 </script>
