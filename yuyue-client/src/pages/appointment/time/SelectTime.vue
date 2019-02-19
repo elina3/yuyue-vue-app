@@ -36,15 +36,15 @@ export default {
       msg: '',
       thumb: '/static/images/department/default.png',
       pickerValue: new Date(),
-      dateObjs: [{date: new Date('2019-2-17')},
-        {date: new Date('2019-2-18'), disabled: true},
-        {date: new Date('2019-2-19')},
-        {date: new Date('2019-2-20')},
-        {date: new Date('2019-2-21')},
-        {date: new Date('2019-2-22')},
-        {date: new Date('2019-2-23')},
-        {date: new Date('2019-2-24')},
-        {date: new Date('2019-2-25')}]
+      dateObjs: [{date: new Date('2019/2/17')},
+        {date: new Date('2019/2/18'), disabled: true},
+        {date: new Date('2019/2/19')},
+        {date: new Date('2019/2/20')},
+        {date: new Date('2019/2/21')},
+        {date: new Date('2019/2/22')},
+        {date: new Date('2019/2/23')},
+        {date: new Date('2019/2/24')},
+        {date: new Date('2019/2/25')}]
     }
   },
   methods: {
