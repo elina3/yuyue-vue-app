@@ -2,7 +2,7 @@
   <div class="sure-appointment-page">
     <span class="page-title">就诊卡:</span>
     <wv-panel class="my-card">
-      <wv-cell title="王子争" is-link to="/">
+      <wv-cell title="王子争" is-link to="/me/medical_card">
         <img :src="cardImage" alt="" slot="icon" class="cell-icon">
       </wv-cell>
     </wv-panel>
@@ -62,6 +62,7 @@ export default {
       }).then(action => {
         // 确定后要执行的内容
         Toast('success')
+        this.$router.push({ path: '/appointment/detail' })
       })
     }
   }

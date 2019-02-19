@@ -1,26 +1,17 @@
 <template>
   <div class="sure-appointment-page">
-    <span v-show="!noCard"  class="page-title">我的就诊卡:</span>
-    <wv-group v-show="!noCard" class="appointment-info">
-      <wv-input label="卡类型" placeholder="请输入内容" :readonly="true" v-model="card.type"></wv-input>
-      <wv-input label="卡号" placeholder="请输入内容" :readonly="true" v-model="card.number"></wv-input>
-      <wv-input label="姓名" placeholder="请输入内容" :readonly="true" v-model="card.name"></wv-input>
-      <wv-input label="性别" placeholder="请输入内容" :readonly="true" v-model="card.sex"></wv-input>
-      <wv-input label="身份证号" placeholder="请输入内容" :readonly="true" v-model="card.IDCard"></wv-input>
-      <wv-input label="联系电话" placeholder="请输入内容" :readonly="true" v-model="card.mobile"></wv-input>
+    <span class="page-title">添加就诊卡:</span>
+    <wv-group class="appointment-info">
+      <wv-input label="卡类型" placeholder="请输入内容"  v-model="card.type"></wv-input>
+      <wv-input label="卡号" placeholder="请输入内容"  v-model="card.number"></wv-input>
+      <wv-input label="姓名" placeholder="请输入内容" v-model="card.name"></wv-input>
+      <wv-input label="性别" placeholder="请输入内容"  v-model="card.sex"></wv-input>
+      <wv-input label="身份证号" placeholder="请输入内容"  v-model="card.IDCard"></wv-input>
+      <wv-input label="联系电话" placeholder="请输入内容" v-model="card.mobile"></wv-input>
     </wv-group>
 
-    <div v-show="!noCard" class="sure">
-      <wv-button class="" type="primary" @click="unbind()">解绑就诊卡</wv-button>
-    </div>
-
-    <span v-show="noCard" class="page-title">提示:</span>
-    <wv-group  v-show="noCard" class="appointment-info">
-      <p>你还没有绑定就诊卡，请前往绑定</p>
-      <!-- <wv-input label=""  :readonly="true"></wv-input> -->
-    </wv-group>
-    <div v-show="noCard" class="sure">
-      <wv-button class="" type="primary" @click="bindCard()">解绑就诊卡</wv-button>
+    <div class="sure">
+      <wv-button class="" type="primary" @click="bindCard()">绑定就诊卡</wv-button>
     </div>
   </div>
 </template>
@@ -44,18 +35,14 @@ export default {
   },
   methods: {
     bindCard () {
-      this.$router.push({ path: '/me/bind_card' })
-    },
-    unbind () {
       Dialog.confirm({
         title: '提示信息',
-        message: '您确定要解除该卡的绑定吗？',
+        message: '您确定要绑定该卡吗？',
         skin: 'ios',
         showCancelBtn: true
       }).then(action => {
-        // 确定后要执行的内容
-        this.noCard = true
         Toast('success')
+        this.$router.push({ path: '/me/medical_card' })
       })
     }
   }

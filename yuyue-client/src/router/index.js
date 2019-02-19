@@ -13,11 +13,13 @@ import SelectDepartment from '@/pages/appointment/department/SelectDepartment'
 import SelectDoctor from '@/pages/appointment/doctor/SelectDoctor'
 import SelectTime from '@/pages/appointment/time/SelectTime'
 import SureAppointment from '@/pages/appointment/sure/SureAppointment'
+import AppointmentDetail from '@/pages/appointment/detail/Detail'
 
 import MyAppointmentList from '@/pages/appointment/my_list/List'
 import Report from '@/pages/me/report/Report'
 import Waiting from '@/pages/me/waiting/Waiting'
 import MedicalCard from '@/pages/me/medical_card/MedicalCard'
+import BindCard from '@/pages/me/bind_card/BindCard'
 
 Vue.use(Router)
 
@@ -108,11 +110,19 @@ export default new Router({
     }
   },
   {
-    name: '预约/选时间',
+    name: '预约/确认',
     path: '/appointment/sure',
     component: SureAppointment,
     meta: {
       title: '确认预约'
+    }
+  },
+  {
+    name: '预约/详情',
+    path: '/appointment/detail',
+    component: AppointmentDetail,
+    meta: {
+      title: '预约详情'
     }
   },
   {
@@ -145,6 +155,14 @@ export default new Router({
     component: MedicalCard,
     meta: {
       title: '我的就诊卡'
+    }
+  },
+  {
+    name: '个人中心/绑定就诊卡',
+    path: '/me/bind_card',
+    component: BindCard,
+    meta: {
+      title: '绑定就诊卡'
     }
   }]
 })
