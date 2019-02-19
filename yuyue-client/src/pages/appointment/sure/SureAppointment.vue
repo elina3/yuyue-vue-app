@@ -16,9 +16,9 @@
       <wv-input label="挂号费用" placeholder="请输入内容" :readonly="true" v-model="appointmentInfo.price"></wv-input>
     </wv-group>
     <span class="page-title">支付方式:</span>
-    <wv-group class="appointment-info">
-      <wv-input @click="selectPayment()" label="支付方式" placeholder="请输入内容" :readonly="true" v-model="appointmentInfo.paymentMethod">
-        <img :src="arrowImage" class="vcode" slot="ft"/>
+    <wv-group class="appointment-info" >
+      <wv-input label="支付方式" placeholder="请输入内容" :readonly="true" v-model="appointmentInfo.paymentMethod">
+        <img @click="selectPayment()" :src="arrowImage" class="vcode" slot="ft"/>
       </wv-input>
     </wv-group>
     <div class="sure">
