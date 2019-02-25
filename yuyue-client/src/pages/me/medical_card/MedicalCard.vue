@@ -60,7 +60,7 @@ export default {
     }
   },
   mounted () {
-    alert(JSON.stringify(this.$route.params))
+    alert(JSON.stringify(this.$route.params), JSON.stringify(this.$route.query))
   }
 }
 </script>
