@@ -58,6 +58,9 @@ export default {
         Toast('success')
       })
     }
+  },
+  mounted () {
+    alert(JSON.stringify(this.$route.params))
   }
 }
 </script>
