@@ -7,6 +7,7 @@ import '../static/js/global'
 import App from './App'
 
 import router from './router'
+import store from './store/index'
 
 Vue.use(WeVue)
 /* 实例化参数 */
@@ -18,6 +19,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
