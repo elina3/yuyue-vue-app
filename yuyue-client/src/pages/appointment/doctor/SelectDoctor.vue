@@ -1,7 +1,19 @@
 <template>
   <div class="select-doctor-page">
     <div class="doctor-list">
-        <div class="doctor-item" @click="jump(1)">
+        <div class="doctor-item" :key="item.id" v-for="item in doctors" @click="jump(item.id)">
+            <div class="photo-area">
+                <img src="../../../assets/images/doctor/default.png"/>
+            </div>
+            <div class="base-info-area">
+                <strong>{{item.nickname}} {{item.job_title.name}}</strong>
+                <span class="orange">{{item.outpatient_type}}</span>
+                <span class="arrow">></span>
+                <span class="green">{{item.price ? item.price + '元' : '未设置'}}</span>
+            </div>
+        </div>
+
+        <!-- <div class="doctor-item" @click="jump(1)">
             <div class="photo-area">
                 <img src="../../../assets/images/doctor/default.png"/>
             </div>
@@ -22,21 +34,58 @@
                 <span class="arrow">></span>
                 <span class="green">30元</span>
             </div>
-        </div>
+        </div> -->
     </div>
   </div>
 </template>
 
 <script>
+import config from '@/common/config'
+import { getDoctors } from '@/services/doctor'
 
 export default {
   name: 'SelectDoctor',
   data () {
-    return { msg: '', thumb: '/static/images/doctor/default.png' }
+    return { departmentId: '', doctors: [] }
+  },
+  mounted () {
+    console.log('this.$route.params.id:', this.$route.params.id)
+    this.departmentId = this.$route.params.id
+    if (this.departmentId === '-1') {
+      this.departmentId = ''
+    }
+    console.log('departmentid:', this.departmentId)
+    this.loadDoctors()
   },
   methods: {
     jump (id) {
       this.$router.push({ path: '/appointment/select-time/' + id })
+    },
+    loadDoctors () {
+      let obj = {
+        on_shelf: true
+      }
+      if (this.departmentId) {
+        obj.department_id = this.departmentId
+      }
+      getDoctors(obj).then(res => {
+        console.log(res)
+        if (res.doctors) {
+          this.doctors = res.doctors.map(item => {
+            return {
+              id: item._id,
+              nickname: item.nickname,
+              description: item.description,
+              outpatient_type: config.outpatient_type[item.outpatient_type] || '未知门诊',
+              job_title: item.job_title
+            }
+          })
+          console.log(this.doctors)
+        }
+      },
+      err => {
+        console.log('err:', err)
+      })
     }
   }
 }
