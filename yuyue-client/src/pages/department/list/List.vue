@@ -46,7 +46,7 @@ export default {
       getUserCode({}).then(res => {
         console.log('user code:')
         console.log(res)
-        alert('res' + JSON.stringify(res));
+        alert('res' + JSON.stringify(res))
       },
       err => {
         console.log('err:', err)
