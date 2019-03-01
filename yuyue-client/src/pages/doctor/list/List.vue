@@ -1,18 +1,53 @@
 <template>
   <div class="doctor-list-page">
     <wv-panel>
-        <wv-media-box class="yy-list-item" :thumb='thumb' title="刘宝鸿" description="副主任医师（心血管内科）" to="detail/1"></wv-media-box>
-        <wv-media-box class="yy-list-item" :thumb='thumb' title="药不然" description="主任医师（心血管内科）" to="detail/2"></wv-media-box>
+        <wv-media-box :key="item.id" v-for="item in doctors"  class="yy-list-item" :thumb='thumb' :title="item.nickname" :description="item.description" :to="item.url"></wv-media-box>
     </wv-panel>
   </div>
 </template>
 
 <script>
+import { getDoctors } from '@/services/doctor'
 
 export default {
   name: 'DoctorList',
   data () {
-    return { msg: '', thumb: '/static/images/doctor/default.png' }
+    return { doctors: [], departmentId: '', msg: '', thumb: '/client/static/images/doctor/default.png' }
+  },
+  mounted () {
+    console.log('this.$route.params.id:', this.$route.params.id)
+    this.departmentId = this.$route.params.id
+    if (this.departmentId === '-1') {
+      this.departmentId = ''
+    }
+    console.log('departmentid:', this.departmentId)
+    this.loadDoctors()
+  },
+  methods: {
+    loadDoctors () {
+      let obj = {
+        on_shelf: true
+      }
+      if (this.departmentId) {
+        obj.department_id = this.departmentId
+      }
+      getDoctors(obj).then(res => {
+        console.log(res)
+        if (res.doctors) {
+          this.doctors = res.doctors.map(item => {
+            return {
+              url: '/doctor/detail/' + item._id,
+              id: item._id,
+              nickname: item.nickname,
+              description: item.description
+            }
+          })
+        }
+      },
+      err => {
+        console.log('err:', err)
+      })
+    }
   }
 }
 </script>

@@ -46,7 +46,7 @@ export default new Router({
     }
   },
   {
-    path: '/doctor/list',
+    path: '/doctor/list/:id',
     name: 'DoctorList',
     component: DoctorList,
     meta: {
