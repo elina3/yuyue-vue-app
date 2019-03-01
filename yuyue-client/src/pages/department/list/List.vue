@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { getDepartments } from '@/services/department'
+import { getDepartments, getUserCode } from '@/services/department'
 
 export default {
   name: 'DepartmentList',
@@ -20,6 +20,7 @@ export default {
     }
   },
   mounted () {
+    this.getUserCode();
     this.loadDepartments()
   },
   methods: {
@@ -36,6 +37,15 @@ export default {
             }
           })
         }
+      },
+      err => {
+        console.log('err:', err)
+      })
+    },
+    getUserCode () {
+      getUserCode({}).then(res => {
+        console.log('user code:')
+        console.log(res)
       },
       err => {
         console.log('err:', err)

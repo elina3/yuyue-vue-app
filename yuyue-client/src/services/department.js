@@ -14,3 +14,10 @@ export const getDepartmentDetail = (params) => fetch({
   params,
   accredit: true
 })
+
+export const getUserCode = (params) => fetch({
+  url: apiUrl.user.wechat_code,
+  method: 'get',
+  params,
+  accredit: true
+})
