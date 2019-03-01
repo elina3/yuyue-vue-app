@@ -20,7 +20,7 @@ export default {
     }
   },
   mounted () {
-    this.getUserCode();
+    this.getUserCode()
     this.loadDepartments()
   },
   methods: {
