@@ -21,9 +21,7 @@ export default {
       alert('has code' + urlParams.code)
       getWechatInfo({code: urlParams.code}).then(res => {
         this.setWechatInfo(res)
-        alert('set wechat info')
-        let info = this.getWechatInfo()
-        alert(JSON.stringify(info))
+        alert('set wechat info---')
       }, err => {
         alert('get wechat info faild:' + err)
       })
