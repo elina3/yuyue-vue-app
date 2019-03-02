@@ -55,6 +55,8 @@ export default {
       }).then(action => {
         // 确定后要执行的内容r
         alert('unbind')
+        alert(this.$store.state.wechat_info)
+        alert(this.$store.state.wechat_info.openid)
         unbindCard({open_id: this.$store.state.wechat_info.openid}).then(res => {
           if (res.err) {
             Toast(res.err.zh_message)
