@@ -20,10 +20,10 @@ export default {
     } else {
       alert('has code' + urlParams.code)
       loadWechatInfo({code: urlParams.code}).then(res => {
-        this.setWechatInfo(res)
-        alert('set wechat info---')
-        alert(JSON.stringify(this.wechatInfo))
-        alert(this.$store.state.wechatInfo)
+        if (res.wechat_info) {
+          this.setWechatInfo(res.wechat_info)
+          alert(JSON.stringify(this.$store.state.wechatInfo))
+        }
       }, err => {
         alert('get wechat info faild:' + err)
       })
