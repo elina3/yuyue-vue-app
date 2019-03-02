@@ -17,5 +17,8 @@ export default {
   },
   wechat: {
     getWechatInfo: '/wechat/wechat_info'
+  },
+  member: {
+    checkMemberInfo: '/member/check_by_openid'
   }
 }

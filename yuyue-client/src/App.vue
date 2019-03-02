@@ -6,9 +6,10 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { mapMutations } from 'vuex'
 import { getCode } from '@/common/wechatsdk'
 import { loadWechatInfo } from '@/services/wechat'
+import { checkMemberInfo } from '@/services/member'
 export default {
   name: 'App',
   // 在mounted阶段通过cookie拿到用户的userid
@@ -22,7 +23,17 @@ export default {
       loadWechatInfo({code: urlParams.code}).then(res => {
         if (res.wechat_info) {
           this.setWechatInfo(res.wechat_info)
-          alert(JSON.stringify(this.$store.state.wechatInfo))
+          // alert(JSON.stringify(this.$store.state.wechatInfo))
+          checkMemberInfo({open_id: res.wechat_info.openid}).then(res => {
+            alert(JSON.stringfiy(res))
+            if (res.member) {
+              this.setMemberInfo(res.member)
+            } else {
+              alert('no member')
+            }
+          }, err => {
+            console.error(err)
+          })
         }
       }, err => {
         alert('get wechat info faild:' + err)
@@ -32,10 +43,6 @@ export default {
   methods: {
     ...mapMutations({
       setWechatInfo: 'SET_WECHATINFO'
-    }),
-    // ...mapGetters(['wechatInfo']),
-    ...mapState({
-      wechatInfo: 'wechatInfo'
     }),
     // 拿到传递的参数
     getUrlParmas () {
