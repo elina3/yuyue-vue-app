@@ -164,6 +164,7 @@ export default {
       this.card.IDCard = memberInfo.IDCard
       this.card.mobile = memberInfo.mobile_phone
     }
+    this.hideButton = false
   }
 }
 </script>
