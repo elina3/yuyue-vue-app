@@ -13,5 +13,5 @@ export const bindCard = (params) => fetch({
   url: apiUrl.member.bindCard,
   method: 'post',
   data: params,
-  accredit: true
+  accredit: false
 })
