@@ -1,11 +1,11 @@
 <template>
   <div>
      <div class="date-filter-area">
-       <span>{{currentClickDate && currentClickDate.Format('yyyy-MM-dd')}}</span>
+       <span>{{currentClickDate && new Date(currentClickDate).Format('yyyy-MM-dd')}}</span>
      </div>
      <div class="week-panel">
       <ul>
-        <li :class="[item.selected ? 'selected' : '', item.disabled ? 'disabled' : '']" :key="index" v-for="(item, index) in weekDay" @click="clickDate(item)">
+        <li :class="[item.selected ? 'selected' : '', item.disabled ? 'disabled' : '']" :key="index" v-for="(item, index) in initDates" @click="clickDate(item)">
           <span>{{item.name}}</span>
           <span class="date-string" :class="item.now ? 'today' : ''">{{item.dateNumber}}</span>
         </li>
@@ -23,8 +23,7 @@ export default {
     return {
       filterDate: new Date(),
       currentClickDate: null,
-      todayString: new Date().Format('yyyy-MM-dd'),
-      weekDay: this.initDates
+      todayString: new Date().Format('yyyy-MM-dd')
     }
   },
   methods: {
@@ -32,7 +31,7 @@ export default {
       if (dateItem.disabled) {
         return
       }
-      this.weekDay.forEach(function (item) {
+      this.initDates.forEach(function (item) {
         item.selected = false
       })
       dateItem.selected = true
@@ -41,11 +40,11 @@ export default {
       this.$emit('onClickDate', dateItem)
     },
     prevDate () {
-      let newDate = new Date(new Date().setDate(this.weekDay[0].date.getDate() - 7))
+      let newDate = new Date(new Date().setDate(this.initDates[0].date.getDate() - 7))
       this.refreshBoard(newDate)
     },
     nextDate () {
-      let newDate = new Date(new Date().setDate(this.weekDay[6].date.getDate() + 7))
+      let newDate = new Date(new Date().setDate(this.initDates[6].date.getDate() + 7))
       this.refreshBoard(newDate)
     },
     sure (value) {
@@ -57,51 +56,36 @@ export default {
     },
     refreshBoard () {
       const weekNames = ['日', '一', '二', '三', '四', '五', '六']
-      // this.weekDay = [
-      //   {date: new Date('2019-2-17')},
-      //   {date: new Date('2019-2-18'), disabled: true},
-      //   {date: new Date('2019-2-19')},
-      //   {date: new Date('2019-2-20')},
-      //   {date: new Date('2019-2-21')},
-      //   {date: new Date('2019-2-22')},
-      //   {date: new Date('2019-2-23')},
-      //   {date: new Date('2019-2-24')},
-      //   {date: new Date('2019-2-25')}
-      // ]
-      for (let i = 0; i < this.weekDay.length; i++) {
-        this.weekDay[i].dateNumber = this.weekDay[i].date.Format('d')
-        this.weekDay[i].name = weekNames[this.weekDay[i].date.getDay()]
+      for (let i = 0; i < this.initDates.length; i++) {
+        var date = new Date(this.initDates[i].date)
+        this.initDates[i].dateNumber = date.Format('d')
+        this.initDates[i].name = weekNames[date.getDay()]
         if (this.currentClickDate) {
-          if (this.weekDay[i].date.Format('yyyy-MM-dd') === this.currentClickDate.Format('yyyy-MM-dd')) {
-            this.weekDay[i].selected = true
+          if (date.Format('yyyy-MM-dd') === new Date(this.currentClickDate).Format('yyyy-MM-dd')) {
+            this.initDates[i].selected = true
           }
         }
       }
     },
     init () {
       this.refreshBoard()
-      if (this.weekDay[0]) {
-        this.clickDate(this.weekDay[0])
+      if (this.initDates[0]) {
+        this.clickDate(this.initDates[0])
       }
     }
   },
   watch: {
-    initDates (newV, oldV) {
-      console.log('initDates changes')
-      console.log(newV)
-      console.log(oldV)
-      this.$nextTick(() => {
-        this.initDates = newV
-        this.init()
-        this.$forceUpdate()
-        console.log('init')
-      })
+    initDates: {
+      handler (newV, oldV) {
+        this.$nextTick(() => {
+          this.init()
+        })
+      },
+      deep: true
     }
   },
   mounted () {
-    console.log(this.weekDay)
     this.init()
-    console.log('mounted')
   }
 }
 </script>

@@ -19,8 +19,8 @@
           <week-range :init-dates="dateObjs" @onClickDate="onClickDate"></week-range>
       </div>
       <wv-panel class="select-time-range" title="请选择就诊时段">
-        <!-- <wv-cell :key="item.id" v-for="item in currentTimeRanges" :title="item.title" is-link :to="'/appointment/sure' + item.id"></wv-cell> -->
-        <wv-cell title="09:30-10:00" is-link :to="{ path: '/appointment/sure', query: { schedule_id: '5c7948e1345d3c7160035f19', doctor_id: doctorId}}"></wv-cell>
+        <wv-cell :key="item.id" v-for="item in currentTimeRanges" :title="item.title" is-link :to="{ path: '/appointment/sure', query: { schedule_id: item.id, doctor_id: doctorId }}"></wv-cell>
+        <!-- <wv-cell title="09:30-10:00" is-link :to="{ path: '/appointment/sure', query: { schedule_id: '5c7948e1345d3c7160035f19', doctor_id: doctorId}}"></wv-cell> -->
       </wv-panel>
 
   </div>
@@ -38,17 +38,7 @@ export default {
     return {
       doctorId: '',
       doctor: {},
-      dateObjs: [
-        {date: new Date('2019/2/17')},
-        {date: new Date('2019/2/18'), disabled: true},
-        {date: new Date('2019/2/19')},
-        {date: new Date('2019/2/20')},
-        {date: new Date('2019/2/21')},
-        {date: new Date('2019/2/22')},
-        {date: new Date('2019/2/23')},
-        {date: new Date('2019/2/24')},
-        {date: new Date('2019/2/25')}
-      ],
+      dateObjs: [],
       currentTimeRanges: []
     }
   },

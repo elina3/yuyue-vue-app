@@ -22,12 +22,13 @@
       </wv-input>
     </wv-group>
     <div class="sure">
-      <wv-button class="" type="primary" @click="sureAppointment()">确认预约</wv-button>
+      <wv-button v-show="!hiddenButton" class="" type="primary" @click="sureAppointment()">确认预约</wv-button>
     </div>
   </div>
 </template>
 <script>
 import config from '@/common/config'
+import { mapGetters } from 'vuex'
 import { previewAppointment, createAppointment } from '@/services/appointment'
 import { Dialog, Toast } from 'we-vue'
 export default {
@@ -49,13 +50,19 @@ export default {
         price: '',
         paymentMethod: '到院支付',
         paymentMethodType: 'offline'
-      }
+      },
+      hiddenButton: true
     }
   },
   mounted () {
     this.scheduleId = this.$route.query.schedule_id
     this.doctorId = this.$route.query.doctor_id
     this.loadPreviewAppointment()
+    if (this.$store.state.memberInfo) {
+      this.openId = this.$store.state.memberInfo.open_id
+      this.nickname = this.$store.state.memberInfo.nickname
+      this.hideButton = false
+    }
   },
   methods: {
     selectPayment (picker, value) {
@@ -73,12 +80,19 @@ export default {
         showCancelBtn: true
       }).then(action => {
         // 确定后要执行的内容
-        this.createAppointment((err, data) => {
+        this.createAppointment((err, appointment) => {
           if (err) {
-            return Toast(err.zh_message)
+            Toast(err.zh_message)
+            return
           }
-          this.$router.push({ path: '/appointment/detail/' + '123' })
+          if (appointment) {
+            this.$router.push({ path: '/appointment/detail/' + appointment._id })
+          } else {
+            Toast('创建失败')
+          }
         })
+      }, cancel => {
+        console.log('cancel')
       })
     },
     loadPreviewAppointment () {
@@ -90,7 +104,7 @@ export default {
           this.appointmentInfo.outpatientType = config.outpatient_type[res.appointment_info.outpatient_type] || '未知门诊'
           this.appointmentInfo.timeRange = res.appointment_info.start_time_string + '~' + res.appointment_info.end_time_string
           this.appointmentInfo.date = res.appointment_info.date_string
-          this.appointmentInfo.price = res.appointment_info.price ? res.appointment_info.price + '元' : '未设置'
+          this.appointmentInfo.price = res.appointment_info.price > 0 ? parseFloat(res.appointment_info.price / 100) + '元' : '未设置'
         }
       }, err => {
         console.error(err)
@@ -109,6 +123,21 @@ export default {
       }, err => {
         console.error(err)
       })
+    }
+  },
+  computed: {
+    ...mapGetters(['memberInfo']),
+    getMemberInfo () {
+      return this.$store.state.memberInfo
+    }
+  },
+  watch: {
+    getMemberInfo (val) {
+      if (val) {
+        this.openId = val.open_id
+        this.nickname = val.nickname
+        this.hideButton = false
+      }
     }
   }
 }

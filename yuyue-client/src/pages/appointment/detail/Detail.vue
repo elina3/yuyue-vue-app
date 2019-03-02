@@ -101,7 +101,8 @@ export default {
     loadAppointmentDetail () {
       getAppointmentDetail({appointment_id: this.$route.params.id}).then(res => {
         if (res.err) {
-          return Toast(res.err)
+          Toast(res.err.zh_message)
+          return
         }
         console.log(res)
         if (res.appointment) {
@@ -114,13 +115,13 @@ export default {
             price: res.appointment.price ? (res.appointment.price / 100) + '元' : '未设置',
             doctor: res.appointment.doctor.nickname,
             department: res.appointment.department.name,
-            date: res.appointment.start_time.Format('yyy-MM-dd'),
+            date: res.appointment.start_time.Format('yyyy-MM-dd'),
             timeRange: res.appointment.start_time.Format('hh:mm') + '~' + res.appointment.end_time.Format('hh:mm'),
             IDCard: res.appointment.IDCard,
-            cardType: res.appointment.card_type || '未绑定',
-            cardNumber: res.appointment.card_number || '未绑定',
+            cardType: res.appointment.card_type || '无',
+            cardNumber: res.appointment.card_number || '无',
             orderNumber: res.appointment.order_number,
-            mobile: res.appointment.member.mobile,
+            mobile: res.appointment.member.mobile_phone,
             name: res.appointment.member.nickname || res.appointment.IDCard,
             paymentMethod: config.payment_method[res.appointment.payment_method] || '未知'
           }

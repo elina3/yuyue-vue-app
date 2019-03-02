@@ -53,10 +53,9 @@ export default {
         skin: 'ios',
         showCancelBtn: true
       }).then(action => {
-        // 确定后要执行的内容r
-        alert('unbind')
-        alert(this.$store.state.wechatInfo)
-        alert(this.$store.state.wechatInfo.openid)
+        if (action === 'cancel') {
+          return
+        }
         unbindCard({open_id: this.$store.state.wechatInfo.openid}).then(res => {
           if (res.err) {
             Toast(res.err.zh_message)
@@ -69,6 +68,8 @@ export default {
             Toast('解绑成功！')
           }
         })
+      }, cancel => {
+        alert(cancel)
       })
     }
   },

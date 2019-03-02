@@ -89,6 +89,8 @@ export default {
         showCancelBtn: true
       }).then(action => {
         this.registerMemberAndBindCard()
+      }, cancel => {
+        console.log(cancel)
       })
     },
     registerMemberAndBindCard () {
