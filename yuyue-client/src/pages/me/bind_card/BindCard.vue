@@ -57,7 +57,7 @@ export default {
       return reg.test(card)
     },
     bindCard () {
-      if (!this.wechat_info) {
+      if (!this.$store.state.wechatInfo) {
         Toast('请用微信打开页面')
       }
       if (!this.card.name) {
