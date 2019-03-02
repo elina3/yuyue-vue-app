@@ -22,7 +22,7 @@ export default {
       loadWechatInfo({code: urlParams.code}).then(res => {
         this.setWechatInfo(res)
         alert('set wechat info---')
-        alert('wechatInfo:', this.wechatInfo)
+        alert('wechatInfo:' + JSON.stringify(this.wechatInfo))
       }, err => {
         alert('get wechat info faild:' + err)
       })
