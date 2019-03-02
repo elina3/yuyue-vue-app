@@ -115,6 +115,9 @@ export default {
           Toast(res.err.zh_message)
           return
         }
+
+        this.setMemberInfo(res.member)
+        alert(JSON.stringify(this.$store.state.memberInfo))
         Toast('绑卡成功！')
         return callback()
       })
