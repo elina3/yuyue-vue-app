@@ -29,6 +29,7 @@ export default {
       wechatInfo: {},
       memberInfo: {},
       card: {},
+      noCard: true,
       hideButton: true
     }
   },
@@ -147,6 +148,21 @@ export default {
     this.wechatInfo = this.$store.state.wechatInfo
     if (!this.$store.state.wechatInfo || !this.$store.state.wechatInfo.openid) {
       alert('请用微信打开页面')
+      return
+    }
+    var memberInfo = this.$store.state.memberInfo
+    if (!memberInfo) {
+      this.noCard = true
+    } else if (!memberInfo.IDCard) {
+      this.noCard = true
+    } else {
+      this.noCard = false
+      this.card.name = memberInfo.nickname
+      this.card.number = memberInfo.card_number
+      this.card.type = config[memberInfo.card_type]
+      this.card.sex = config[memberInfo.sex]
+      this.card.IDCard = memberInfo.IDCard
+      this.card.mobile = memberInfo.mobile_phone
     }
   }
 }

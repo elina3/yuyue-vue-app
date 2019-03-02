@@ -99,21 +99,22 @@ export default {
     }
   },
   mounted () {
-    // if (!this.$store.state.memberInfo) {
-    //   this.noCard = true
-    // } else if (!this.$store.state.memberInfo.IDCard) {
-    //   this.noCard = true
-    // } else {
-    //   this.noCard = false
-    //   this.card = {
-    //     name: this.$store.state.memberInfo.nickname,
-    //     number: this.$store.state.memberInfo.card_number,
-    //     type: config.card_type[this.$store.state.memberInfo.card_type],
-    //     sex: config[this.$store.state.memberInfo.sex],
-    //     IDCard: config[this.$store.state.memberInfo.sex],
-    //     mobile: this.$store.state.memberInfo.mobile_phone
-    //   }
-    // }
+    if (!this.$store.state.memberInfo) {
+      this.noCard = true
+    } else if (!this.$store.state.memberInfo.IDCard) {
+      this.noCard = true
+    } else {
+      this.noCard = false
+      this.card = {
+        name: this.$store.state.memberInfo.nickname,
+        number: this.$store.state.memberInfo.card_number,
+        type: config.card_type[this.$store.state.memberInfo.card_type],
+        sex: config[this.$store.state.memberInfo.sex],
+        IDCard: config[this.$store.state.memberInfo.sex],
+        mobile: this.$store.state.memberInfo.mobile_phone
+      }
+    }
+    this.hideButton = false
   }
 }
 </script>
