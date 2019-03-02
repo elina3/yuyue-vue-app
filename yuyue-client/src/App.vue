@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 import { getCode } from '@/common/wechatsdk'
-import { getWechatInfo } from '@/services/wechat'
+import { loadWechatInfo } from '@/services/wechat'
 export default {
   name: 'App',
   // 在mounted阶段通过cookie拿到用户的userid
@@ -19,9 +19,10 @@ export default {
       getCode(url)
     } else {
       alert('has code' + urlParams.code)
-      getWechatInfo({code: urlParams.code}).then(res => {
+      loadWechatInfo({code: urlParams.code}).then(res => {
         this.setWechatInfo(res)
         alert('set wechat info---')
+        alert('wechatInfo:', this.wechatInfo)
       }, err => {
         alert('get wechat info faild:' + err)
       })
@@ -29,9 +30,9 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setWechatInfo: 'SET_WECHATINFO',
-      getWechatInfo: 'GET_WECHATINFO'
+      setWechatInfo: 'SET_WECHATINFO'
     }),
+    ...mapGetters(['wechatInfo']),
     // 拿到传递的参数
     getUrlParmas () {
       let url = window.location.search
