@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import config from '@/common/config'
 import { Dialog, Toast } from 'we-vue'
 export default {
@@ -60,22 +61,47 @@ export default {
       })
     }
   },
-  mounted () {
-    if (!this.$store.state.memberInfo) {
-      this.noCard = true
-    } else if (!this.$store.state.memberInfo.IDCard) {
-      this.noCard = true
-    } else {
-      this.noCard = false
-      this.card = {
-        name: this.$store.state.memberInfo.nickname,
-        number: this.$store.state.memberInfo.card_number,
-        type: config.card_type[this.$store.state.memberInfo.card_type],
-        sex: config[this.$store.state.memberInfo.sex],
-        IDCard: config[this.$store.state.memberInfo.sex],
-        mobile: this.$store.state.memberInfo.mobile_phone
+  computed: {
+    ...mapGetters(['memberInfo']),
+    getMemberInfo () {
+      return this.$store.state.memberInfo
+    }
+  },
+  watch: {
+    getMemberInfo (val) {
+      if (!val) {
+        this.noCard = true
+      } else if (!val.IDCard) {
+        this.noCard = true
+      } else {
+        this.noCard = false
+        this.card = {
+          name: val.nickname,
+          number: val.card_number,
+          type: config.card_type[val.card_type],
+          sex: config[val.sex],
+          IDCard: val.IDCard,
+          mobile: val.mobile_phone
+        }
       }
     }
+  },
+  mounted () {
+    // if (!this.$store.state.memberInfo) {
+    //   this.noCard = true
+    // } else if (!this.$store.state.memberInfo.IDCard) {
+    //   this.noCard = true
+    // } else {
+    //   this.noCard = false
+    //   this.card = {
+    //     name: this.$store.state.memberInfo.nickname,
+    //     number: this.$store.state.memberInfo.card_number,
+    //     type: config.card_type[this.$store.state.memberInfo.card_type],
+    //     sex: config[this.$store.state.memberInfo.sex],
+    //     IDCard: config[this.$store.state.memberInfo.sex],
+    //     mobile: this.$store.state.memberInfo.mobile_phone
+    //   }
+    // }
   }
 }
 </script>
