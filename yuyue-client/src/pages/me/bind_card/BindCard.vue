@@ -11,7 +11,7 @@
     </wv-group>
 
     <div class="sure">
-      <wv-button class="" type="primary" @click="bindCard()">绑定就诊卡</wv-button>
+      <wv-button v-show="!hideButton" class="" type="primary" @click="bindCard()">绑定就诊卡</wv-button>
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@
 <script>
 import config from '@/common/config'
 import { bindCard } from '@/services/member'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 import { Dialog, Toast } from 'we-vue'
 export default {
   name: 'MedicalCard',
@@ -28,15 +28,8 @@ export default {
       msg: '',
       wechatInfo: {},
       memberInfo: {},
-      card: {
-        type: '医保卡',
-        number: '1938629-139',
-        name: '王可云',
-        sex: '女',
-        IDCard: '119236198902146823',
-        mobile: '13217670989'
-      },
-      noCard: false
+      card: {},
+      hideButton: true
     }
   },
   methods: {
@@ -123,27 +116,37 @@ export default {
       })
     }
   },
+  computed: {
+    ...mapGetters(['memberInfo']),
+    getMemberInfo () {
+      return this.$store.state.memberInfo
+    }
+  },
+  watch: {
+    getMemberInfo (val) {
+      if (!val) {
+        this.noCard = true
+      } else if (!val.IDCard) {
+        this.noCard = true
+      } else {
+        this.noCard = false
+        this.card = {
+          name: val.nickname,
+          number: val.card_number,
+          type: config.card_type[val.card_type],
+          sex: config[val.sex],
+          IDCard: val.IDCard,
+          mobile: val.mobile_phone
+        }
+      }
+      this.hideButton = false
+    }
+  },
   mounted () {
     alert('bindcard:' + JSON.stringify(this.$store.state.wechatInfo))
     this.wechatInfo = this.$store.state.wechatInfo
     if (!this.$store.state.wechatInfo || !this.$store.state.wechatInfo.openid) {
       alert('请用微信打开页面')
-      return
-    }
-
-    var memberInfo = this.$store.state.memberInfo
-    if (!memberInfo) {
-      this.noCard = true
-    } else if (!memberInfo.IDCard) {
-      this.noCard = true
-    } else {
-      this.noCard = false
-      this.card.name = memberInfo.nickname
-      this.card.number = memberInfo.card_number
-      this.card.type = config[memberInfo.card_type]
-      this.card.sex = config[memberInfo.sex]
-      this.card.IDCard = memberInfo.IDCard
-      this.card.mobile = memberInfo.mobile_phone
     }
   }
 }
