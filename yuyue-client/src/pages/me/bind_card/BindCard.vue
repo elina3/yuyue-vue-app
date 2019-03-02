@@ -126,7 +126,7 @@ export default {
   mounted () {
     alert('bindcard:' + JSON.stringify(this.$store.state.wechatInfo))
     this.wechatInfo = this.$store.state.wechatInfo
-    if (!this.wechatInfo || this.wechatInfo.openid) {
+    if (!this.wechatInfo || !this.wechatInfo.openid) {
       alert('请用微信打开页面')
       return
     }
