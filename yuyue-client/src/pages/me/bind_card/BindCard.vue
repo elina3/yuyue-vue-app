@@ -60,7 +60,7 @@ export default {
       if (!this.wechat_info) {
         Toast('请用微信打开页面')
       }
-      if (!this.card.nickname) {
+      if (!this.card.name) {
         Toast('请填写姓名')
         return
       }
