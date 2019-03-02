@@ -20,8 +20,9 @@ export default {
 
     if (!urlParams.code) {
       // alert('window.location.href:', window.location.href)
-      let url = window.location.href.replace('#/', '')
-      url = url.replace('#', '')
+      let url = window.location.href
+      // let url = window.location.href.replace('#/', '')
+      // url = url.replace('#', '')
       // alert(url)
       test2(url)
     } else {
