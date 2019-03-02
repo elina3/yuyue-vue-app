@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import { getCode } from '@/common/wechatsdk'
 import { loadWechatInfo } from '@/services/wechat'
 export default {
@@ -32,7 +32,10 @@ export default {
     ...mapMutations({
       setWechatInfo: 'SET_WECHATINFO'
     }),
-    ...mapGetters(['wechatInfo']),
+    // ...mapGetters(['wechatInfo']),
+    ...mapState({
+      wechatInfo: 'wechatInfo'
+    }),
     // 拿到传递的参数
     getUrlParmas () {
       let url = window.location.search
