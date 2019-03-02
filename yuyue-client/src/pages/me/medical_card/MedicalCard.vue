@@ -33,14 +33,7 @@ export default {
   name: 'MedicalCard',
   data () {
     return { msg: '',
-      card: {
-        type: '医保卡',
-        number: '1938629-139',
-        name: '王可云',
-        sex: '女',
-        IDCard: '119236198902146823',
-        mobile: '13217670989'
-      },
+      card: {},
       noCard: false
     }
   },
