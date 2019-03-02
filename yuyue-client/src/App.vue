@@ -26,7 +26,7 @@ export default {
       test2(url)
     } else {
       alert('has code' + urlParams.code)
-      getWechatInfo(urlParams.code).then(res => {
+      getWechatInfo({code: urlParams.code}).then(res => {
         let s = JSON.stringify(res)
         alert(s)
       }, err => {
