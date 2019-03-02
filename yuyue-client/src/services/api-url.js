@@ -20,6 +20,7 @@ export default {
   },
   member: {
     checkMemberInfo: '/member/check_by_openid',
-    bindCard: '/member/bind_card'
+    bindCard: '/member/bind_card',
+    unbindCard: '/member/unbind_card'
   }
 }

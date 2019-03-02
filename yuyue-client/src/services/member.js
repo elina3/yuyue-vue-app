@@ -15,3 +15,10 @@ export const bindCard = (params) => fetch({
   params: params,
   accredit: true
 })
+
+export const unbindCard = (params) => fetch({
+  url: apiUrl.member.unbindCard,
+  method: 'post',
+  params: params,
+  accredit: true
+})

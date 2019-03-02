@@ -10,7 +10,7 @@
       <wv-input label="联系电话" placeholder="请输入内容" :readonly="true" v-model="card.mobile"></wv-input>
     </wv-group>
 
-    <div v-show="!noCard" class="sure">
+    <div v-show="!noCard && !hideButton" class="sure">
       <wv-button class="" type="primary" @click="unbind()">解绑就诊卡</wv-button>
     </div>
 
@@ -19,14 +19,15 @@
       <p>你还没有绑定就诊卡，请前往绑定</p>
       <!-- <wv-input label=""  :readonly="true"></wv-input> -->
     </wv-group>
-    <div v-show="noCard" class="sure">
-      <wv-button class="" type="primary" @click="bindCard()">解绑就诊卡</wv-button>
+    <div v-show="noCard && !hideButton" class="sure">
+      <wv-button class="" type="primary" @click="bindCard()">绑定就诊卡</wv-button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
+import { unbindCard } from '@/services/member'
 import config from '@/common/config'
 import { Dialog, Toast } from 'we-vue'
 export default {
@@ -34,10 +35,14 @@ export default {
   data () {
     return { msg: '',
       card: {},
-      noCard: false
+      noCard: true,
+      hideButton: true
     }
   },
   methods: {
+    ...mapMutations({
+      setMemberInfo: 'SET_MEMBERINFO'
+    }),
     bindCard () {
       this.$router.push({ path: '/me/bind_card' })
     },
@@ -48,9 +53,20 @@ export default {
         skin: 'ios',
         showCancelBtn: true
       }).then(action => {
-        // 确定后要执行的内容
-        this.noCard = true
-        Toast('success')
+        // 确定后要执行的内容r
+        alert('unbind')
+        unbindCard({open_id: this.$store.state.wechat_info.openid}).then(res => {
+          if (res.err) {
+            Toast(res.err.zh_message)
+            return
+          }
+          alert('res.member:' + JSON.stringify(res.member))
+          if (res.member) {
+            this.setMemberInfo(res.member)
+            this.noCard = true
+            Toast('解绑成功！')
+          }
+        })
       })
     }
   },
@@ -77,6 +93,7 @@ export default {
           mobile: val.mobile_phone
         }
       }
+      this.hideButton = false
     }
   },
   mounted () {
