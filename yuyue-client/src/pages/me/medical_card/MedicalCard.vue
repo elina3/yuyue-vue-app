@@ -73,7 +73,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['memberInfo']),
+    ...mapGetters(['memberInfo', 'wechatInfo']),
     getMemberInfo () {
       return this.$store.state.memberInfo
     }
