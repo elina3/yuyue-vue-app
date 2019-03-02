@@ -13,7 +13,7 @@ import { checkMemberInfo } from '@/services/member'
 export default {
   name: 'App',
   // 在mounted阶段通过cookie拿到用户的userid
-  mounted () {
+  created () {
     var urlParams = this.getUrlParmas()
     if (!urlParams.code) { // 去授权获取code
       let url = window.location.href
