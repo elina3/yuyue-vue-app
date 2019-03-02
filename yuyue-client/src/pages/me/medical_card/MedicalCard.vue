@@ -109,8 +109,8 @@ export default {
         name: this.$store.state.memberInfo.nickname,
         number: this.$store.state.memberInfo.card_number,
         type: config.card_type[this.$store.state.memberInfo.card_type],
-        sex: config[this.$store.state.memberInfo.sex],
-        IDCard: config[this.$store.state.memberInfo.sex],
+        sex: config.sex[this.$store.state.memberInfo.sex],
+        IDCard: this.$store.state.memberInfo.IDCard,
         mobile: this.$store.state.memberInfo.mobile_phone
       }
     }
