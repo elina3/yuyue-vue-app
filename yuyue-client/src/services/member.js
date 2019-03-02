@@ -12,6 +12,6 @@ export const checkMemberInfo = (params) => fetch({
 export const bindCard = (params) => fetch({
   url: apiUrl.member.bindCard,
   method: 'post',
-  data: params,
-  accredit: false
+  params: params,
+  accredit: true
 })
