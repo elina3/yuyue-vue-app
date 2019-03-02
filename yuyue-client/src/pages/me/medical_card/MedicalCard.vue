@@ -55,9 +55,9 @@ export default {
       }).then(action => {
         // 确定后要执行的内容r
         alert('unbind')
-        alert(this.$store.state.wechat_info)
-        alert(this.$store.state.wechat_info.openid)
-        unbindCard({open_id: this.$store.state.wechat_info.openid}).then(res => {
+        alert(this.$store.state.wechatInfo)
+        alert(this.$store.state.wechatInfo.openid)
+        unbindCard({open_id: this.$store.state.wechatInfo.openid}).then(res => {
           if (res.err) {
             Toast(res.err.zh_message)
             return
@@ -73,7 +73,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['memberInfo', 'wechatInfo']),
+    ...mapGetters(['memberInfo']),
     getMemberInfo () {
       return this.$store.state.memberInfo
     }
