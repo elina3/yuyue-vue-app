@@ -13,14 +13,16 @@ export default {
   mounted () {
     // alert('mounted 1');
     var urlParams = this.getUrlParmas()
-    alert('url params:', JSON.stringify(urlParams))
+    alert('code:' + urlParams.code)
 
-    alert('window.location.href:', window.location.href)
-    let url = window.location.href.replace('#/', '')
-    alert(url)
-    url = url.replace('#', '')
-    alert(url)
-    test2(url)
+    if (!urlParams.code) {
+      alert('window.location.href:', window.location.href)
+      let url = window.location.href.replace('#/', '')
+      alert(url)
+      url = url.replace('#', '')
+      alert(url)
+      test2(url)
+    }
   },
   methods: {
     // 拿到传递的参数
