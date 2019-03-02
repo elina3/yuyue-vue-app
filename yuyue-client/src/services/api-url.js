@@ -19,6 +19,7 @@ export default {
     getWechatInfo: '/wechat/wechat_info'
   },
   member: {
-    checkMemberInfo: '/member/check_by_openid'
+    checkMemberInfo: '/member/check_by_openid',
+    bindCard: '/member/bind_card'
   }
 }

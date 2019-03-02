@@ -19,7 +19,6 @@ export default {
       let url = window.location.href
       getCode(url)
     } else {
-      alert('has code' + urlParams.code)
       loadWechatInfo({code: urlParams.code}).then(res => {
         if (res.wechat_info) {
           this.setWechatInfo(res.wechat_info)
@@ -43,7 +42,8 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setWechatInfo: 'SET_WECHATINFO'
+      setWechatInfo: 'SET_WECHATINFO',
+      setMemberInfo: 'SET_MEMBERINFO'
     }),
     // 拿到传递的参数
     getUrlParmas () {

@@ -11,7 +11,14 @@ const config = {
     'canceled': '已取消'
   },
   card_type: {
-
+    'health_care': '医保卡',
+    'medical': '诊疗卡',
+    'none': '--'
+  },
+  sex: {
+    'male': '男',
+    'female': '女',
+    'unknown': '未知'
   },
   imageUrl: '/file/image?key=',
   payment_method: {

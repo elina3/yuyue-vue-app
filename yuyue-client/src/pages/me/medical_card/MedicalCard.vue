@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import config from '@/common/config'
 import { Dialog, Toast } from 'we-vue'
 export default {
   name: 'MedicalCard',
@@ -60,7 +61,20 @@ export default {
     }
   },
   mounted () {
-    alert(JSON.stringify(this.$route.params), JSON.stringify(this.$route.query))
+    var memberInfo = this.$store.state.memberInfo
+    if (!memberInfo) {
+      this.noCard = true
+    } else if (!memberInfo.IDCard) {
+      this.noCard = true
+    } else {
+      this.noCard = false
+      this.card.name = memberInfo.nickname
+      this.card.number = memberInfo.card_number
+      this.card.type = config[memberInfo.card_type]
+      this.card.sex = config[memberInfo.sex]
+      this.card.IDCard = memberInfo.IDCard
+      this.card.mobile = memberInfo.mobile_phone
+    }
   }
 }
 </script>
