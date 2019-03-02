@@ -22,7 +22,7 @@ export default {
       loadWechatInfo({code: urlParams.code}).then(res => {
         if (res.wechat_info) {
           this.setWechatInfo(res.wechat_info)
-          // alert(JSON.stringify(this.$store.state.wechatInfo))
+          alert('app:' + JSON.stringify(this.$store.state.wechatInfo))
           checkMemberInfo({open_id: res.wechat_info.openid}).then(res => {
             alert('result:', res)
             if (res.member) {
