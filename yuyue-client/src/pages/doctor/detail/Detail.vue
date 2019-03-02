@@ -2,13 +2,14 @@
   <div class="doctor-detail-page">
       <div class="doctor-title-area">
           <div class="left">
-              <img src="../../../assets/images/doctor/default2.jpg"/>
+              <img v-if="doctor.head_photo" :src="doctor.head_photo"/>
+              <img v-if="!doctor.head_photo" src="../../../assets/images/doctor/default2.jpg"/>
           </div>
           <div class="right">
               <div class="doctor-info">
                 <strong>{{ doctor.nickname }}</strong>
                 <p>{{doctor.job_title}} {{doctor.department}}</p>
-                <span class="orange">{{doctor.outpatient_type}}</span> <span class="green">{{doctor.price ? doctor.price + '元' : '未设置'}}</span>
+                <span class="orange">{{doctor.outpatient_type}}</span> <span class="green">{{doctor.price}}</span>
 
                 <wv-button @click="jump()" class="yy-default-button" type="primary" :plain='true' :mini='true'>预约</wv-button>
               </div>
@@ -38,7 +39,7 @@ import { getDoctorDetail } from '@/services/doctor'
 export default {
   name: 'DoctorDetail',
   data () {
-    return { msg: '', doctorId: '', doctor: {}, thumb: '/client/static/images/department/default.png' }
+    return { msg: '', doctorId: '', doctor: {}, thumb: '../../../assets/images/doctor/default2.jpg' }
   },
   mounted () {
     console.log('detail')
@@ -58,9 +59,10 @@ export default {
             department: res.user.department.name,
             job_title: res.user.job_title.name,
             outpatient_type: config.outpatient_type[res.user.outpatient_type] || '未知门诊',
-            price: res.user.price,
+            price: res.user.price > 0 ? parseFloat(res.user.price / 100) + '元' : '未设置',
             good_at: res.user.good_at,
-            brief: res.user.brief
+            brief: res.user.brief,
+            head_photo: res.user.head_photo ? config.imageUrl + res.user.head_photo : ''
           }
         }
       },
@@ -99,8 +101,8 @@ export default {
                 img{
                     margin: 3rem auto;
                     display: block;
-                    width: 60%;
-                    height: auto;
+                    width: 4rem;
+                    height: 4rem;
                     border: 1px solid #fff;
                     border-radius: 2rem;
                 }

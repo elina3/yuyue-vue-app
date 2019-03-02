@@ -1,7 +1,7 @@
 <template>
   <div class="department-list-page">
     <wv-panel>
-      <wv-media-box :key="item.id" v-for="item in departments" class="yy-list-item" :thumb='thumb' :title="item.name" :description="item.description" :to="'detail/'+item.id"></wv-media-box>
+      <wv-media-box :key="item.id" v-for="item in departments" class="yy-list-item" :thumb='item.thumb' :title="item.name" :description="item.description" :to="'detail/'+item.id"></wv-media-box>
         <!-- <wv-media-box class="yy-list-item" :thumb='thumb' title="心血管内科" description="目前医生37人" to="detail/1"></wv-media-box>
         <wv-media-box class="yy-list-item" :thumb='thumb' title="消化内科" description="专业规模在同级医院屈指可数" to="detail/2"></wv-media-box> -->
     </wv-panel>
@@ -10,6 +10,7 @@
 
 <script>
 import { getDepartments } from '@/services/department'
+import config from '@/common/config'
 
 export default {
   name: 'DepartmentList',
@@ -32,7 +33,8 @@ export default {
             return {
               id: item._id,
               name: item.name,
-              description: item.description
+              description: item.description,
+              thumb: item.title_pic ? config.imageUrl + item.title_pic : this.thumb
             }
           })
         }

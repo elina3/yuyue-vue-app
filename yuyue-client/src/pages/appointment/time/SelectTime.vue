@@ -2,13 +2,14 @@
   <div class="doctor-detail-page">
       <div class="doctor-title-area">
           <div class="left">
-              <img src="../../../assets/images/doctor/default2.jpg"/>
+              <img v-if="doctor.head_photo" :src="doctor.head_photo"/>
+              <img v-if="!doctor.head_photo" src="../../../assets/images/doctor/default2.jpg"/>
           </div>
           <div class="right">
               <div class="doctor-info">
                 <strong>{{doctor.nickname}}</strong>
                 <p>{{doctor.job_title}}</p>
-                <span class="orange">{{doctor.outpatient_type}}</span> <span class="green">{{doctor.price ? doctor.price + '元' : '未设置'}}</span>
+                <span class="orange">{{doctor.outpatient_type}}</span> <span class="green">{{doctor.price}}</span>
 
                 <wv-button  @click="jump" class="yy-default-button" type="primary" :plain='true' :mini='true'>医生简介</wv-button>
               </div>
@@ -36,7 +37,6 @@ export default {
   data () {
     return {
       doctorId: '',
-      thumb: '/client/static/images/department/default.png',
       doctor: {},
       dateObjs: [
         {date: new Date('2019/2/17')},
@@ -71,8 +71,9 @@ export default {
           this.doctor = {
             nickname: res.doctor.nickname,
             outpatient_type: config.outpatient_type[res.doctor.outpatient_type] || '未知门诊',
-            price: res.doctor.price || '未设置',
-            job_title: res.doctor.job_title ? res.doctor.job_title.name : '未设置'
+            price: res.doctor.price > 0 ? parseFloat(res.doctor.price / 100) + '元' : '未设置',
+            job_title: res.doctor.job_title ? res.doctor.job_title.name : '未设置',
+            head_photo: res.doctor.head_photo ? config.imageUrl + res.doctor.head_photo : ''
           }
         }
         if (res.schedules && res.schedules.length > 0) {
@@ -128,8 +129,8 @@ export default {
                 img{
                     margin: 3rem auto;
                     display: block;
-                    width: 60%;
-                    height: auto;
+                    width: 4rem;
+                    height: 4rem;
                     border: 1px solid #fff;
                     border-radius: 2rem;
                 }

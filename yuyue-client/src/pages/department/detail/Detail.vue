@@ -8,7 +8,7 @@
       </div>
       <div class="detail">
           <div class="picture-area">
-              <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=993242006,2591297731&fm=26&gp=0.jpg"/>
+              <img v-if="department.desc_pic" :src="department.desc_pic"/>
           </div>
           <p>
               {{department.description ? department.description : '无内容'}}
@@ -17,6 +17,7 @@
   </div>
 </template>
 <script>
+import config from '@/common/config'
 import { getDepartmentDetail } from '@/services/department'
 export default {
   name: 'DepartmentDetail',
@@ -36,7 +37,12 @@ export default {
       getDepartmentDetail({department_id: this.departmentId}).then(res => {
         console.log(res)
         if (res.department) {
-          this.department = res.department || {}
+          this.department = {
+            _id: res.department._id,
+            name: res.department.name,
+            description: res.department.description,
+            desc_pic: res.department.desc_pic ? config.imageUrl + res.department.desc_pic : ''
+          }
         }
       },
       err => {

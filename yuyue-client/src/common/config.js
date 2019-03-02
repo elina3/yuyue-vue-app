@@ -10,7 +10,10 @@ const config = {
     'over_number': '已过号',
     'canceled': '已取消'
   },
-  card_type: {},
+  card_type: {
+
+  },
+  imageUrl: '/file/image?key=',
   payment_method: {
     'wechat': '微信支付',
     'offline': '到院支付'

@@ -1,13 +1,14 @@
 <template>
   <div class="doctor-list-page">
     <wv-panel>
-        <wv-media-box :key="item.id" v-for="item in doctors"  class="yy-list-item" :thumb='thumb' :title="item.nickname" :description="item.description" :to="item.url"></wv-media-box>
+        <wv-media-box :key="item.id" v-for="item in doctors"  class="yy-list-item" :thumb='item.head_photo' :title="item.nickname" :description="item.description" :to="item.url"></wv-media-box>
     </wv-panel>
   </div>
 </template>
 
 <script>
 import { getDoctors } from '@/services/doctor'
+import config from '@/common/config'
 
 export default {
   name: 'DoctorList',
@@ -39,7 +40,8 @@ export default {
               url: '/doctor/detail/' + item._id,
               id: item._id,
               nickname: item.nickname,
-              description: item.description
+              description: item.description,
+              head_photo: item.head_photo ? config.imageUrl + item.head_photo : this.thumb
             }
           })
         }
