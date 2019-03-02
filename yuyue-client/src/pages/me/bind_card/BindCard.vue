@@ -94,12 +94,10 @@ export default {
         skin: 'ios',
         showCancelBtn: true
       }).then(action => {
-        this.registerMemberAndBindCard(() => {
-          this.$router.push({ path: '/me/medical_card' })
-        })
+        this.registerMemberAndBindCard()
       })
     },
-    registerMemberAndBindCard (callback) {
+    registerMemberAndBindCard () {
       let obj = {
         nickname: this.card.name,
         sex: this.card.sex === '女' ? 'female' : 'male',
@@ -121,7 +119,7 @@ export default {
         this.setMemberInfo(res.member)
         alert(JSON.stringify(this.$store.state.memberInfo))
         Toast('绑卡成功！')
-        return callback()
+        this.$router.push({ path: '/me/medical_card' })
       })
     }
   },
