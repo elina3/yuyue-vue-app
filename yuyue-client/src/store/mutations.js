@@ -16,7 +16,10 @@ const mutations = {
   },
   // 记录微信用户的微信信息
   [types.SET_WECHATINFO] (state, info) {
+    alert('state:' + state)
+    alert('info:' + info)
     state.wechatInfo = info
+    alert(state.wechatInfo)
   },
   // 记录微信用户绑卡登录后的凭据
   [types.SET_ACCESS_TOKEN] (state, info) {
