@@ -12,29 +12,6 @@
                 <span class="green">{{item.price ? item.price + '元' : '未设置'}}</span>
             </div>
         </div>
-
-        <!-- <div class="doctor-item" @click="jump(1)">
-            <div class="photo-area">
-                <img src="../../../assets/images/doctor/default.png"/>
-            </div>
-            <div class="base-info-area">
-                <strong>牛二{{$route.params.id}} 主任医师</strong>
-                <span class="orange">专家门诊</span>
-                <span class="arrow">></span>
-                <span class="green">30元</span>
-            </div>
-        </div>
-        <div class="doctor-item" @click="jump(2)">
-            <div class="photo-area">
-                <img src="../../../assets/images/doctor/default.png"/>
-            </div>
-            <div class="base-info-area">
-                <strong>牛二{{$route.params.id}} 主任医师</strong>
-                <span class="orange">专家门诊</span>
-                <span class="arrow">></span>
-                <span class="green">30元</span>
-            </div>
-        </div> -->
     </div>
   </div>
 </template>

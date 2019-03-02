@@ -64,33 +64,71 @@
 </template>
 <script>
 
+import config from '@/common/config'
+import { getAppointmentDetail } from '@/services/appointment'
+import { Toast } from 'we-vue'
+
 export default {
   name: 'AppointmentDetail',
   data () {
     return {
-      msg: '',
-      thumb: '/static/images/department/default.png',
+      thumb: '/client/static/images/department/default.png',
       appointmentDetail: {
-        status: '已预约',
-        department: '心外科',
-        doctor: '李医生',
-        outpatientType: '专家门诊',
-        price: '30元',
-        date: '2019-2-19',
-        timeRange: '09:00-10:30',
-        paymentMethod: '微信支付',
-        name: '妞儿',
-        IDCard: '110987197806152352',
-        mobile: '13287769075',
-        cardType: '医保卡',
-        cardNumber: '3u5p9420573648242',
-        orderNumber: '22380798'
+        status: '',
+        department: '',
+        doctor: '',
+        outpatientType: '',
+        price: '',
+        date: '',
+        timeRange: '',
+        paymentMethod: '',
+        name: '',
+        IDCard: '',
+        mobile: '',
+        cardType: '',
+        cardNumber: '',
+        orderNumber: ''
       }
     }
+  },
+  mounted () {
+    this.loadAppointmentDetail()
   },
   methods: {
     jump () {
       this.$router.push({ path: '/appointment/select-time/1' })
+    },
+    loadAppointmentDetail () {
+      getAppointmentDetail({appointment_id: this.$route.params.id}).then(res => {
+        if (res.err) {
+          return Toast(res.err)
+        }
+        console.log(res)
+        if (res.appointment) {
+          console.log('as')
+          res.appointment.start_time = new Date(res.appointment.start_time)
+          res.appointment.end_time = new Date(res.appointment.end_time)
+          this.appointmentDetail = {
+            status: config.appointment_status[res.appointment.status],
+            outpatientType: config.outpatient_type[res.appointment.doctor.outpatient_type],
+            price: res.appointment.price ? (res.appointment.price / 100) + '元' : '未设置',
+            doctor: res.appointment.doctor.nickname,
+            department: res.appointment.department.name,
+            date: res.appointment.start_time.Format('yyy-MM-dd'),
+            timeRange: res.appointment.start_time.Format('hh:mm') + '~' + res.appointment.end_time.Format('hh:mm'),
+            IDCard: res.appointment.IDCard,
+            cardType: res.appointment.card_type || '未绑定',
+            cardNumber: res.appointment.card_number || '未绑定',
+            orderNumber: res.appointment.order_number,
+            mobile: res.appointment.member.mobile,
+            name: res.appointment.member.nickname || res.appointment.IDCard,
+            paymentMethod: config.payment_method[res.appointment.payment_method] || '未知'
+          }
+          console.log('as')
+        }
+      }, err => {
+        console.error(err)
+      })
     }
   }
 }

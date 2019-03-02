@@ -6,9 +6,9 @@
           </div>
           <div class="right">
               <div class="doctor-info">
-                <strong>牛二</strong>
-                <p>主任医师</p>
-                <span class="orange">专家门诊</span> <span class="green">30元</span>
+                <strong>{{doctor.nickname}}</strong>
+                <p>{{doctor.job_title}}</p>
+                <span class="orange">{{doctor.outpatient_type}}</span> <span class="green">{{doctor.price ? doctor.price + '元' : '未设置'}}</span>
 
                 <wv-button  @click="jump" class="yy-default-button" type="primary" :plain='true' :mini='true'>医生简介</wv-button>
               </div>
@@ -18,13 +18,15 @@
           <week-range :init-dates="dateObjs" @onClickDate="onClickDate"></week-range>
       </div>
       <wv-panel class="select-time-range" title="请选择就诊时段">
-        <wv-cell title="08:00-09:30" is-link to="/appointment/sure"></wv-cell>
-        <wv-cell title="09:30-10:00" is-link to="/appointment/sure"></wv-cell>
+        <!-- <wv-cell :key="item.id" v-for="item in currentTimeRanges" :title="item.title" is-link :to="'/appointment/sure' + item.id"></wv-cell> -->
+        <wv-cell title="09:30-10:00" is-link :to="{ path: '/appointment/sure', query: { schedule_id: '5c7948e1345d3c7160035f19', doctor_id: doctorId}}"></wv-cell>
       </wv-panel>
 
   </div>
 </template>
 <script>
+import config from '@/common/config'
+import { getDoctorSchedules } from '@/services/appointment'
 import weekRange from '../../../components/WeekRange'
 export default {
   name: 'DoctorDetail',
@@ -33,10 +35,11 @@ export default {
   },
   data () {
     return {
-      msg: '',
-      thumb: '/static/images/department/default.png',
-      pickerValue: new Date(),
-      dateObjs: [{date: new Date('2019/2/17')},
+      doctorId: '',
+      thumb: '/client/static/images/department/default.png',
+      doctor: {},
+      dateObjs: [
+        {date: new Date('2019/2/17')},
         {date: new Date('2019/2/18'), disabled: true},
         {date: new Date('2019/2/19')},
         {date: new Date('2019/2/20')},
@@ -44,15 +47,55 @@ export default {
         {date: new Date('2019/2/22')},
         {date: new Date('2019/2/23')},
         {date: new Date('2019/2/24')},
-        {date: new Date('2019/2/25')}]
+        {date: new Date('2019/2/25')}
+      ],
+      currentTimeRanges: []
     }
   },
+  mounted () {
+    this.doctorId = this.$route.params.id
+    this.loadDoctorSchedules()
+  },
   methods: {
-    onClickDate (date) {
-      console.log(date)
+    onClickDate (dateItem) {
+      console.log(dateItem)
+      this.currentTimeRanges = dateItem.schedules
     },
     jump () {
-      this.$router.push({ path: '/doctor/detail/12' })
+      this.$router.push({ path: '/doctor/detail/' + this.doctorId })
+    },
+    loadDoctorSchedules () {
+      getDoctorSchedules({doctor_id: this.doctorId}).then(res => {
+        console.log(res)
+        if (res.doctor) {
+          this.doctor = {
+            nickname: res.doctor.nickname,
+            outpatient_type: config.outpatient_type[res.doctor.outpatient_type] || '未知门诊',
+            price: res.doctor.price || '未设置',
+            job_title: res.doctor.job_title ? res.doctor.job_title.name : '未设置'
+          }
+        }
+        if (res.schedules && res.schedules.length > 0) {
+          let objs = res.schedules.map(item => {
+            return {
+              date: new Date(item.date_string),
+              disabled: false,
+              schedules: item.schedules.map(schedule => {
+                return {
+                  id: schedule._id,
+                  title: schedule.start_time_string + '~' + schedule.end_time_string,
+                  number_count: schedule.number_count
+                }
+              })
+            }
+          })
+          console.log(objs)
+          this.dateObjs = JSON.parse(JSON.stringify(objs))
+        }
+      },
+      err => {
+        console.log('err:', err)
+      })
     }
   }
 }
@@ -68,8 +111,8 @@ export default {
         background: #fff;
         min-height: 100%;
         .doctor-title-area{
-            padding: 0 0.5rem;
-            background: url('/static/images/doctor/background.jpeg') no-repeat top left;
+            padding: 0;
+            background: url('/client/static/images/doctor/background.jpeg') no-repeat top left;
             background-size: cover;
             width: 100%;
             height: 10rem;

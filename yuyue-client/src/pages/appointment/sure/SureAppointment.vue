@@ -2,7 +2,7 @@
   <div class="sure-appointment-page">
     <span class="page-title">就诊卡:</span>
     <wv-panel class="my-card">
-      <wv-cell title="王子争" is-link to="/me/medical_card">
+      <wv-cell :title="nickname" is-link :to="'/me/medical_card'">
         <img :src="cardImage" alt="" slot="icon" class="cell-icon">
       </wv-cell>
     </wv-panel>
@@ -27,24 +27,35 @@
   </div>
 </template>
 <script>
+import config from '@/common/config'
+import { previewAppointment, createAppointment } from '@/services/appointment'
 import { Dialog, Toast } from 'we-vue'
 export default {
   name: 'SureAppointment',
   data () {
     return {
-      msg: '',
-      cardImage: '/static/images/appointment/my-card.png',
-      arrowImage: '/static/images/appointment/下页.png',
+      openId: 'o7-H2wTS0Zniw2W_mkkFH0scU3u4',
+      nickname: '姗姗Elina',
+      scheduleId: '',
+      doctorId: '',
+      cardImage: '/client/static/images/appointment/my-card.png',
+      arrowImage: '/client/static/images/appointment/下页.png',
       appointmentInfo: {
-        department: '心外科',
-        doctor: '牛二',
-        outpatientType: '专家号',
-        date: '2019-2-19',
-        timeRange: '09:00-10:30',
-        price: '30元',
-        paymentMethod: '微信支付'
+        department: '',
+        doctor: '',
+        outpatientType: '',
+        date: '',
+        timeRange: '',
+        price: '',
+        paymentMethod: '到院支付',
+        paymentMethodType: 'offline'
       }
     }
+  },
+  mounted () {
+    this.scheduleId = this.$route.query.schedule_id
+    this.doctorId = this.$route.query.doctor_id
+    this.loadPreviewAppointment()
   },
   methods: {
     selectPayment (picker, value) {
@@ -54,15 +65,49 @@ export default {
       })
     },
     sureAppointment () {
+      let message = this.appointmentInfo.paymentMethodType === 'offline' ? '您确定要预定吗？' : '选择微信支付，适合自费用户，点击确认直接微信付款后即可预约成功！'
       Dialog.confirm({
         title: '提示信息',
-        message: '选择微信支付，适合自费用户，点击确认直接微信付款',
+        message: message,
         skin: 'ios',
         showCancelBtn: true
       }).then(action => {
         // 确定后要执行的内容
-        Toast('success')
-        this.$router.push({ path: '/appointment/detail' })
+        this.createAppointment((err, data) => {
+          if (err) {
+            return Toast(err.zh_message)
+          }
+          this.$router.push({ path: '/appointment/detail/' + '123' })
+        })
+      })
+    },
+    loadPreviewAppointment () {
+      previewAppointment({doctor_id: this.doctorId, schedule_id: this.scheduleId}).then(res => {
+        console.log(res)
+        if (res.appointment_info) {
+          this.appointmentInfo.doctor = res.appointment_info.doctor_name
+          this.appointmentInfo.department = res.appointment_info.department_name
+          this.appointmentInfo.outpatientType = config.outpatient_type[res.appointment_info.outpatient_type] || '未知门诊'
+          this.appointmentInfo.timeRange = res.appointment_info.start_time_string + '~' + res.appointment_info.end_time_string
+          this.appointmentInfo.date = res.appointment_info.date_string
+          this.appointmentInfo.price = res.appointment_info.price ? res.appointment_info.price + '元' : '未设置'
+        }
+      }, err => {
+        console.error(err)
+      })
+    },
+    createAppointment (callback) {
+      let obj = {
+        doctor_id: this.doctorId,
+        schedule_id: this.scheduleId,
+        open_id: this.openId,
+        payment_method: this.appointmentInfo.paymentMethodType
+      }
+      createAppointment(obj).then(res => {
+        console.log(res)
+        return callback(res.err, res.appointment)
+      }, err => {
+        console.error(err)
       })
     }
   }

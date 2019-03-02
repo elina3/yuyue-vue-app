@@ -16,7 +16,7 @@
       </div>
       <div class="doctor-detail-item">
           <label></label>
-          <strong>擅长{{$route.params.id}}</strong>
+          <strong>擅长</strong>
           <p>
               {{doctor.good_at || '未设置'}}
           </p>
@@ -24,7 +24,7 @@
 
       <div class="doctor-detail-item">
           <label></label>
-          <strong>简介{{$route.params.id}}</strong>
+          <strong>简介</strong>
           <p>
               {{doctor.brief || '未设置'}}
           </p>

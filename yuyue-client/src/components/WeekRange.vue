@@ -38,7 +38,7 @@ export default {
       dateItem.selected = true
       this.currentClickDate = dateItem.date
       this.$forceUpdate()
-      this.$emit('onClickDate', dateItem.date)
+      this.$emit('onClickDate', dateItem)
     },
     prevDate () {
       let newDate = new Date(new Date().setDate(this.weekDay[0].date.getDate() - 7))
@@ -77,12 +77,31 @@ export default {
           }
         }
       }
+    },
+    init () {
+      this.refreshBoard()
+      if (this.weekDay[0]) {
+        this.clickDate(this.weekDay[0])
+      }
+    }
+  },
+  watch: {
+    initDates (newV, oldV) {
+      console.log('initDates changes')
+      console.log(newV)
+      console.log(oldV)
+      this.$nextTick(() => {
+        this.initDates = newV
+        this.init()
+        this.$forceUpdate()
+        console.log('init')
+      })
     }
   },
   mounted () {
     console.log(this.weekDay)
-    this.refreshBoard()
-    this.clickDate(this.weekDay[0])
+    this.init()
+    console.log('mounted')
   }
 }
 </script>

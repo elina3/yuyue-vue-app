@@ -119,7 +119,7 @@ export default new Router({
   },
   {
     name: '预约/详情',
-    path: '/appointment/detail',
+    path: '/appointment/detail/:id',
     component: AppointmentDetail,
     meta: {
       title: '预约详情'
