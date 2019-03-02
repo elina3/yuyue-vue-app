@@ -7,25 +7,31 @@
 
 <script>
 import { test2 } from '@/common/wechatsdk'
+import { getWechatInfo } from '@/services/wechat'
 export default {
   name: 'App',
   // 在mounted阶段通过cookie拿到用户的userid
   mounted () {
-    alert('mounted 1')
+    // alert('mounted 1')
     var urlParams = this.getUrlParmas()
-    alert(urlParams)
-    alert('?????????')
-    alert(urlParams.code)
+    // alert(urlParams)
+    // alert('?????????')
+    // alert(urlParams.code)
 
     if (!urlParams.code) {
-      alert('window.location.href:', window.location.href)
+      // alert('window.location.href:', window.location.href)
       let url = window.location.href.replace('#/', '')
-      alert(url)
       url = url.replace('#', '')
-      alert(url)
+      // alert(url)
       test2(url)
     } else {
-      alert('no code')
+      alert('has code' + urlParams.code)
+      getWechatInfo(urlParams.code).then(res => {
+        let s = JSON.stringify(res)
+        alert(s)
+      }, err => {
+        alert('get wechat info faild:' + err)
+      })
     }
   },
   methods: {

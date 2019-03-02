@@ -14,5 +14,8 @@ export default {
     create: '/app/doctor/create_appointment',
     list: '/app/doctor/appointment_list',
     detail: '/app/doctor/appointment_detail'
+  },
+  wechat: {
+    getWechatInfo: '/wechat/wechat_info'
   }
 }
