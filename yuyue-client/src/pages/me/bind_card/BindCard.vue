@@ -101,8 +101,8 @@ export default {
     },
     registerMemberAndBindCard (callback) {
       bindCard({
-        open_id: this.wechatInfo.openid,
-        wechat_info: this.wechatInfo,
+        open_id: this.$store.state.wechatInfo.openid,
+        wechat_info: this.$store.state.wechatInfo,
         member_info: {
           nickname: this.card.name,
           sex: this.card.sex === '女' ? 'female' : 'male',
@@ -126,7 +126,7 @@ export default {
   mounted () {
     alert('bindcard:' + JSON.stringify(this.$store.state.wechatInfo))
     this.wechatInfo = this.$store.state.wechatInfo
-    if (!this.wechatInfo || !this.wechatInfo.openid) {
+    if (!this.$store.state.wechatInfo || !this.$store.state.wechatInfo.openid) {
       alert('请用微信打开页面')
       return
     }
