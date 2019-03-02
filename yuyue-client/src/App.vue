@@ -23,6 +23,7 @@ export default {
         this.setWechatInfo(res)
         alert('set wechat info---')
         alert(JSON.stringify(this.wechatInfo))
+        alert(this.$store.state.wechatInfo)
       }, err => {
         alert('get wechat info faild:' + err)
       })
