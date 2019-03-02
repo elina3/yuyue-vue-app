@@ -9,6 +9,18 @@ const mutations = {
   [types.RECORD_USERINFO] (state, info) {
     state.userInfo = info
     state.loginStatus = true
+  },
+  // 记录微信用户的系统信息
+  [types.SET_MEMBERINFO] (state, info) {
+    state.memberInfo = info
+  },
+  // 记录微信用户的微信信息
+  [types.SET_WECHATINFO] (state, info) {
+    state.wechatInfo = info
+  },
+  // 记录微信用户绑卡登录后的凭据
+  [types.SET_ACCESS_TOKEN] (state, info) {
+    state.accessToken = info
   }
 }
 

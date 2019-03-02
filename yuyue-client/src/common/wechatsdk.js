@@ -17,6 +17,6 @@ function getAuthorization (url) {
 }
 
 // 存取授权用户userInfo
-export function test2 (url) {
+export function getCode (url) {
   getAuthorization(url)
 }

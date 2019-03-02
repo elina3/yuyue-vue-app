@@ -4,3 +4,7 @@ export const token = state => state.token
 export const userInfo = state => state.userInfo
 
 export const loginStatus = state => state.loginStatus
+
+export const wechatInfo = state => state.wechatInfo
+export const memberInfo = state => state.memberInfo
+export const accessToken = state => state.accessToken

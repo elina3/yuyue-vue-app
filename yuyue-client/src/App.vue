@@ -6,36 +6,34 @@
 </template>
 
 <script>
-import { test2 } from '@/common/wechatsdk'
+import { mapMutations } from 'vuex'
+import { getCode } from '@/common/wechatsdk'
 import { getWechatInfo } from '@/services/wechat'
 export default {
   name: 'App',
   // 在mounted阶段通过cookie拿到用户的userid
   mounted () {
-    // alert('mounted 1')
     var urlParams = this.getUrlParmas()
-    // alert(urlParams)
-    // alert('?????????')
-    // alert(urlParams.code)
-
-    if (!urlParams.code) {
-      // alert('window.location.href:', window.location.href)
+    if (!urlParams.code) { // 去授权获取code
       let url = window.location.href
-      // let url = window.location.href.replace('#/', '')
-      // url = url.replace('#', '')
-      // alert(url)
-      test2(url)
+      getCode(url)
     } else {
       alert('has code' + urlParams.code)
       getWechatInfo({code: urlParams.code}).then(res => {
-        let s = JSON.stringify(res)
-        alert(s)
+        this.setWechatInfo(res)
+        alert('set wechat info')
+        let info = this.getWechatInfo()
+        alert(JSON.stringify(info))
       }, err => {
         alert('get wechat info faild:' + err)
       })
     }
   },
   methods: {
+    ...mapMutations({
+      setWechatInfo: 'SET_WECHATINFO',
+      getWechatInfo: 'GET_WECHATINFO'
+    }),
     // 拿到传递的参数
     getUrlParmas () {
       let url = window.location.search
@@ -50,8 +48,6 @@ export default {
           obj[key] = value
         })
       }
-      alert(obj)
-      alert('-------')
       return obj
     }
   }
