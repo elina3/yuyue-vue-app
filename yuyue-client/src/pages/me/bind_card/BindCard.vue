@@ -100,17 +100,19 @@ export default {
       })
     },
     registerMemberAndBindCard (callback) {
+      let obj = {
+        nickname: this.card.name,
+        sex: this.card.sex === '女' ? 'female' : 'male',
+        IDCard: this.card.IDCard,
+        mobile_phone: this.card.mobile,
+        card_type: this.card.type,
+        card_number: this.card.card_number
+      }
+      alert('obj:' + JSON.stringify(obj))
       bindCard({
         open_id: this.$store.state.wechatInfo.openid,
         wechat_info: this.$store.state.wechatInfo,
-        member_info: {
-          nickname: this.card.name,
-          sex: this.card.sex === '女' ? 'female' : 'male',
-          IDCard: this.card.IDCard,
-          mobile_phone: this.card.mobile,
-          card_type: this.card.type,
-          card_number: this.card.card_number
-        }}).then(res => {
+        member_info: obj}).then(res => {
         if (res.err) {
           Toast(res.err.zh_message)
           return
