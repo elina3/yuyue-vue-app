@@ -11,9 +11,11 @@ export default {
   name: 'App',
   // 在mounted阶段通过cookie拿到用户的userid
   mounted () {
-    // alert('mounted 1');
+    alert('mounted 1')
     var urlParams = this.getUrlParmas()
-    alert('code:' + urlParams.code)
+    alert(urlParams)
+    alert('?????????')
+    alert(urlParams.code)
 
     if (!urlParams.code) {
       alert('window.location.href:', window.location.href)
@@ -22,13 +24,14 @@ export default {
       url = url.replace('#', '')
       alert(url)
       test2(url)
+    } else {
+      alert('no code')
     }
   },
   methods: {
     // 拿到传递的参数
     getUrlParmas () {
       let url = window.location.search
-      alert('search url:' + url)
       let obj = {}
       let reg = /[?&][^?&]+=[^?&+]+/g
       let arr = url.match(reg)
@@ -39,8 +42,10 @@ export default {
           let value = decodeURIComponent(tempArr[1])
           obj[key] = value
         })
-        return obj
       }
+      alert(obj)
+      alert('-------')
+      return obj
     }
   }
 }
