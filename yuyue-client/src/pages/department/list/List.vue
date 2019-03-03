@@ -53,7 +53,7 @@ export default {
 .yy-list-item{
   &.weui-media-box .weui-media-box__bd p.weui-media-box__desc{
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     overflow: hidden;
 
     /*! autoprefixer: off */
