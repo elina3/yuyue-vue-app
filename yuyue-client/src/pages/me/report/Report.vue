@@ -1,6 +1,6 @@
 <template>
-  <div class="department-page">
-    我的报告
+  <div class="report-page">
+    <span>努力开发中...</span>
   </div>
 </template>
 
@@ -15,3 +15,11 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="scss" scoped>
+.report-page{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height: 40rem;
+}
+</style>
