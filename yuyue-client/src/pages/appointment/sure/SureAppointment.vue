@@ -61,7 +61,7 @@ export default {
     if (this.$store.state.memberInfo) {
       this.openId = this.$store.state.memberInfo.open_id
       this.nickname = this.$store.state.memberInfo.nickname
-      this.hideButton = false
+      this.hiddenButton = false
     }
   },
   methods: {
@@ -136,7 +136,7 @@ export default {
       if (val) {
         this.openId = val.open_id
         this.nickname = val.nickname
-        this.hideButton = false
+        this.hiddenButton = false
       }
     }
   }
