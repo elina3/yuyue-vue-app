@@ -62,6 +62,8 @@ export default {
       this.openId = this.$store.state.memberInfo.open_id
       this.nickname = this.$store.state.memberInfo.nickname
       this.hiddenButton = false
+    } else {
+      this.nickname = '您还没有绑卡，点击此处去绑卡'
     }
   },
   methods: {
