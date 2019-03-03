@@ -91,7 +91,7 @@ export default {
           name: val.nickname,
           number: val.card_number,
           type: config.card_type[val.card_type],
-          sex: config[val.sex],
+          sex: config.sex[val.sex],
           IDCard: val.IDCard,
           mobile: val.mobile_phone
         }
