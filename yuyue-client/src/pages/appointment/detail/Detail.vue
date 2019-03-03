@@ -106,7 +106,6 @@ export default {
         }
         console.log(res)
         if (res.appointment) {
-          console.log('as')
           res.appointment.start_time = new Date(res.appointment.start_time)
           res.appointment.end_time = new Date(res.appointment.end_time)
           this.appointmentDetail = {
@@ -118,14 +117,13 @@ export default {
             date: res.appointment.start_time.Format('yyyy-MM-dd'),
             timeRange: res.appointment.start_time.Format('hh:mm') + '~' + res.appointment.end_time.Format('hh:mm'),
             IDCard: res.appointment.IDCard,
-            cardType: res.appointment.card_type || '无',
+            cardType: config.card_type[res.appointment.card_type],
             cardNumber: res.appointment.card_number || '无',
             orderNumber: res.appointment.order_number,
             mobile: res.appointment.member.mobile_phone,
             name: res.appointment.member.nickname || res.appointment.IDCard,
             paymentMethod: config.payment_method[res.appointment.payment_method] || '未知'
           }
-          console.log('as')
         }
       }, err => {
         console.error(err)
