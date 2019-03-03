@@ -11,7 +11,7 @@
     </wv-group>
 
     <div v-show="!noCard && !hideButton" class="sure">
-      <wv-button class="" type="primary" @click="unbind()">解绑就诊卡</wv-button>
+      <wv-button class="" type="warn" @click="unbind()">解绑就诊卡</wv-button>
     </div>
 
     <span v-show="noCard" class="page-title">提示:</span>
