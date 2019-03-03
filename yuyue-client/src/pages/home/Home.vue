@@ -6,7 +6,7 @@
           <img src="../../assets/images/home/logo-red.png"/>
         </div>
         <div class="text">
-          <span>瑞金医院古北分院  |  民航上海医院</span>
+          <span>民航上海医院  |  瑞金医院古北分院</span>
           <span>民航华东局航空人员体检鉴定中心</span>
         </div>
       </div>
