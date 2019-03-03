@@ -61,7 +61,7 @@ export default {
       setMemberInfo: 'SET_MEMBERINFO'
     }),
     isPhoneAvailable: function (phone) {
-      let regex = /^[1][3,4,5,7,8,9][0-9]{9}$/
+      let regex = /^[1][0-9][0-9]{9}$/
       if (!regex.test(phone)) {
         return false
       } else {
