@@ -6,47 +6,47 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-import { getCode } from '@/common/wechatsdk'
-import { loadWechatInfo } from '@/services/wechat'
-import { checkMemberInfo } from '@/services/member'
+// import { mapMutations } from 'vuex'
+// import { getCode } from '@/common/wechatsdk'
+// import { loadWechatInfo } from '@/services/wechat'
+// import { checkMemberInfo } from '@/services/member'
 export default {
   name: 'App',
   // 在mounted阶段通过cookie拿到用户的userid
   created () {
-    if (this.$store.state.wechatInfo) { // 重复返回首页时不再请求数据
-      return
-    }
+    // if (this.$store.state.wechatInfo) { // 重复返回首页时不再请求数据
+    //   return
+    // }
 
-    var urlParams = this.getUrlParmas()
-    if (!urlParams.code) { // 去授权获取code
-      let url = window.location.href
-      getCode(url)
-    } else {
-      loadWechatInfo({code: urlParams.code}).then(res => {
-        if (res.wechat_info) {
-          this.setWechatInfo(res.wechat_info)
-          // alert('app:' + JSON.stringify(this.$store.state.wechatInfo))
-          checkMemberInfo({open_id: res.wechat_info.openid}).then(res => {
-            // alert('result:', res)
-            if (res.member) {
-              // alert('has member')
-              this.setMemberInfo(res.member)
-            } else {
-              // alert('no member')
-            }
-          }, err => {
-            console.error(err)
-          })
-        }
-      })
-    }
+    // var urlParams = this.getUrlParmas()
+    // if (!urlParams.code) { // 去授权获取code
+    //   let url = window.location.href
+    //   getCode(url)
+    // } else {
+    //   loadWechatInfo({code: urlParams.code}).then(res => {
+    //     if (res.wechat_info) {
+    //       this.setWechatInfo(res.wechat_info)
+    //       // alert('app:' + JSON.stringify(this.$store.state.wechatInfo))
+    //       checkMemberInfo({open_id: res.wechat_info.openid}).then(res => {
+    //         // alert('result:', res)
+    //         if (res.member) {
+    //           // alert('has member')
+    //           this.setMemberInfo(res.member)
+    //         } else {
+    //           // alert('no member')
+    //         }
+    //       }, err => {
+    //         console.error(err)
+    //       })
+    //     }
+    //   })
+    // }
   },
   methods: {
-    ...mapMutations({
-      setWechatInfo: 'SET_WECHATINFO',
-      setMemberInfo: 'SET_MEMBERINFO'
-    }),
+    // ...mapMutations({
+    //   setWechatInfo: 'SET_WECHATINFO',
+    //   setMemberInfo: 'SET_MEMBERINFO'
+    // }),
     // 拿到传递的参数
     getUrlParmas () {
       let url = window.location.search
