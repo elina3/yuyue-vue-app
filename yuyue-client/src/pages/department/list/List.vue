@@ -52,29 +52,10 @@ export default {
 @import '../../../assets/css/common';
 .yy-list-item{
   &.weui-media-box .weui-media-box__bd p.weui-media-box__desc{
-    // display: -webkit-box;
-    // -webkit-line-clamp: 2;
-    // overflow: hidden;
-    // text-overflow: ellipsis;
-
-    // /*! autoprefixer: off */
-    // -webkit-box-orient: vertical; // 前后的注释不能去掉，webpack打包后会过滤该命令
-    // /* autoprefixer: on */
-
-    // position:relative;
     line-height:1.4em;
-    /* 2 times the line-height to show 3 lines */
     height:2.8em;
     overflow:hidden;
   }
-  // &.weui-media-box .weui-media-box__bd p.weui-media-box__desc::after{
-  //   content:'...';
-  //   font-weight:bold;
-  //   position:absolute;
-  //   bottom:0;
-  //   right:0;
-  //   padding:0 20px 1px 45px;
-  // }
 }
 </style>
 <style lang="scss" scoped>
