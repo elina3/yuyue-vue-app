@@ -97,7 +97,8 @@ export default {
                 .photo-area{
                     width: 25%;
                     img{
-                        width: 60%;
+                        width: 4rem;
+                        height: 4rem;
                         margin: 1rem auto;
                         border-radius: 2rem;
                     }
