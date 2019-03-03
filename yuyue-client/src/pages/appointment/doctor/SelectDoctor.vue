@@ -3,13 +3,14 @@
     <div class="doctor-list">
         <div class="doctor-item" :key="item.id" v-for="item in doctors" @click="jump(item.id)">
             <div class="photo-area">
-                <img src="../../../assets/images/doctor/default.png"/>
+                <!-- <img src="../../../assets/images/doctor/default.png"/> -->
+                <img :src="item.head_photo"/>
             </div>
             <div class="base-info-area">
                 <strong>{{item.nickname}} {{item.job_title.name}}</strong>
                 <span class="orange">{{item.outpatient_type}}</span>
                 <span class="arrow">></span>
-                <span class="green">{{item.price ? item.price + '元' : '未设置'}}</span>
+                <span class="green">{{item.price > 0 ? parseFloat(item.price / 100) + '元' : '未设置'}}</span>
             </div>
         </div>
     </div>
@@ -54,7 +55,9 @@ export default {
               nickname: item.nickname,
               description: item.description,
               outpatient_type: config.outpatient_type[item.outpatient_type] || '未知门诊',
-              job_title: item.job_title
+              job_title: item.job_title,
+              price: item.price,
+              head_photo: item.head_photo ? config.imageUrl + item.head_photo : '../../../assets/images/doctor/default.png'
             }
           })
           console.log(this.doctors)
