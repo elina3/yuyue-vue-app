@@ -26,21 +26,19 @@ export default {
       loadWechatInfo({code: urlParams.code}).then(res => {
         if (res.wechat_info) {
           this.setWechatInfo(res.wechat_info)
-          alert('app:' + JSON.stringify(this.$store.state.wechatInfo))
+          // alert('app:' + JSON.stringify(this.$store.state.wechatInfo))
           checkMemberInfo({open_id: res.wechat_info.openid}).then(res => {
-            alert('result:', res)
+            // alert('result:', res)
             if (res.member) {
-              alert('has member')
+              // alert('has member')
               this.setMemberInfo(res.member)
             } else {
-              alert('no member')
+              // alert('no member')
             }
           }, err => {
             console.error(err)
           })
         }
-      }, err => {
-        alert('get wechat info faild:' + err)
       })
     }
   },
