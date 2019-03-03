@@ -30,7 +30,7 @@
           <img src="../../assets/images/department/消化内科.png" >
           <span>消化内科</span>
         </wv-grid-item>
-        <wv-grid-item to="/">
+        <wv-grid-item>
           <img src="../../assets/images/department/眼科.png" >
           <span>眼科</span>
         </wv-grid-item>
@@ -42,7 +42,7 @@
           <img src="../../assets/images/department/空勤体检.png" >
           <span>空勤体检</span>
         </wv-grid-item>
-        <wv-grid-item to="/">
+        <wv-grid-item>
           <img src="../../assets/images/department/耳鼻喉科.png" >
           <span>耳鼻喉科</span>
         </wv-grid-item>
