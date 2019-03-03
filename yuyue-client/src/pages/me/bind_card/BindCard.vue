@@ -126,7 +126,7 @@ export default {
         card_type: this.card.type,
         card_number: this.card.number
       }
-      alert('obj:' + JSON.stringify(obj))
+      // alert('obj:' + JSON.stringify(obj))
       bindCard({
         open_id: this.$store.state.wechatInfo.openid,
         wechat_info: this.$store.state.wechatInfo,
@@ -137,7 +137,7 @@ export default {
         }
 
         this.setMemberInfo(res.member)
-        alert(JSON.stringify(this.$store.state.memberInfo))
+        // alert(JSON.stringify(this.$store.state.memberInfo))
         Toast('绑卡成功！')
         this.$router.push({ path: '/me/medical_card' })
       })
@@ -170,7 +170,7 @@ export default {
     }
   },
   mounted () {
-    alert('bindcard:' + JSON.stringify(this.$store.state.wechatInfo))
+    // alert('bindcard:' + JSON.stringify(this.$store.state.wechatInfo))
     this.wechatInfo = this.$store.state.wechatInfo
     if (!this.$store.state.wechatInfo || !this.$store.state.wechatInfo.openid) {
       alert('请用微信打开页面')

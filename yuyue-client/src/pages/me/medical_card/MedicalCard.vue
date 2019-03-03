@@ -61,7 +61,7 @@ export default {
             Toast(res.err.zh_message)
             return
           }
-          alert('res.member:' + JSON.stringify(res.member))
+          // alert('res.member:' + JSON.stringify(res.member))
           if (res.member) {
             this.setMemberInfo(res.member)
             this.noCard = true
@@ -69,7 +69,7 @@ export default {
           }
         })
       }, cancel => {
-        alert(cancel)
+        // alert(cancel)
       })
     }
   },
