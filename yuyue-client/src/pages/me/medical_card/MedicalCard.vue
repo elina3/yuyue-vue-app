@@ -89,7 +89,7 @@ export default {
         this.noCard = false
         this.card = {
           name: val.nickname,
-          number: val.card_number,
+          number: val.card_number || '无',
           type: config.card_type[val.card_type],
           sex: config.sex[val.sex],
           IDCard: val.IDCard,
@@ -108,7 +108,7 @@ export default {
       this.noCard = false
       this.card = {
         name: this.$store.state.memberInfo.nickname,
-        number: this.$store.state.memberInfo.card_number,
+        number: this.$store.state.memberInfo.card_number || '无',
         type: config.card_type[this.$store.state.memberInfo.card_type],
         sex: config.sex[this.$store.state.memberInfo.sex],
         IDCard: this.$store.state.memberInfo.IDCard,
