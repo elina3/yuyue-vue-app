@@ -124,7 +124,7 @@ export default {
         IDCard: this.card.IDCard,
         mobile_phone: this.card.mobile,
         card_type: this.card.type,
-        card_number: this.card.card_number
+        card_number: this.card.number
       }
       alert('obj:' + JSON.stringify(obj))
       bindCard({
