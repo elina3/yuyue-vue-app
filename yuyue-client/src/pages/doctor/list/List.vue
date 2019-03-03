@@ -27,7 +27,8 @@ export default {
   methods: {
     loadDoctors () {
       let obj = {
-        on_shelf: true
+        on_shelf: true,
+        outpatient_type: 'expert'
       }
       if (this.departmentId) {
         obj.department_id = this.departmentId
