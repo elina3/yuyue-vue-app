@@ -18,6 +18,7 @@
 
 <script>
 import config from '@/common/config'
+import { mapGetters } from 'vuex'
 import { getMyAppointments } from '@/services/appointment'
 
 export default {
@@ -26,7 +27,11 @@ export default {
     return { open_id: 'o7-H2wTS0Zniw2W_mkkFH0scU3u4', appointments: [] }
   },
   mounted () {
-    this.loadAppointments()
+    var memberInfo = this.$store.state.memberInfo
+    if (memberInfo) {
+      this.open_id = memberInfo.open_id
+      this.loadAppointments()
+    }
   },
   methods: {
     jump (id) {
@@ -54,6 +59,20 @@ export default {
       err => {
         console.log('err:', err)
       })
+    }
+  },
+  computed: {
+    ...mapGetters(['memberInfo']),
+    getMemberInfo () {
+      return this.$store.state.memberInfo
+    }
+  },
+  watch: {
+    getMemberInfo (val) {
+      if (val) {
+        this.open_id = val.open_id
+        this.loadAppointments()
+      }
     }
   }
 }
