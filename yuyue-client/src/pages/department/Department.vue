@@ -22,7 +22,7 @@
           <img src="../../assets/images/department/普外科.png" >
           <span>普外科</span>
         </wv-grid-item>
-        <wv-grid-item to="/me/report">
+        <wv-grid-item>
           <img src="../../assets/images/department/检验科.png" >
           <span>检验科</span>
         </wv-grid-item>
