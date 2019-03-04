@@ -60,19 +60,26 @@
             <span>{{appointmentDetail.orderNumber}}</span>
         </div>
     </div>
+    <div class="sure" v-show="!hiddenButton">
+      <wv-button v-show="!appointmentDetail.picked || !appointmentDetail.canceled" class="" type="primary" @click="cancelAppointment()">取消订单</wv-button>
+    </div>
   </div>
 </template>
 <script>
 
 import config from '@/common/config'
-import { getAppointmentDetail } from '@/services/appointment'
-import { Toast } from 'we-vue'
+import { getAppointmentDetail, cancel } from '@/services/appointment'
+import { Dialog, Toast } from 'we-vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'AppointmentDetail',
   data () {
     return {
       thumb: '/client/static/images/department/default.png',
+      hiddenButton: true,
+      // openId: 'o7-H2wTS0Zniw2W_mkkFH0scU3u4', // 测试使用
+      openId: '',
       appointmentDetail: {
         status: '',
         department: '',
@@ -87,12 +94,20 @@ export default {
         mobile: '',
         cardType: '',
         cardNumber: '',
-        orderNumber: ''
+        orderNumber: '',
+        canceled: true,
+        picked: false
       }
     }
   },
   mounted () {
     this.loadAppointmentDetail()
+    if (this.$store.state.memberInfo) {
+      this.openId = this.$store.state.memberInfo.open_id
+    }
+    if (this.openId) {
+      this.hiddenButton = false
+    }
   },
   methods: {
     jump () {
@@ -122,12 +137,59 @@ export default {
             orderNumber: res.appointment.order_number,
             mobile: res.appointment.member.mobile_phone,
             name: res.appointment.member.nickname || res.appointment.IDCard,
-            paymentMethod: config.payment_method[res.appointment.payment_method] || '未知'
+            paymentMethod: config.payment_method[res.appointment.payment_method] || '未知',
+            picked: res.appointment.picked,
+            cancedled: res.appointment.canceled
           }
         }
       }, err => {
         console.error(err)
       })
+    },
+    cancelAppointment () {
+      Dialog.confirm({
+        title: '提示信息',
+        message: '您确认要取消这次预约吗？',
+        skin: 'ios',
+        showCancelBtn: true
+      }).then(action => {
+        if (!this.openId) {
+          Toast('您还没有获取会员信息')
+          return
+        }
+        // 确定后要执行的内容
+        cancel({appointment_id: this.$route.params.id, open_id: this.openId}).then(res => {
+          if (res.err) {
+            Toast(res.err.zh_message)
+            return
+          }
+          console.log(res)
+          if (res.success) {
+            this.hiddenButton = true
+            this.appointmentDetail.canceled = true
+            this.appointmentDetail.status = config.appointment_status['canceled']
+          }
+          Toast('你已成功取消订单！')
+        }, err => {
+          console.error(err)
+        })
+      }, cancel => {
+        console.log('cancel')
+      })
+    }
+  },
+  computed: {
+    ...mapGetters(['memberInfo']),
+    getMemberInfo () {
+      return this.$store.state.memberInfo
+    }
+  },
+  watch: {
+    getMemberInfo (val) {
+      if (val) {
+        this.openId = val.open_id
+        this.hiddenButton = false
+      }
     }
   }
 }

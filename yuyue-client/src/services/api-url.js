@@ -13,7 +13,8 @@ export default {
     preview: '/app/doctor/preview_appointment_info',
     create: '/app/doctor/create_appointment',
     list: '/app/doctor/appointment_list',
-    detail: '/app/doctor/appointment_detail'
+    detail: '/app/doctor/appointment_detail',
+    cancel: '/app/doctor/cancel_appointment'
   },
   wechat: {
     getWechatInfo: '/wechat/wechat_info'

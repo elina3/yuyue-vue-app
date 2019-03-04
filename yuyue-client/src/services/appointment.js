@@ -35,3 +35,10 @@ export const getAppointmentDetail = (params) => fetch({
   params: params,
   accredit: true
 })
+
+export const cancel = (params) => fetch({
+  url: apiUrl.appointment.cancel,
+  method: 'post',
+  params: params,
+  accredit: true
+})
