@@ -143,7 +143,7 @@ export default {
           }
         }
         alert(res.appointment.canceled)
-        alert(res.appointmentDetail.cancel)
+        alert(this.appointmentDetail.cancel)
       }, err => {
         console.error(err)
       })
