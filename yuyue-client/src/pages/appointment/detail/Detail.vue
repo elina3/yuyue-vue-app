@@ -137,11 +137,11 @@ export default {
             canceled: res.appointment.canceled
           }
         }
-        if (res.appointment.canceled) {
-          this.hiddenButton = true
+        if (!res.appointment.canceled) {
+          this.hiddenButton = false
         }
-        if (res.appointment.picked) {
-          this.hiddenButton = true
+        if (!res.appointment.picked) {
+          this.hiddenButton = false
         }
       }, err => {
         console.error(err)
