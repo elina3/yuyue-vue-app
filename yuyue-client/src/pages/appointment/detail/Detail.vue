@@ -77,7 +77,7 @@ export default {
   data () {
     return {
       thumb: '/client/static/images/department/default.png',
-      hiddenButton: false,
+      hiddenButton: true,
       // openId: 'o7-H2wTS0Zniw2W_mkkFH0scU3u4', // 测试使用
       openId: '',
       appointmentDetail: {
@@ -137,10 +137,10 @@ export default {
             canceled: res.appointment.canceled
           }
         }
-        if (!res.appointment.canceled) {
+        if (res.appointment.canceled) {
           this.hiddenButton = true
         }
-        if (!res.appointment.picked) {
+        if (res.appointment.picked) {
           this.hiddenButton = true
         }
       }, err => {
@@ -167,7 +167,6 @@ export default {
           console.log(res)
           if (res.success) {
             this.hiddenButton = true
-            this.appointmentDetail.canceled = true
             this.appointmentDetail.status = config.appointment_status['canceled']
           }
           Toast('你已成功取消订单！')
