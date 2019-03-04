@@ -41,7 +41,7 @@ export default {
               url: '/doctor/detail/' + item._id,
               id: item._id,
               nickname: item.nickname,
-              description: item.description,
+              description: item.department.name + ' ' + item.job_title.name,
               head_photo: item.head_photo ? config.imageUrl + item.head_photo : this.thumb
             }
           })
@@ -58,6 +58,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 @import '../../../assets/css/common';
+.doctor-list-page {
+  .weui-panel .weui-panel__bd .yy-list-item .weui-media-box__bd .weui-media-box__desc{
+    line-height: 2.8em !important;
+  }
+}
 </style>
 <style lang="scss" scoped>
     .doctor-list-page{
