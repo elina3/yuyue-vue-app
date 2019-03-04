@@ -61,7 +61,7 @@
         </div>
     </div>
     <div class="sure" v-show="!hiddenButton">
-      <wv-button v-show="!appointmentDetail.picked || !appointmentDetail.canceled" class="" type="primary" @click="cancelAppointment()">取消订单</wv-button>
+      <wv-button v-show="!appointmentDetail.picked || !appointmentDetail.canceled" class="" type="warn" @click="cancelAppointment()">取消订单</wv-button>
     </div>
   </div>
 </template>
