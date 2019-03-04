@@ -77,7 +77,7 @@ export default {
   data () {
     return {
       thumb: '/client/static/images/department/default.png',
-      hiddenButton: true,
+      hiddenButton: false,
       // openId: 'o7-H2wTS0Zniw2W_mkkFH0scU3u4', // 测试使用
       openId: '',
       appointmentDetail: {
