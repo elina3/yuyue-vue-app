@@ -101,13 +101,13 @@ export default {
     }
   },
   mounted () {
-    this.loadAppointmentDetail()
     if (this.$store.state.memberInfo) {
       this.openId = this.$store.state.memberInfo.open_id
     }
     if (this.openId) {
       this.hiddenButton = false
     }
+    this.loadAppointmentDetail()
   },
   methods: {
     jump () {
@@ -139,7 +139,7 @@ export default {
             name: res.appointment.member.nickname || res.appointment.IDCard,
             paymentMethod: config.payment_method[res.appointment.payment_method] || '未知',
             picked: res.appointment.picked,
-            cancedled: res.appointment.canceled
+            canceled: res.appointment.canceled
           }
         }
       }, err => {
