@@ -94,9 +94,7 @@ export default {
         mobile: '',
         cardType: '',
         cardNumber: '',
-        orderNumber: '',
-        canceled: true,
-        picked: false
+        orderNumber: ''
       }
     }
   },
@@ -191,7 +189,6 @@ export default {
     getMemberInfo (val) {
       if (val) {
         this.openId = val.open_id
-        this.hiddenButton = false
       }
     }
   }
