@@ -61,7 +61,7 @@
         </div>
     </div>
     <div class="sure" v-show="!hiddenButton">
-      <wv-button v-show="!appointmentDetail.picked || !appointmentDetail.canceled" class="" type="warn" @click="cancelAppointment()">取消订单</wv-button>
+      <wv-button class="" type="warn" @click="cancelAppointment()">取消订单</wv-button>
     </div>
   </div>
 </template>
@@ -104,9 +104,6 @@ export default {
     if (this.$store.state.memberInfo) {
       this.openId = this.$store.state.memberInfo.open_id
     }
-    if (this.openId) {
-      this.hiddenButton = false
-    }
     this.loadAppointmentDetail()
   },
   methods: {
@@ -142,8 +139,12 @@ export default {
             canceled: res.appointment.canceled
           }
         }
-        alert(res.appointment.canceled)
-        alert(this.appointmentDetail.cancel)
+        if (!res.appointment.canceled) {
+          this.hiddenButton = true
+        }
+        if (!res.appointment.picked) {
+          this.hiddenButton = true
+        }
       }, err => {
         console.error(err)
       })
