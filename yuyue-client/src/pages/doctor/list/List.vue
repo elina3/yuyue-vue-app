@@ -61,6 +61,7 @@ export default {
 .doctor-list-page {
   .weui-panel .weui-panel__bd .yy-list-item .weui-media-box__bd .weui-media-box__desc{
     line-height: 2.8em !important;
+    font-size: 0.8rem;
   }
 }
 </style>
