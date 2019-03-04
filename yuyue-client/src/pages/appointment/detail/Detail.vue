@@ -137,10 +137,12 @@ export default {
             canceled: res.appointment.canceled
           }
         }
-        if (!res.appointment.canceled) {
-          this.hiddenButton = false
-        }
-        if (!res.appointment.picked) {
+
+        if (res.appointment.canceled) { // 如果已经取消，就一定隐藏，不管有无取号
+          this.hiddenButton = true
+        } else if (res.appointment.picked) { // 如果已经取号，就一定隐藏，不管有无取号
+          this.hiddenButton = true
+        } else {
           this.hiddenButton = false
         }
       }, err => {
