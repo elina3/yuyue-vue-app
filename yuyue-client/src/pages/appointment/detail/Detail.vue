@@ -142,6 +142,8 @@ export default {
             canceled: res.appointment.canceled
           }
         }
+        alert(res.appointment.canceled)
+        alert(res.appointmentDetail.cancel)
       }, err => {
         console.error(err)
       })
