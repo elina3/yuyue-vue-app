@@ -11,7 +11,7 @@
                 <p>{{doctor.job_title}}</p>
                 <span class="orange">{{doctor.outpatient_type}}</span> <span class="green">{{doctor.price}}</span>
 
-                <wv-button  @click="jump" class="yy-default-button" type="primary" :plain='true' :mini='true'>医生简介</wv-button>
+                <wv-button  @click="jump" class="yy-default-button" type="primary" :mini='true'>医生简介</wv-button>
               </div>
           </div>
       </div>

@@ -10,7 +10,7 @@
                 <strong>{{item.nickname}} {{item.job_title.name}}</strong>
                 <span class="orange">{{item.outpatient_type}}</span>
                 <span class="arrow">></span>
-                <span class="green">{{item.price > 0 ? parseFloat(item.price / 100) + '元' : '未设置'}}</span>
+                <!-- <span class="green">{{item.price > 0 ? parseFloat(item.price / 100) + '元' : '未设置'}}</span> -->
             </div>
         </div>
     </div>
