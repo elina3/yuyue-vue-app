@@ -59,6 +59,11 @@
             <label>预约单号</label>
             <span>{{appointmentDetail.orderNumber}}</span>
         </div>
+        <div class="detail-item">
+          <span class="right">
+            <barcode :value="appointmentDetail.orderNumber" :options="{ displayValue: false }"></barcode>
+          </span>
+        </div>
     </div>
     <div class="sure" v-show="!hiddenButton">
       <wv-button class="" type="warn" @click="cancelAppointment()">取消订单</wv-button>
@@ -71,9 +76,13 @@ import config from '@/common/config'
 import { getAppointmentDetail, cancel } from '@/services/appointment'
 import { Dialog, Toast } from 'we-vue'
 import { mapGetters } from 'vuex'
+import VueBarcode from '@xkeshi/vue-barcode'
 
 export default {
   name: 'AppointmentDetail',
+  components: {
+    barcode: VueBarcode
+  },
   data () {
     return {
       thumb: '/client/static/images/department/default.png',
@@ -224,6 +233,14 @@ export default {
             span{
                 width: 70%;
                 color: $color-primary-blue;
+                canvas{
+                  width: 85%;
+                  margin-left: -0.5rem;
+                }
+
+                &.right{
+                  float: right;
+                }
             }
         }
     }
