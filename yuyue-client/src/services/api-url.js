@@ -2,6 +2,8 @@ export default {
   // 科室
   department: {
     list: '/hospital/department/open_list',
+    canOrderList: '/hospital/department/open_order_list',
+    canViewList: '/hospital/department/open_view_list',
     detail: '/hospital/department/detail'
   },
   doctor: {

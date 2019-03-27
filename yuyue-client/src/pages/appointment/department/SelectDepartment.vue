@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { getDepartments } from '@/services/department'
+import { getCanOrderDepartments } from '@/services/department'
 
 export default {
   name: 'SelectDepartment',
@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     loadDepartments () {
-      getDepartments({}).then(res => {
+      getCanOrderDepartments({}).then(res => {
         console.log('load')
         console.log(res)
         if (res.departments) {

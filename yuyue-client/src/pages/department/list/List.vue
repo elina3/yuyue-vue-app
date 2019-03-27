@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { getDepartments } from '@/services/department'
+import { getCanViewDepartments } from '@/services/department'
 import config from '@/common/config'
 
 export default {
@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     loadDepartments () {
-      getDepartments({}).then(res => {
+      getCanViewDepartments({}).then(res => {
         console.log('load')
         console.log(res)
         if (res.departments) {
