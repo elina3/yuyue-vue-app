@@ -7,6 +7,7 @@ import Department from '@/pages/department/Department'
 import DepartmentList from '@/pages/department/list/List'
 import DepartmentDetail from '@/pages/department/detail/Detail'
 import DoctorList from '@/pages/doctor/list/List'
+import DoctorSelectDepartment from '@/pages/doctor/departments/List'
 import DoctorDetail from '@/pages/doctor/detail/Detail'
 
 import SelectDepartment from '@/pages/appointment/department/SelectDepartment'
@@ -51,6 +52,14 @@ export default new Router({
     component: DoctorList,
     meta: {
       title: '专家介绍'
+    }
+  },
+  {
+    path: '/doctor/select_department',
+    name: 'DoctorSelectDepartment',
+    component: DoctorSelectDepartment,
+    meta: {
+      title: '专家科室选择'
     }
   },
   {

@@ -26,7 +26,7 @@
           <img src="../../assets/images/home/科室介绍.png" >
           <span>科室介绍</span>
         </wv-grid-item>
-        <wv-grid-item to="/doctor/list/-1">
+        <wv-grid-item to="/doctor/select_department">
           <img src="../../assets/images/home/专家介绍.png" >
           <span>专家介绍</span>
         </wv-grid-item>
