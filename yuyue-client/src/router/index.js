@@ -18,6 +18,7 @@ import AppointmentDetail from '@/pages/appointment/detail/Detail'
 
 import MyAppointmentList from '@/pages/appointment/my_list/List'
 import Report from '@/pages/me/report/Report'
+import ReportDetail from '@/pages/me/report/ReportDetail'
 import Waiting from '@/pages/me/waiting/Waiting'
 import MedicalCard from '@/pages/me/medical_card/MedicalCard'
 import BindCard from '@/pages/me/bind_card/BindCard'
@@ -148,6 +149,14 @@ export default new Router({
     component: Report,
     meta: {
       title: '我的报告'
+    }
+  },
+  {
+    name: '个人中心/报告详情',
+    path: '/me/report-detail/:id',
+    component: ReportDetail,
+    meta: {
+      title: '报告详情'
     }
   },
   {
