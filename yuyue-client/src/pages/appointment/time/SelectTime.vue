@@ -74,7 +74,7 @@ export default {
               schedules: item.schedules.map(schedule => {
                 return {
                   id: schedule._id,
-                  title: schedule.start_time_string + '~' + schedule.end_time_string,
+                  title: schedule.start_time_string + '~' + schedule.end_time_string + '(余号：'+ schedule.number_count - schedule.booked +')',
                   number_count: schedule.number_count
                 }
               })
