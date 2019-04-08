@@ -2,7 +2,7 @@
   <div class="sure-appointment-page">
     <span class="page-title">就诊卡:</span>
     <wv-panel class="my-card">
-      <wv-cell :title="nickname" is-link :to="'/me/medical_card'">
+      <wv-cell :title="nickname || '您还没有绑卡，点击进入绑卡'" is-link :to="'/me/medical_card'">
         <img :src="cardImage" alt="" slot="icon" class="cell-icon">
       </wv-cell>
     </wv-panel>
