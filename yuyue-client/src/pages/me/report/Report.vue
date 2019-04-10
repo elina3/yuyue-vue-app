@@ -4,21 +4,20 @@
       <wv-tab :key="item.key" v-for="item in tabNames" :title="item.title">
         <div v-show="item.key === '1'" class="report-item" @click="goToPage(1)">
           <div class="report-left">
-            <span>在职体检检查</span>
-            <span>201286524293234</span>
+            <span>尿液</span>
+            <span>2019-4-3 10:23:33</span>
           </div>
           <div class="report-right">
-              <time>2019-4-3 10:23:33</time>
               <span class="arrow">></span>
           </div>
         </div>
         <div v-show="item.key === '2'" class="report-item">
           <div class="report-left">
             <span>胸部检查</span>
-            <span>201286524293234</span>
+            <span>2019-4-3 10:23:33</span>
           </div>
           <div class="report-right">
-              <time>2019-4-3 10:23:33</time>
+              <!-- <time>2019-4-3 10:23:33</time> -->
               <span class="arrow">></span>
           </div>
         </div>
@@ -61,7 +60,7 @@ export default {
     display: block;
     width: 100%;
     height: 3rem;
-    padding: 1rem 0.5rem;
+    padding: 1rem 0;
 
     .report-left, .report-right{
       display: inline-block;
@@ -71,6 +70,7 @@ export default {
     }
     .report-left{
       >span{
+        padding-left: 0.5rem;
         display: block;
         line-height: 1.5rem;
         text-align: left;
@@ -78,9 +78,10 @@ export default {
     }
     .report-right{
       >span{
+        display: block;
+        padding-right: 0.5rem;
+        float: right;
         line-height: 3rem;
-        text-align: right;
-        padding-left: 0.25rem;
       }
     }
   }

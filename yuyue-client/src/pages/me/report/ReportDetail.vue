@@ -1,22 +1,28 @@
 <template>
   <div class="report-detail-page">
     <div class="report-base-info">
-      <span>体检人信息：</span>
+      <span>患者信息：</span>
       <div class="white-panel">
         <div class="info-item">
           <span>姓名:</span><span>刘德华</span>
         </div>
         <div class="info-item">
-          <span>身份证号:</span><span>410825197768541234</span>
+          <span>性别:</span><span>男</span>
         </div>
         <div class="info-item">
-          <span>单位名称:</span><span>民航上海医院</span>
+          <span>年龄:</span><span>30</span>
         </div>
         <div class="info-item">
-          <span>体检编号:</span><span>1343242796152</span>
+          <span>临床诊断:</span><span>溃疡性结</span>
         </div>
         <div class="info-item">
-          <span>体检日期:</span><span>2019-4-3 10:23:33</span>
+          <span>科别:</span><span>泌尿专科</span>
+        </div>
+        <div class="info-item">
+          <span>样本种类:</span><span>尿液</span>
+        </div>
+        <div class="info-item">
+          <span>报告时间:</span><span>2019-4-3 10:23:33</span>
         </div>
       </div>
     </div>
@@ -24,6 +30,25 @@
       <span>报告详情：</span>
       <div class="white-panel">
         <div class="detail-item">
+          <!-- <span>血液检查</span> -->
+          <div class="info-head">
+            <span>项目</span>
+            <span>结果（参考范围）</span>
+          </div>
+          <div class="info-item">
+            <span>上皮细胞镜检</span>
+            <span>阴性</span>
+          </div>
+          <div class="info-item">
+            <span>霉菌</span>
+            <span>未见</span>
+          </div>
+          <div class="info-item">
+            <span>尿微量白蛋白</span>
+            <span>20（0-25mg/l）</span>
+          </div>
+        </div>
+        <!-- <div class="detail-item">
           <span>血液检查</span>
           <div class="info-head">
             <span>项目</span>
@@ -41,26 +66,7 @@
             <span>总胆固醇</span>
             <span>3.62（3.1-5.7）</span>
           </div>
-        </div>
-        <div class="detail-item">
-          <span>血液检查</span>
-          <div class="info-head">
-            <span>项目</span>
-            <span>结果（参考范围）</span>
-          </div>
-          <div class="info-item">
-            <span>红细胞总数RBC1</span>
-            <span>4.73（4.10-5.0）</span>
-          </div>
-          <div class="info-item">
-            <span>甘油三酯</span>
-            <span>1.92（0.45-1.7）</span>
-          </div>
-          <div class="info-item">
-            <span>总胆固醇</span>
-            <span>3.62（3.1-5.7）</span>
-          </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
