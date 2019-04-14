@@ -137,11 +137,11 @@ export default new Router({
     }
   },
   {
-    name: '个人中心/我的预约',
+    name: '个人中心/门诊预约',
     path: '/me/appointment',
     component: MyAppointmentList,
     meta: {
-      title: '我的预约'
+      title: '门诊预约'
     }
   },
   {
