@@ -4,25 +4,25 @@
       <span>患者信息：</span>
       <div class="white-panel">
         <div class="info-item">
-          <span>姓名:</span><span>刘德华</span>
+          <span>姓名:</span><span>{{baseInfo.sickerName}}</span>
         </div>
         <div class="info-item">
-          <span>性别:</span><span>男</span>
+          <span>性别:</span><span>{{baseInfo.sickerSex}}</span>
         </div>
         <div class="info-item">
-          <span>年龄:</span><span>30</span>
+          <span>年龄:</span><span>{{baseInfo.sickerAge}}</span>
         </div>
         <div class="info-item">
-          <span>临床诊断:</span><span>溃疡性结</span>
+          <span>临床诊断:</span><span>{{baseInfo.clinicalDiagnosis}}</span>
         </div>
         <div class="info-item">
-          <span>科别:</span><span>泌尿专科</span>
+          <span>科别:</span><span>{{baseInfo.category}}</span>
         </div>
         <div class="info-item">
-          <span>样本种类:</span><span>尿液</span>
+          <span>样本种类:</span><span>{{baseInfo.sampleType}}</span>
         </div>
         <div class="info-item">
-          <span>报告时间:</span><span>2019-4-3 10:23:33</span>
+          <span>报告时间:</span><span>{{baseInfo.reportingTime ? new Date(baseInfo.reportingTime).Format('yyyy-MM-dd hh:mm:ss') : ''}}</span>
         </div>
       </div>
     </div>
@@ -35,18 +35,18 @@
             <span>项目</span>
             <span>结果（参考范围）</span>
           </div>
-          <div class="info-item">
-            <span>上皮细胞镜检</span>
-            <span>阴性</span>
+          <div class="info-item" :key="item.id" v-for="item of items">
+            <span>{{item.name}}</span>
+            <span>{{item.result}}{{item.reference ? ('(' + item.reference + ')') : ''}}</span>
           </div>
-          <div class="info-item">
+          <!-- <div class="info-item">
             <span>霉菌</span>
             <span>未见</span>
           </div>
           <div class="info-item">
             <span>尿微量白蛋白</span>
             <span>20（0-25mg/l）</span>
-          </div>
+          </div> -->
         </div>
         <!-- <div class="detail-item">
           <span>血液检查</span>
@@ -73,17 +73,37 @@
 </template>
 
 <script>
-
+import { getReportDetail } from '@/services/report'
 export default {
-  name: 'ReportDetail',
+  name: 'TestReportDetail',
   data () {
     return {
-      name: '报告详情'
+      reportId: '',
+      name: '检验报告详情',
+      baseInfo: {},
+      items: []
     }
   },
+  mounted () {
+    this.reportId = this.$route.params.id
+    this.loadReportDetail()
+  },
   methods: {
-    onClick (index) {
-      // this.$toast.text(`点击 ${index}`)
+    loadReportDetail () {
+      let obj = {
+        report_id: this.reportId,
+        report_type: 'test_report'
+      }
+      getReportDetail(obj).then(res => {
+        if (res.report) {
+          console.log(res.report)
+          this.baseInfo = res.report.baseInfo || {}
+          this.items = res.report.items || []
+        }
+      },
+      err => {
+        console.log('err:', err)
+      })
     }
   }
 }

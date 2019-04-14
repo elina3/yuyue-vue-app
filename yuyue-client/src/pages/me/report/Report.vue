@@ -2,19 +2,19 @@
   <div class="report-page">
     <wv-tabs @click="onClick">
       <wv-tab :key="item.key" v-for="item in tabNames" :title="item.title">
-        <div v-show="item.key === '1'" class="report-item" @click="goToPage(1)">
+        <div v-show="item.key === '1'" class="report-item" :key="reportItem.id" v-for="reportItem in reports" @click="goToPage(reportItem.id, '/me/test-report-detail')">
           <div class="report-left">
-            <span>尿液</span>
-            <span>2019-4-3 10:23:33</span>
+            <span>{{reportItem.name}}</span>
+            <span>{{reportItem.report_time}}</span>
           </div>
           <div class="report-right">
               <span class="arrow">></span>
           </div>
         </div>
-        <div v-show="item.key === '2'" class="report-item">
+        <div v-show="item.key === '2'" class="report-item" :key="reportItem.id" v-for="reportItem in reports" @click="goToPage(reportItem.id, '/me/inspect-report-detail')">
           <div class="report-left">
-            <span>胸部检查</span>
-            <span>2019-4-3 10:23:33</span>
+            <span>{{reportItem.name}}</span>
+            <span>{{reportItem.report_time}}</span>
           </div>
           <div class="report-right">
               <!-- <time>2019-4-3 10:23:33</time> -->
@@ -28,23 +28,81 @@
 
 <script>
 
+import { mapGetters } from 'vuex'
+import { getMyReports } from '@/services/report'
+
 export default {
   name: 'Report',
   data () {
-    return { tabNames: [{
-      title: '检验报告',
-      key: '1'
-    }, {
-      title: '检查报告',
-      key: '2'
-    }] }
+    return {
+      tabNames: [{
+        title: '检验报告',
+        key: '1'
+      }, {
+        title: '检查报告',
+        key: '2'
+      }],
+      reports: []
+    }
+  },
+  mounted () {
+    var memberInfo = this.$store.state.memberInfo
+    // var memberInfo = {
+    //   open_id: 'o7-H2wTS0Zniw2W_mkkFH0scU3u4'
+    // }
+    if (memberInfo) {
+      this.open_id = memberInfo.open_id
+      this.loadMyReports()
+    }
+  },
+  computed: {
+    ...mapGetters(['memberInfo']),
+    getMemberInfo () {
+      return this.$store.state.memberInfo
+    }
+  },
+  watch: {
+    getMemberInfo (val) {
+      if (val) {
+        this.open_id = val.open_id
+        this.loadMyReports()
+      }
+    }
   },
   methods: {
     onClick (index) {
-      // this.$toast.text(`点击 ${index}`)
+      console.log('index=======', index)
+      if (index === 0) {
+        this.loadMyReports('test_report')
+      } else {
+        console.log('index:', index)
+        this.loadMyReports('inspect_report')
+      }
     },
-    goToPage (id) {
-      this.$router.push({ path: ('/me/report-detail/' + id) })
+    goToPage (id, baseUrl) {
+      this.$router.push({ path: (baseUrl + '/' + id) })
+    },
+    loadMyReports (reportType) {
+      let obj = {
+        open_id: this.open_id,
+        report_type: reportType || 'test_report'
+      }
+      getMyReports(obj).then(res => {
+        if (res.reports) {
+          console.log(res.reports)
+          console.log('==============')
+          this.reports = res.reports.map(item => {
+            return {
+              id: item.id,
+              name: item.name,
+              report_time: item.reportingTime ? new Date(item.reportingTime).Format('yyyy-MM-dd hh:mm:ss') : '--'
+            }
+          })
+        }
+      },
+      err => {
+        console.log('err:', err)
+      })
     }
   }
 }

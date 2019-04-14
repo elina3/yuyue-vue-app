@@ -18,7 +18,8 @@ import AppointmentDetail from '@/pages/appointment/detail/Detail'
 
 import MyAppointmentList from '@/pages/appointment/my_list/List'
 import Report from '@/pages/me/report/Report'
-import ReportDetail from '@/pages/me/report/ReportDetail'
+import TestReportDetail from '@/pages/me/report/TestReportDetail'
+import InspectReportDetail from '@/pages/me/report/InspectReportDetail'
 import Waiting from '@/pages/me/waiting/Waiting'
 import MedicalCard from '@/pages/me/medical_card/MedicalCard'
 import BindCard from '@/pages/me/bind_card/BindCard'
@@ -152,11 +153,19 @@ export default new Router({
     }
   },
   {
-    name: '个人中心/报告详情',
-    path: '/me/report-detail/:id',
-    component: ReportDetail,
+    name: '个人中心/检验报告详情',
+    path: '/me/test-report-detail/:id',
+    component: TestReportDetail,
     meta: {
-      title: '报告详情'
+      title: '检验报告详情'
+    }
+  },
+  {
+    name: '个人中心/检查报告详情',
+    path: '/me/inspect-report-detail/:id',
+    component: InspectReportDetail,
+    meta: {
+      title: '检查报告详情'
     }
   },
   {

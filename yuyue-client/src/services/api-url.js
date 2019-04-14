@@ -25,5 +25,9 @@ export default {
     checkMemberInfo: '/member/check_by_openid',
     bindCard: '/member/bind_card',
     unbindCard: '/member/unbind_card'
+  },
+  report: {
+    myReportList: '/report/my_reports',
+    reportDetail: '/report/report_detail'
   }
 }
