@@ -72,6 +72,7 @@ export default {
   methods: {
     onClick (index) {
       console.log('index=======', index)
+      this.reports = [];
       if (index === 0) {
         this.loadMyReports('test_report')
       } else {
