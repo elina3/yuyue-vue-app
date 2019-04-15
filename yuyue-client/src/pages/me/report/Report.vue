@@ -95,7 +95,7 @@ export default {
             return {
               id: item.id,
               name: item.name,
-              report_time: item.reportingTime ? new Date(item.reportingTime).Format('yyyy-MM-dd hh:mm:ss') : '--'
+              report_time: item.reportingTime
             }
           })
         }

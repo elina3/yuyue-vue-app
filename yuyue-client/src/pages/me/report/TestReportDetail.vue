@@ -22,7 +22,7 @@
           <span>样本种类:</span><span>{{baseInfo.sampleType}}</span>
         </div>
         <div class="info-item">
-          <span>报告时间:</span><span>{{baseInfo.reportingTime ? new Date(baseInfo.reportingTime).Format('yyyy-MM-dd hh:mm:ss') : ''}}</span>
+          <span>报告时间:</span><span>{{baseInfo.reportingTime}}</span>
         </div>
       </div>
     </div>

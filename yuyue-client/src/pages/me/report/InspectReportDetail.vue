@@ -19,10 +19,10 @@
           <span>科别:</span><span>{{report.category}}</span>
         </div>
         <div class="info-item">
-          <span>检查部位:</span><span>{{report.bodyParts}}</span>
+          <span>检查部位:</span><span>{{report.BodyPart}}</span>
         </div>
         <div class="info-item">
-          <span>报告时间:</span><span>{{report.reportingTime ? new Date(report.reportingTime).Format('yyyy-MM-dd hh:mm:ss') : ''}}</span>
+          <span>报告时间:</span><span>{{report.reportingTime}}</span>
         </div>
       </div>
     </div>
