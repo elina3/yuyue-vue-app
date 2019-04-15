@@ -120,7 +120,7 @@ export default {
     registerMemberAndBindCard () {
       let obj = {
         nickname: this.card.name,
-        sex: this.card.sex === '女' ? 'female' : 'male',
+        sex: this.card.sex === 'female' ? 'female' : 'male',
         IDCard: this.card.IDCard,
         mobile_phone: this.card.mobile,
         card_type: this.card.type,
