@@ -21,7 +21,8 @@
           <label>性别</label>
         </div>
         <div class="yy-select-item-right">
-          <select v-model="card.sex">
+          <select v-model="card.sex" :class="card.sex === '' ? 'placeholder' : ''">
+            <option disabled style="display: none;" value="">请选择性别</option>
             <option value="male">男</option>
             <option value="female">女</option>
           </select>
@@ -50,7 +51,7 @@ export default {
       memberInfo: {},
       card: {
         type: '',
-        sex: 'female'
+        sex: ''
       },
       noCard: true,
       hideButton: true
@@ -74,10 +75,10 @@ export default {
       return reg.test(card)
     },
     bindCard () {
-      if (!this.$store.state.wechatInfo) {
-        Toast('请用微信打开页面')
-        return
-      }
+      // if (!this.$store.state.wechatInfo) {
+      //   Toast('请用微信打开页面')
+      //   return
+      // }
       if (!this.card.name) {
         Toast('请填写姓名')
         return
@@ -242,6 +243,11 @@ export default {
       width: 100%;
       outline: none;
       color: $color-primary-blue;
+      &.placeholder{
+        color: #ccc;
+        font-size: 0.93rem;
+        padding-left: 0.52rem;
+      }
     }
   }
 }
