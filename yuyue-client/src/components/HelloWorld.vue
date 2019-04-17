@@ -48,16 +48,19 @@
 
    <!-- <week-select @onClickDate="onClickDate"></week-select> -->
    <week-range :init-dates="dateObjs" @onClickDate="onClickDate"></week-range>
-
+   <button @click="openDatePicker">选择日期</button>
+   <date-picker :opened="opened" title="开始" @onDateSure="onDateSure" @onDateCancel="onDateCancel"></date-picker>
   </div>
 </template>
 
 <script>
 import weekRange from './WeekRange'
+import datePicker from './DatePicker'
 export default {
   name: 'HelloWorld',
   components: {
-    weekRange
+    weekRange,
+    datePicker
   },
   data () {
     return {
@@ -72,12 +75,23 @@ export default {
         {date: new Date('2019-2-23')},
         {date: new Date('2019-2-24')},
         {date: new Date('2019-2-25')}
-      ]
+      ],
+      opened: false
     }
   },
   methods: {
     onClickDate (date) {
       alert(date)
+    },
+    openDatePicker () {
+      this.opened = !this.opened
+    },
+    onDateSure (date) {
+      alert(date, 'sure')
+      this.opened = false
+    },
+    onDateCancel () {
+      this.opened = false
     }
   }
 }

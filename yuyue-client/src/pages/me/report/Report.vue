@@ -1,148 +1,43 @@
 <template>
   <div class="report-page">
-    <wv-tabs @click="onClick">
-      <wv-tab :key="item.key" v-for="item in tabNames" :title="item.title">
-        <div v-show="item.key === '1'" class="report-item" :key="reportItem.id" v-for="reportItem in reports" @click="goToPage(reportItem.id, '/me/test-report-detail')">
-          <div class="report-left">
-            <span>{{reportItem.name}}</span>
-            <span>{{reportItem.report_time}}</span>
-          </div>
-          <div class="report-right">
-              <span class="arrow">></span>
-          </div>
-        </div>
-        <div v-show="item.key === '2'" class="report-item" :key="reportItem.id" v-for="reportItem in reports" @click="goToPage(reportItem.id, '/me/inspect-report-detail')">
-          <div class="report-left">
-            <span>{{reportItem.name}}</span>
-            <span>{{reportItem.report_time}}</span>
-          </div>
-          <div class="report-right">
-              <!-- <time>2019-4-3 10:23:33</time> -->
-              <span class="arrow">></span>
-          </div>
-        </div>
-      </wv-tab>
-    </wv-tabs>
+    <wv-panel>
+        <wv-media-box :key="item.id" v-for="item in tabNames"  class="yy-list-item" :thumb='item.icon' :title="item.title" :description="item.description" :to="item.url"></wv-media-box>
+    </wv-panel>
   </div>
 </template>
 
 <script>
-
-import { mapGetters } from 'vuex'
-import { getMyReports } from '@/services/report'
-
 export default {
   name: 'Report',
   data () {
     return {
+      name: '',
       tabNames: [{
         title: '检验报告',
-        key: '1'
+        icon: '/client/static/images/report/test.png',
+        url: '/me/test-report/list'
       }, {
         title: '检查报告',
-        key: '2'
-      }],
-      reports: []
-    }
-  },
-  mounted () {
-    var memberInfo = this.$store.state.memberInfo
-    // var memberInfo = {
-    //   open_id: 'o7-H2wTS0Zniw2W_mkkFH0scU3u4'
-    // }
-    if (memberInfo) {
-      this.open_id = memberInfo.open_id
-      this.loadMyReports()
-    }
-  },
-  computed: {
-    ...mapGetters(['memberInfo']),
-    getMemberInfo () {
-      return this.$store.state.memberInfo
-    }
-  },
-  watch: {
-    getMemberInfo (val) {
-      if (val) {
-        this.open_id = val.open_id
-        this.loadMyReports()
-      }
-    }
-  },
-  methods: {
-    onClick (index) {
-      console.log('index=======', index)
-      this.reports = []
-      if (index === 0) {
-        this.loadMyReports('test_report')
-      } else {
-        console.log('index:', index)
-        this.loadMyReports('inspect_report')
-      }
-    },
-    goToPage (id, baseUrl) {
-      this.$router.push({ path: (baseUrl + '/' + id) })
-    },
-    loadMyReports (reportType) {
-      let obj = {
-        open_id: this.open_id,
-        report_type: reportType || 'test_report'
-      }
-      getMyReports(obj).then(res => {
-        if (res.reports) {
-          console.log(res.reports)
-          console.log('==============')
-          this.reports = res.reports.map(item => {
-            return {
-              id: item.id,
-              name: item.name,
-              report_time: item.reportingTime
-            }
-          })
-        }
-      },
-      err => {
-        console.log('err:', err)
-      })
+        icon: '/client/static/images/report/inspect.png',
+        url: '/me/inspect-report/list'
+      }]
     }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="scss">
+@import '../../../assets/css/common';
+.report-page {
+  .weui-panel .weui-panel__bd .yy-list-item .weui-media-box__bd .weui-media-box__desc{
+    display: none;
+  }
+}
+</style>
 <style lang="scss" scoped>
 .report-page{
   background: #fff;
   height: 100%;
-
-  .report-item{
-    display: block;
-    width: 100%;
-    height: 3rem;
-    padding: 1rem 0;
-
-    .report-left, .report-right{
-      display: inline-block;
-      float: left;
-      width: 50%;
-      height: 100%;
-    }
-    .report-left{
-      >span{
-        padding-left: 0.5rem;
-        display: block;
-        line-height: 1.5rem;
-        text-align: left;
-      }
-    }
-    .report-right{
-      >span{
-        display: block;
-        padding-right: 0.5rem;
-        float: right;
-        line-height: 3rem;
-      }
-    }
-  }
 }
 </style>
