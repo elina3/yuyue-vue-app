@@ -89,7 +89,7 @@ export default {
     // }
     if (memberInfo) {
       this.open_id = memberInfo.open_id
-      this.name = memberInfo.name
+      this.name = memberInfo.nickname
       this.loadMyReports()
     }
   },
