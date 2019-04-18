@@ -10,4 +10,13 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
+  <script>
+    window.onpopstate = () => {
+      if (window.history.length <= 1) {
+        return false
+      } else {
+        this.$router.go(-1)
+      }
+    }
+  </script>
 </html>
