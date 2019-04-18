@@ -107,13 +107,13 @@ export default {
         Toast('选择就诊卡之后必须填写就诊卡号')
         return
       }
+      window.scroll(0, 0)
       Dialog.confirm({
         title: '提示信息',
         message: '您确定要绑定该卡吗？',
         skin: 'ios',
         showCancelBtn: true
       }).then(action => {
-        window.scroll(0, 0)
         this.registerMemberAndBindCard()
       }, cancel => {
         console.log(cancel)
