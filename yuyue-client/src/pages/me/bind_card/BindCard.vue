@@ -113,7 +113,7 @@ export default {
         skin: 'ios',
         showCancelBtn: true
       }).then(action => {
-        window.scroll(0,0)
+        window.scroll(0, 0)
         this.registerMemberAndBindCard()
       }, cancel => {
         console.log(cancel)
