@@ -12,9 +12,9 @@
         <div class="info-item">
           <span>年龄:</span><span>{{baseInfo.sickerAge}}</span>
         </div>
-        <div class="info-item">
+        <!-- <div class="info-item">
           <span>临床诊断:</span><span>{{baseInfo.clinicalDiagnosis}}</span>
-        </div>
+        </div> -->
         <div class="info-item">
           <span>科别:</span><span>{{baseInfo.category}}</span>
         </div>
