@@ -40,7 +40,8 @@ const router = new Router({
     name: 'Home',
     component: Home,
     meta: {
-      title: '医院服务'
+      title: '医院服务',
+      keepAlive: true
       // allowBack: false
     }
   },
