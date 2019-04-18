@@ -85,7 +85,7 @@ export default {
     var memberInfo = this.$store.state.memberInfo
     // var memberInfo = {
     //   open_id: 'o7-H2wTS0Zniw2W_mkkFH0scU3u4',
-    //   name: '郭姗姗'
+    //   nickname: '郭姗姗'
     // }
     if (memberInfo) {
       this.open_id = memberInfo.open_id

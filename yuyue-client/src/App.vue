@@ -69,6 +69,8 @@ export default {
     //   if (window.history.length <= 1) {
     //     return false
     //   } else {
+    //     console.log(this.$router)
+    //     this.$router
     //     this.$router.go(-1)
     //   }
     // }
