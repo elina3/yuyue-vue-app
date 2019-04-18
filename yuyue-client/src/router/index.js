@@ -29,7 +29,7 @@ import BindCard from '@/pages/me/bind_card/BindCard'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [{
     path: '/hello_world',
     name: 'HelloWorld',
@@ -41,6 +41,7 @@ export default new Router({
     component: Home,
     meta: {
       title: '医院服务'
+      // allowBack: false
     }
   },
   {
@@ -212,3 +213,5 @@ export default new Router({
     }
   }]
 })
+
+export default router

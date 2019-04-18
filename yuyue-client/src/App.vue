@@ -63,6 +63,15 @@ export default {
       }
       return obj
     }
+  },
+  mounted () {
+    window.onpopstate = () => {
+      if (window.history.length <= 1) {
+        return false
+      } else {
+        this.$router.go(-1)
+      }
+    }
   }
 }
 </script>
