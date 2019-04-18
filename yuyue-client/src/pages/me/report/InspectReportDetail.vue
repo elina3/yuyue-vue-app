@@ -31,15 +31,15 @@
       <div class="white-panel">
         <div class="detail-item">
           <span>表现或描述:</span>
-          <p>
+          <pre>
             {{report.description}}
-          </p>
+          </pre>
         </div>
         <div class="detail-item">
           <span>诊断结论:</span>
-          <p>
+          <pre>
             {{report.diagnosticsConclusion}}
-          </p>
+          </pre>
         </div>
       </div>
     </div>
