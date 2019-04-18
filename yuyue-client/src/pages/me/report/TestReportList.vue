@@ -4,7 +4,7 @@
       <span>当前就诊人：{{name}}</span>
       <!-- <img @click="openPop" src="../../../assets/images/report/datepicker.png"/> -->
     </div>
-    <div v-show="item.key === '1'" class="report-item" :key="reportItem.id" v-for="reportItem in reports" @click="goToPage(reportItem.id, '/me/test-report-detail')">
+    <div class="report-item" :key="reportItem.id" v-for="reportItem in reports" @click="goToPage(reportItem.id, '/me/test-report-detail')">
       <div class="report-left">
         <span>{{reportItem.name}}</span>
         <span>{{reportItem.report_time}}</span>
