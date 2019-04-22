@@ -163,6 +163,8 @@ export default {
           border: none;
           &:disabled{
             color: #2c3e50 !important;
+            -webkit-text-fill-color: #2c3e50;
+            -webkit-opacity: 1;
           }
         }
       }
