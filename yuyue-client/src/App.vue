@@ -31,10 +31,10 @@ export default {
           checkMemberInfo({open_id: res.wechat_info.openid}).then(res => {
             // alert('result:', res)
             if (res.member) {
-              // alert('has member')
+              alert('has member')
               this.setMemberInfo(res.member)
             } else {
-              // alert('no member')
+              alert('no member')
             }
           }, err => {
             console.error(err)
