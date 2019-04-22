@@ -38,9 +38,13 @@
         </div>
         <div class="detail-item">
           <span>诊断结论:</span>
-          <p>
+          <div class="expandingArea">
+              <pre>{{report.diagnosticsConclusion}}<br></pre>
+              <textarea disabled placeholder="" v-model="report.diagnosticsConclusion"></textarea>
+          </div>
+          <!-- <p>
             {{report.diagnosticsConclusion}}
-          </p>
+          </p> -->
         </div>
       </div>
     </div>
@@ -161,6 +165,7 @@ export default {
           font-size: 0.94rem;
           outline: none;
           border: none;
+          background: #fff;
           &:disabled{
             color: #2c3e50 !important;
             -webkit-text-fill-color: #2c3e50;
