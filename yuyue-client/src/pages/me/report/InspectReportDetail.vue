@@ -31,6 +31,16 @@
       <div class="white-panel">
         <div class="detail-item">
           <span>表现或描述:</span>
+          <div class="expandingArea">
+              <pre>{{report.description}}<br></pre>
+              <textarea placeholder="输入文字" v-model="report.description"></textarea>
+          </div>
+          <!-- <pre>{{report.description}}</pre> -->
+
+          <!-- <autoTextarea v-model="report.description"/> -->
+          <!-- <autoTextarea placeholder="" lineHeight="30px" border="false" fontSize="18px" :value="report.desription"/> -->
+          <!-- <textarea v-model="report.description"/> -->
+          <span>表现或描述:</span>
           <p>
             {{report.description}}
           </p>
@@ -47,9 +57,13 @@
 </template>
 
 <script>
+import { autoTextarea } from 'auto-textarea'
 import { getReportDetail } from '@/services/report'
 export default {
   name: 'InspectReportDetail',
+  components: {
+    autoTextarea
+  },
   data () {
     return {
       reportId: '',
@@ -136,6 +150,23 @@ export default {
       >p{
         text-align: left;
           text-indent: 2;
+      }
+
+      .expandingArea{
+        width: 100%;
+        position:relative;
+        pre{
+          width: 100%;
+          display:block;
+          visibility:hidden;
+        }
+        textarea{
+          width: 100%;
+          position:absolute;
+          top:0;
+          left:0;
+          height:100%;
+        }
       }
     }
   }
