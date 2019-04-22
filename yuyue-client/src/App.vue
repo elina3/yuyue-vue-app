@@ -13,7 +13,7 @@ import { checkMemberInfo } from '@/services/member'
 export default {
   name: 'App',
   // 在mounted阶段通过cookie拿到用户的userid
-  created () {
+  mounted () {
     if (this.$store.state.wechatInfo) { // 重复返回首页时不再请求数据
       return
     }
@@ -66,17 +66,6 @@ export default {
       }
       return obj
     }
-  },
-  mounted () {
-    // window.onpopstate = () => {
-    //   if (window.history.length <= 1) {
-    //     return false
-    //   } else {
-    //     console.log(this.$router)
-    //     this.$router
-    //     this.$router.go(-1)
-    //   }
-    // }
   }
 }
 </script>
