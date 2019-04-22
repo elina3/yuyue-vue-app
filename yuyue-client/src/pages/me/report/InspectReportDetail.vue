@@ -33,7 +33,7 @@
           <span>表现或描述:</span>
           <div class="expandingArea">
               <pre>{{report.description}}<br></pre>
-              <textarea placeholder="" v-model="report.description"></textarea>
+              <textarea disabled placeholder="" v-model="report.description"></textarea>
           </div>
         </div>
         <div class="detail-item">
@@ -159,6 +159,8 @@ export default {
           height:100%;
           color: #2c3e50;
           font-size: 0.94rem;
+          outline: none;
+          border: none;
         }
       }
     }
