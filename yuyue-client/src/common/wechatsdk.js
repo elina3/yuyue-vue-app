@@ -12,7 +12,7 @@ function getAuthorization (url) {
     '?appid=' + wechatsdkConfig.appid +
     '&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=' + wechatsdkConfig.authScope + '&state=STATE#wechat_redirect'
 
-  // alert('authoized url:' + authoizedUrl)
+  alert('authoized url:' + authoizedUrl)
   window.location.replace = authoizedUrl
 }
 

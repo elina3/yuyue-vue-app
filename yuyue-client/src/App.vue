@@ -20,6 +20,7 @@ export default {
 
     var urlParams = this.getUrlParmas()
     if (!urlParams.code) { // 去授权获取code
+      alert('no code!')
       let url = window.location.href
       getCode(url)
     } else {
