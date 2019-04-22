@@ -151,7 +151,7 @@ export default {
           color: #2c3e50;
           font-size: 1.2rem;
         }
-        textarea{
+        textarea, textarea:disabled{
           width: 100%;
           position:absolute;
           top:0;
