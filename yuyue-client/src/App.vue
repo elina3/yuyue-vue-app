@@ -24,8 +24,10 @@ export default {
       let url = window.location.href
       getCode(url)
     } else {
+      alert('has code')
       loadWechatInfo({code: urlParams.code}).then(res => {
         if (res.wechat_info) {
+          alert('wechatInfo:', JSON.stringify(res.wechat_info))
           this.setWechatInfo(res.wechat_info)
           alert('app:' + JSON.stringify(this.$store.state.wechatInfo))
           checkMemberInfo({open_id: res.wechat_info.openid}).then(res => {
