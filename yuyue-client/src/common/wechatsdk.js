@@ -9,6 +9,7 @@ var wechatsdkConfig = {
 // http://datonghao.com/client/
 function getAuthorization (url) {
   url = url.replace('?love=1314', '')
+  alert(url)
   var authoizedUrl = wechatsdkConfig.defaultAuthUri +
     '?appid=' + wechatsdkConfig.appid +
     '&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=' + wechatsdkConfig.authScope + '&state=STATE&connect_redirect=1#wechat_redirect'
