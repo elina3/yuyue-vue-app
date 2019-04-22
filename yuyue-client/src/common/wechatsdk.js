@@ -10,7 +10,7 @@ var wechatsdkConfig = {
 function getAuthorization (url) {
   var authoizedUrl = wechatsdkConfig.defaultAuthUri +
     '?appid=' + wechatsdkConfig.appid +
-    '&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=' + wechatsdkConfig.authScope + '&state=STATE#wechat_redirect&connect_redirect=1'
+    '&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=' + wechatsdkConfig.authScope + '&state=STATE&connect_redirect=1#wechat_redirect'
 
   alert('authoized url:' + authoizedUrl)
   window.location.replace(authoizedUrl)
