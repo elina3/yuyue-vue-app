@@ -57,12 +57,12 @@
 </template>
 
 <script>
-import { autoTextarea } from 'auto-textarea'
+// import { autoTextarea } from 'auto-textarea'
 import { getReportDetail } from '@/services/report'
 export default {
   name: 'InspectReportDetail',
   components: {
-    autoTextarea
+    // autoTextarea
   },
   data () {
     return {
