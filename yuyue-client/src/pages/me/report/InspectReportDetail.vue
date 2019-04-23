@@ -107,6 +107,7 @@ export default {
       line-height: 2rem;
       overflow: hidden;
       text-align: left;
+      font-size: 1rem;
     }
     .white-panel .info-item{
       display: block;
@@ -162,7 +163,7 @@ export default {
           left:0;
           height:100%;
           color: #2c3e50;
-          font-size: 0.94rem;
+          font-size: 1rem;
           outline: none;
           border: none;
           background: #fff;
