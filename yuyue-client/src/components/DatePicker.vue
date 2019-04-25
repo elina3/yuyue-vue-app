@@ -1,28 +1,30 @@
 <template>
   <div v-show="opened">
-     <div class="date-title"><span class="left" @click="cancel">取消</span><p>{{title}}日期选择</p><span class="right" @click="sure">确定</span></div>
-     <div class="date-select-area">
-         <ul class="date-select-wrapper">
-            <li class="date-select-item">
-                <label :class="currentYear ? 'has-value' : ''" @click="openYearOptions">{{currentYear ? currentYear.name : '----年'}}</label>
-                <ul class="date-item-options" v-show="yearOptionsOpened">
-                    <li :class="item.selected ? 'selected' : ''" @click="selectYear(item)" :key="item.value" v-for="item in years">{{item.name}}</li>
-                </ul>
-            </li>
-            <li class="date-select-item">
-                <label :class="currentMonth ? 'has-value' : ''"  @click="openMonthOptions">{{currentMonth ? currentMonth.name : '--月'}}</label>
-                <ul class="date-item-options" v-show="monthOptionsOpened">
-                    <li :class="item.selected ? 'selected' : ''" @click="selectMonth(item)" :key="item.value" v-for="item in months">{{item.name}}</li>
-                </ul>
-            </li>
-            <li class="date-select-item">
-                <label :class="currentDay ? 'has-value' : ''"  @click="openDayOptions">{{currentDay ? currentDay.name : '--日'}}</label>
-                <ul class="date-item-options" v-show="dayOptionsOpened">
-                    <li :class="item.selected ? 'selected' : ''" @click="selectDay(item)" :key="item.val" v-for="item in days">{{item.name}}</li>
-                </ul>
-            </li>
-         </ul>
-     </div>
+    <wv-popup :visible.sync="opened" :height="250" :close-on-click-mask=false>
+      <div class="date-title"><span class="left" @click="cancel">取消</span><p>{{title}}日期选择</p><span class="right" @click="sure">确定</span></div>
+      <div class="date-select-area">
+          <ul class="date-select-wrapper">
+              <li class="date-select-item">
+                  <label :class="currentYear ? 'has-value' : ''" @click="openYearOptions">{{currentYear ? currentYear.name : '----年'}}</label>
+                  <ul class="date-item-options" v-show="yearOptionsOpened">
+                      <li :class="item.selected ? 'selected' : ''" @click="selectYear(item)" :key="item.value" v-for="item in years">{{item.name}}</li>
+                  </ul>
+              </li>
+              <li class="date-select-item">
+                  <label :class="currentMonth ? 'has-value' : ''"  @click="openMonthOptions">{{currentMonth ? currentMonth.name : '--月'}}</label>
+                  <ul class="date-item-options" v-show="monthOptionsOpened">
+                      <li :class="item.selected ? 'selected' : ''" @click="selectMonth(item)" :key="item.value" v-for="item in months">{{item.name}}</li>
+                  </ul>
+              </li>
+              <li class="date-select-item">
+                  <label :class="currentDay ? 'has-value' : ''"  @click="openDayOptions">{{currentDay ? currentDay.name : '--日'}}</label>
+                  <ul class="date-item-options" v-show="dayOptionsOpened">
+                      <li :class="item.selected ? 'selected' : ''" @click="selectDay(item)" :key="item.val" v-for="item in days">{{item.name}}</li>
+                  </ul>
+              </li>
+          </ul>
+      </div>
+    </wv-popup>
   </div>
 </template>
 

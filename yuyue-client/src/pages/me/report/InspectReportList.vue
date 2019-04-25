@@ -14,30 +14,7 @@
           <span class="arrow">></span>
       </div>
     </div>
-    <wv-popup :visible.sync="popupVisible3" height="100%" @close="onHide">
-      <wv-group>
-        <wv-switch title="关闭" v-model="popupVisible3"/>
-        <wv-radio title="日期选择" v-model="filter.value" :options="filter.options" @change="onChange"></wv-radio>
-        <wv-cell title="开始时间" :value="filter.startDate.Format('yyyy-MM-dd')" v-show="filter.value === 'custom'" @click="onStartDateChange"/>
-        <wv-cell title="结束时间" :value="filter.endDate.Format('yyyy-MM-dd')" v-show="filter.value === 'custom'" @click="onEndDateChange"/>
-        <wv-datetime-picker
-          ref="picker"
-          type="date"
-          year-format="{value} 年"
-          month-format="{value} 月"
-          date-format="{value} 日"
-          v-model="filter.startDate">
-        </wv-datetime-picker>
-        <wv-datetime-picker
-          ref="picker2"
-          type="date"
-          year-format="{value} 年"
-          month-format="{value} 月"
-          date-format="{value} 日"
-          v-model="filter.endDate">
-        </wv-datetime-picker>
-      </wv-group>
-    </wv-popup>
+    <date-select-panel :opened="opened" title="日期选择" @onDateSure="onDatePanelSure" @onDateCancel="onDateCancel"></date-select-panel>
   </div>
 </template>
 
@@ -45,43 +22,22 @@
 
 import { mapGetters } from 'vuex'
 import { getMyReports } from '@/services/report'
+import dateSelectPanel from '../../../components/DateSelectPanel'
 
 export default {
   name: 'Report',
+  components: {
+    dateSelectPanel
+  },
   data () {
     return {
       name: '',
       now: new Date(new Date().Format('yyyy-MM-dd')),
       filter: {
-        value: 'rencentOneWeek',
         startDate: null,
-        endDate: null,
-        options: [{
-          label: '最近一周',
-          value: 'rencentOneWeek'
-        }, {
-          label: '最近一个月',
-          value: 'recentOneMonth'
-        }, {
-          label: '最近三个月',
-          value: 'recentThreeMonth'
-        }, {
-          label: '最近半年',
-          value: 'halfYear'
-        }, {
-          label: '自定义',
-          value: 'custom'
-        }]
+        endDate: null
       },
-      popupVisible3: false,
-      pickerValue: '',
-      tabNames: [{
-        title: '检验报告',
-        key: '1'
-      }, {
-        title: '检查报告',
-        key: '2'
-      }],
+      opened: false,
       reports: []
     }
   },
@@ -116,27 +72,19 @@ export default {
     }
   },
   methods: {
-    onStartDateChange (val) {
-      this.$refs.picker.open()
-    },
-    onEndDateChange (val) {
-      this.$refs.picker.open()
-    },
-    onChange (val) {
-      if (val === 'custom') {
-
-      }
-    },
-    onHide () {
-      alert('close')
-    },
-    onClick (index) {
-      console.log('index=======', index)
-      this.reports = []
+    onDatePanelSure (data) {
+      // alert(data.startDate)
+      // alert(data.endDate)
+      this.filter.startDate = data.startDate
+      this.filter.endDate = data.endDate
+      this.opened = false
       this.loadMyReports()
     },
+    onDateCancel () {
+      alert('cancel')
+    },
     openPop () {
-      this.popupVisible3 = true
+      this.opened = true
     },
     goToPage (id, baseUrl) {
       this.$router.push({ path: (baseUrl + '/' + id) })
@@ -144,12 +92,13 @@ export default {
     loadMyReports () {
       let obj = {
         open_id: this.open_id,
-        report_type: 'inspect_report'
+        report_type: 'inspect_report',
+        start_date: this.filter.startDate,
+        end_date: this.filter.endDate
       }
       getMyReports(obj).then(res => {
         if (res.reports) {
           console.log(res.reports)
-          console.log('==============')
           this.reports = res.reports.map(item => {
             return {
               id: item.id,
