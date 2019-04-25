@@ -58,9 +58,16 @@ export default {
     this.scheduleId = this.$route.query.schedule_id
     this.doctorId = this.$route.query.doctor_id
     this.loadPreviewAppointment()
-    if (this.$store.state.memberInfo) {
-      this.openId = this.$store.state.memberInfo.open_id
-      this.nickname = this.$store.state.memberInfo.nickname
+
+    var memberInfo = this.$store.state.memberInfo
+    // var memberInfo = {
+    //   open_id: 'o7-H2wTS0Zniw2W_mkkFH0scU3u4',
+    //   nickname: '郭姗姗'
+    // }
+
+    if (memberInfo) {
+      this.openId = memberInfo.open_id
+      this.nickname = memberInfo.nickname
       this.hiddenButton = false
     } else {
       this.nickname = '您还没有绑卡，点击此处去绑卡'

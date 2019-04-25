@@ -129,7 +129,7 @@ export default {
           res.appointment.end_time = new Date(res.appointment.end_time)
           this.appointmentDetail = {
             status: config.appointment_status[res.appointment.status],
-            outpatientType: config.outpatient_type[res.appointment.doctor.outpatient_type],
+            outpatientType: config.outpatient_type[res.appointment.outpatient_type],
             price: res.appointment.price ? (res.appointment.price / 100) + '元' : '未设置',
             doctor: res.appointment.doctor.nickname,
             department: res.appointment.department.name,
