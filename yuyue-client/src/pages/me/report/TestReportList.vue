@@ -98,7 +98,7 @@ export default {
       getMyReports(obj).then(res => {
         if (res.reports) {
           this.reports = res.reports.map(item => {
-            let timeString = item.reportingTime.replace('Z', ' ').replace('T', ' ')
+            let timeString = item.reportingTime.replace('-', '/').replace('Z', ' ').replace('T', ' ')
             return {
               id: item.id,
               name: item.name,
