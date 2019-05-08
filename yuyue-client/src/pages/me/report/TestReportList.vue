@@ -98,10 +98,11 @@ export default {
       getMyReports(obj).then(res => {
         if (res.reports) {
           this.reports = res.reports.map(item => {
+            let timeString = item.reportingTime.replace('Z', ' ').replace('T', ' ')
             return {
               id: item.id,
               name: item.name,
-              report_time: item.reportingTime
+              report_time: new Date(timeString).Format('yyyy-MM-dd hh:mm:ss')
             }
           })
         }

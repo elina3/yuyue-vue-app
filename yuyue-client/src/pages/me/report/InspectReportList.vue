@@ -100,10 +100,11 @@ export default {
         if (res.reports) {
           console.log(res.reports)
           this.reports = res.reports.map(item => {
+            let timeString = item.reportingTime.replace('Z', ' ').replace('T', ' ')// 返回的是通用标准时,new Date()会增加8（我们是+8时区）
             return {
               id: item.id,
               name: item.name,
-              report_time: item.reportingTime
+              report_time: new Date(timeString).Format('yyyy-MM-dd hh:mm:ss')
             }
           })
         }
