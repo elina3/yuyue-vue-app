@@ -16,6 +16,7 @@ export default {
     alert('urlParams:' + JSON.stringify(urlParams))
     if (!urlParams.code) { // 去授权获取code
       let url = window.location.href
+      alert('url:' + url)
       getCode(url)
     } else {
       alert('has code')
@@ -31,6 +32,7 @@ export default {
               this.setMemberInfo(res.member)
               let pageName = urlParams.pageName || '/'
               alert('pageName:' + pageName)
+              alert('url:' + window.location.href)
               this.$route.replace(pageName)
             } else {
               // alert('no member')
