@@ -16,13 +16,10 @@ function getAuthorization (url) {
   var authoizedUrl = wechatsdkConfig.defaultAuthUri +
     '?appid=' + wechatsdkConfig.appid +
     '&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=' + wechatsdkConfig.authScope + '&state=STATE&connect_redirect=1#wechat_redirect'
-
-  alert('authoizedUrl:' + authoizedUrl)
   window.location.replace(authoizedUrl)
 }
 
 // 存取授权用户userInfo
 export function getCode (url) {
-  alert('getCode url:' + url)
   getAuthorization(url)
 }
