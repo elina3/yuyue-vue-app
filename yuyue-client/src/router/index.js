@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Home from '@/pages/home/Home'
+import Jumping from '@/pages/jumping/jumping'
 import Hospital from '@/pages/hospital/Hospital'
 import Department from '@/pages/department/Department'
 import DepartmentList from '@/pages/department/list/List'
@@ -41,6 +42,14 @@ const router = new Router({
     component: Home,
     meta: {
       title: '医院服务'
+    }
+  },
+  {
+    path: '/jumping',
+    name: 'Jumping',
+    component: Jumping,
+    meta: {
+      title: '授权中'
     }
   },
   {
