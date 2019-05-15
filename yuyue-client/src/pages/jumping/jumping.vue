@@ -33,7 +33,7 @@ export default {
               let pageName = urlParams.pageName || '/'
               alert('pageName:' + pageName)
               alert('url:' + window.location.href)
-              this.$route.replace(pageName)
+              this.$route.push(pageName)
             } else {
               // alert('no member')
             }
