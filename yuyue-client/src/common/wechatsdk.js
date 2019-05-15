@@ -1,14 +1,14 @@
 // wechatsdk基本配置
-var wechatsdkConfig = {
-  appid: 'wxa6210d998dd41246', // 平台appid
-  defaultAuthUri: 'https://open.weixin.qq.com/connect/oauth2/authorize', // 默认微信授权URL
-  authScope: 'snsapi_userinfo'
-}
 // var wechatsdkConfig = {
-//   appid: 'wx84f82babe25f6b05', // 平台appid
+//   appid: 'wxa6210d998dd41246', // 平台appid
 //   defaultAuthUri: 'https://open.weixin.qq.com/connect/oauth2/authorize', // 默认微信授权URL
 //   authScope: 'snsapi_userinfo'
 // }
+var wechatsdkConfig = {
+  appid: 'wx84f82babe25f6b05', // 平台appid
+  defaultAuthUri: 'https://open.weixin.qq.com/connect/oauth2/authorize', // 默认微信授权URL
+  authScope: 'snsapi_userinfo'
+}
 
 // 跳转授权地址
 // http://datonghao.com/client/
