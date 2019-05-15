@@ -23,5 +23,6 @@ function getAuthorization (url) {
 
 // 存取授权用户userInfo
 export function getCode (url) {
+  alert('getCode url:' + url)
   getAuthorization(url)
 }
