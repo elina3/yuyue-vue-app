@@ -34,7 +34,6 @@ export default {
               alert('pageName:' + pageName)
               alert('url:' + window.location.href)
               this.$router.replace({ path: '/' })
-              this.$router.go(-1)
             } else {
               // alert('no member')
             }
