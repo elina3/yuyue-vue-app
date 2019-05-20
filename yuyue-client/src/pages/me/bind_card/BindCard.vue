@@ -180,8 +180,8 @@ export default {
       alert('请用微信打开页面')
       return
     }
-    this.pageName = this.$route.params.pageName
-    alert('page:' + this.pageName)
+    this.pageName = this.$route.params.pageName || ''
+    // alert('page:' + this.pageName)
     var memberInfo = this.$store.state.memberInfo
     if (!memberInfo) {
       this.noCard = true
