@@ -15,7 +15,8 @@ export default {
   // 在mounted阶段通过cookie拿到用户的userid
   created () {
     if (this.$store.state.wechatInfo) { // 重复返回首页时不再请求数据
-      return
+      // return
+      alert('has wechatInfo')
     }
     var urlParams = this.getUrlParmas()
     if (!urlParams.code) { // 去授权获取code
