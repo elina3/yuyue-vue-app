@@ -30,7 +30,7 @@ export default {
           // alert('app:' + JSON.stringify(this.$store.state.wechatInfo))
           // alert('openid:' + res.wechat_info.openid)
           checkMemberInfo({open_id: res.wechat_info.openid}).then(res => {
-            alert('result:', res)
+            alert('result:' + JSON.stringify(res))
             if (res.member) {
               alert('has member' + JSON.stringfiy(res.member))
               this.setMemberInfo(res.member)
