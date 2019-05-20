@@ -47,6 +47,7 @@ export default {
   name: 'MedicalCard',
   data () {
     return {
+      pageName: '',
       wechatInfo: {},
       memberInfo: {},
       card: {
@@ -141,7 +142,8 @@ export default {
         this.setMemberInfo(res.member)
         // alert(JSON.stringify(this.$store.state.memberInfo))
         Toast('绑卡成功！')
-        this.$router.push({ path: '/me/medical_card' })
+        let page = this.pageName || 'me/medical_card'
+        this.$router.push({ path: page })
       })
     }
   },
@@ -178,6 +180,7 @@ export default {
       alert('请用微信打开页面')
       return
     }
+    this.pageName = this.$route.params.pageName
     var memberInfo = this.$store.state.memberInfo
     if (!memberInfo) {
       this.noCard = true
