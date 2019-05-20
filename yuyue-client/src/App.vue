@@ -39,6 +39,7 @@ export default {
               alert('no member')
             }
           }, err => {
+            alert(err)
             console.error(err)
           })
         } else {
