@@ -142,7 +142,7 @@ export default {
         this.setMemberInfo(res.member)
         // alert(JSON.stringify(this.$store.state.memberInfo))
         Toast('绑卡成功！')
-        let page = this.pageName || 'me/medical_card'
+        let page = this.pageName || '/me/medical_card'
         this.$router.push({ path: page })
       })
     }
@@ -181,6 +181,7 @@ export default {
       return
     }
     this.pageName = this.$route.params.pageName
+    alert('page:' + this.pageName)
     var memberInfo = this.$store.state.memberInfo
     if (!memberInfo) {
       this.noCard = true
