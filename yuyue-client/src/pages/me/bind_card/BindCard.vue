@@ -181,7 +181,7 @@ export default {
       return
     }
     let pageName = this.$route.query.page_name || ''
-    alert(pageName)
+    // alert(pageName)
     if (pageName === 'inspect') {
       this.pageName = '/me/inspect-report/list'
     } else if (pageName === 'test') {
