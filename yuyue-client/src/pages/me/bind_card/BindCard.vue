@@ -180,7 +180,13 @@ export default {
       alert('请用微信打开页面')
       return
     }
-    this.pageName = this.$route.query.page_name || ''
+    let pageName = this.$route.query.page_name || ''
+    alert(pageName)
+    if (pageName === 'inspect') {
+      this.pageName = '/me/inspect-report/list'
+    } else if (pageName === 'test') {
+      this.pageName = '/me/test-report/list'
+    }
     alert('page:' + this.pageName)
     var memberInfo = this.$store.state.memberInfo
     if (!memberInfo) {

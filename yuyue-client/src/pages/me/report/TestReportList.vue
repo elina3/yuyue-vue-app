@@ -122,7 +122,7 @@ export default {
         skin: 'ios',
         showCancelBtn: true
       }).then(action => {
-        this.$router.push({path: '/me/bind_card', params: {pageName: '/me/test-report/list'}})
+        this.$router.push({path: '/me/bind_card', query: {page_name: 'test'}})
       }, cancel => {
         console.log('cancel')
       })
