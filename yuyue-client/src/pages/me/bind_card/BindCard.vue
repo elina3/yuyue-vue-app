@@ -14,8 +14,8 @@
           </select>
         </div>
       </div>
-      <wv-input label="卡号" placeholder="请输入内容"  v-model="card.number"></wv-input>
-      <wv-input label="姓名" placeholder="请输入内容" v-model="card.name"></wv-input>
+      <wv-input label="卡号" placeholder="请输入卡号"  v-model="card.number"></wv-input>
+      <wv-input label="姓名" placeholder="请输入患者姓名" v-model="card.name"></wv-input>
       <div class="yy-select-item has-top">
         <div class="yy-select-item-left">
           <label>性别</label>
@@ -28,8 +28,8 @@
           </select>
         </div>
       </div>
-      <wv-input label="身份证号" placeholder="请输入内容"  v-model="card.IDCard"></wv-input>
-      <wv-input label="联系电话" placeholder="请输入内容" v-model="card.mobile"></wv-input>
+      <wv-input label="身份证号" placeholder="请输入有效身份证号"  v-model="card.IDCard"></wv-input>
+      <wv-input label="联系电话" placeholder="请输入11位手机号" v-model="card.mobile"></wv-input>
     </wv-group>
 
     <div v-show="!hideButton" class="sure">
@@ -187,7 +187,7 @@ export default {
     } else if (pageName === 'test') {
       this.pageName = '/me/test-report/list'
     }
-    alert('page:' + this.pageName)
+    // alert('page:' + this.pageName)
     var memberInfo = this.$store.state.memberInfo
     if (!memberInfo) {
       this.noCard = true
