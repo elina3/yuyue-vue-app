@@ -22,6 +22,7 @@
 import { mapGetters } from 'vuex'
 import { getMyReports } from '@/services/report'
 import dateSelectPanel from '../../../components/DateSelectPanel'
+import { Dialog } from 'we-vue'
 
 export default {
   name: 'Report',
@@ -54,6 +55,8 @@ export default {
       this.open_id = memberInfo.open_id
       this.name = memberInfo.nickname
       this.loadMyReports()
+    } else {
+      this.needGoToBindCard()
     }
   },
   computed: {
@@ -108,6 +111,18 @@ export default {
       },
       err => {
         console.log('err:', err)
+      })
+    },
+    needGoToBindCard () {
+      Dialog.confirm({
+        title: '提示信息',
+        message: '您还没有绑卡，点击确定，去绑卡。',
+        skin: 'ios',
+        showCancelBtn: true
+      }).then(action => {
+        this.$router.push({ path: '/me/bind_card' })
+      }, cancel => {
+        console.log('cancel')
       })
     }
   }
