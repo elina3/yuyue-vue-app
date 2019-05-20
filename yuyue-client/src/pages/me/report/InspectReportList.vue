@@ -52,12 +52,13 @@ export default {
     //   open_id: 'o7-H2wTS0Zniw2W_mkkFH0scU3u4',
     //   nickname: '郭姗姗'
     // }
-    alert(JSON.stringify(memberInfo))
+    // alert(JSON.stringify(memberInfo))
     if (memberInfo) {
       this.open_id = memberInfo.open_id
       this.name = memberInfo.nickname
       this.loadMyReports()
-    } else {
+    }
+    if (memberInfo && !memberInfo.IDCard) {
       this.needGoToBindCard()
     }
   },

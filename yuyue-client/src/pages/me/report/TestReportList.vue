@@ -57,9 +57,9 @@ export default {
       this.name = memberInfo.nickname
       this.loadMyReports()
     }
-    // else {
-    //   this.needGoToBindCard()
-    // }
+    if (memberInfo && !memberInfo.IDCard) {
+      this.needGoToBindCard()
+    }
   },
   computed: {
     ...mapGetters(['memberInfo']),
