@@ -40,6 +40,8 @@ export default {
           }, err => {
             console.error(err)
           })
+        } else {
+          this.setWechatInfo(null)
         }
       })
     }
