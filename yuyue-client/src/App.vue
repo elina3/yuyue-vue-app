@@ -34,6 +34,7 @@ export default {
               // alert('has member')
               this.setMemberInfo(res.member)
             } else {
+              this.setMemberInfo(null)
               // alert('no member')
             }
           }, err => {
