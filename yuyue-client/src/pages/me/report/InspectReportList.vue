@@ -53,7 +53,7 @@ export default {
     //   nickname: '郭姗姗'
     // }
     alert(memberInfo)
-    if (memberInfo) {
+    if (memberInfo && memberInfo.open_id) {
       this.open_id = memberInfo.open_id
       this.name = memberInfo.nickname
       this.loadMyReports()
