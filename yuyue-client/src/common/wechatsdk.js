@@ -5,7 +5,6 @@ var wechatsdkConfig = {
   authScope: 'snsapi_userinfo'
 }
 
-
 // var wechatsdkConfig = {
 //   appid: 'wx84f82babe25f6b05', // 平台appid //医院公众号
 //   defaultAuthUri: 'https://open.weixin.qq.com/connect/oauth2/authorize', // 默认微信授权URL
