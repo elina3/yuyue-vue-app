@@ -53,9 +53,9 @@
           <img src="../../assets/images/home/医院导航.png" >
           <span>医院位置</span>
         </wv-grid-item>
-        <wv-grid-item to="/">
+        <wv-grid-item url="http://mh-rjgb.com:9000/home/login.html">
           <img src="../../assets/images/home/微自诊.png" >
-          <span>体检预约</span>
+          <span>体检报告</span>
         </wv-grid-item>
         <wv-grid-item url="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzI4NTE3ODYyNA==#wechat_redirect">
           <img src="../../assets/images/home/最新消息.png" >
