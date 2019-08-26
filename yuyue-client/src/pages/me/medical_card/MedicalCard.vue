@@ -3,7 +3,7 @@
     <span v-show="!noCard"  class="page-title">我的就诊卡:</span>
     <wv-group v-show="!noCard" class="appointment-info">
       <wv-input label="卡类型" placeholder="请输入内容" :readonly="true" v-model="card.type"></wv-input>
-      <wv-input label="卡号" v-if="!card.number" placeholder="请输入内容" :readonly="true" v-model="card.number"></wv-input>
+      <wv-input label="卡号" v-if="card.number !== '' && card.number !== undefined" placeholder="请输入内容" :readonly="true" v-model="card.number"></wv-input>
       <wv-input label="姓名" placeholder="请输入内容" :readonly="true" v-model="card.name"></wv-input>
       <wv-input label="性别" placeholder="请输入内容" :readonly="true" v-model="card.sex"></wv-input>
       <wv-input label="身份证号" placeholder="请输入内容" :readonly="true" v-model="card.IDCard"></wv-input>
