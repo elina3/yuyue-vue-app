@@ -16,27 +16,27 @@ export default {
   created () {
     if (this.$store.state.wechatInfo) { // 重复返回首页时不再请求数据
       // return
-      alert('has wechatInfo')
+      // alert('has wechatInfo')
     }
     var urlParams = this.getUrlParmas()
     if (!urlParams.code) { // 去授权获取code
       let url = window.location.href
       getCode(url)
     } else {
-      alert('has code')
+      // alert('has code')
       loadWechatInfo({code: urlParams.code}).then(res => {
         if (res.wechat_info) {
           this.setWechatInfo(res.wechat_info)
-          alert('app:' + JSON.stringify(this.$store.state.wechatInfo))
-          alert('openid:' + res.wechat_info.openid)
+          // alert('app:' + JSON.stringify(this.$store.state.wechatInfo))
+          // alert('openid:' + res.wechat_info.openid)
           checkMemberInfo({open_id: res.wechat_info.openid}).then(res => {
-            alert('result:' + JSON.stringify(res.member))
+            // alert('result:' + JSON.stringify(res.member))
             if (res.member) {
-              alert('has member')
+              // alert('has member')
               this.setMemberInfo(res.member)
             } else {
               this.setMemberInfo(null)
-              alert('no member')
+              // alert('no member')
             }
           }, err => {
             alert(err)
