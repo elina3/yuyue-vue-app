@@ -13,7 +13,7 @@ const config = {
   card_type: {
     'health_care': '医保卡',
     'medical': '诊疗卡',
-    'none': '无'
+    'none': '证件号'
   },
   sex: {
     'male': '男',

@@ -8,13 +8,13 @@
         </div>
         <div class="yy-select-item-right">
           <select v-model="card.type">
-            <option value="">无</option>
             <option value="health_care">医保卡</option>
             <option value="medical">诊疗卡</option>
+            <option value="">证件号</option>
           </select>
         </div>
       </div>
-      <wv-input label="卡号" placeholder="请输入卡号"  v-model="card.number"></wv-input>
+      <wv-input v-if="card.type !== ''" label="卡号" placeholder="请输入医保卡号或诊疗卡号"  v-model="card.number"></wv-input>
       <wv-input label="姓名" placeholder="请输入患者姓名" v-model="card.name"></wv-input>
       <div class="yy-select-item has-top">
         <div class="yy-select-item-left">
@@ -51,7 +51,7 @@ export default {
       wechatInfo: {},
       memberInfo: {},
       card: {
-        type: '',
+        type: 'health_care',
         sex: ''
       },
       noCard: true,
