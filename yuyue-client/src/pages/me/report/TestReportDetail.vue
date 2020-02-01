@@ -33,11 +33,13 @@
           <!-- <span>血液检查</span> -->
           <div class="info-head">
             <span>项目</span>
-            <span>结果（参考范围）</span>
+            <span>结果</span>
+            <span>参考范围</span>
           </div>
           <div class="info-item" :key="item.id" v-for="item of items">
             <span>{{item.name}}</span>
-            <span>{{item.result}}{{item.reference ? ('(' + item.reference + ')') : ''}}</span>
+            <span>{{item.result}}</span>
+            <span>{{item.reference ? ('(' + item.reference + ')') : ''}}</span>
           </div>
           <!-- <div class="info-item">
             <span>霉菌</span>
