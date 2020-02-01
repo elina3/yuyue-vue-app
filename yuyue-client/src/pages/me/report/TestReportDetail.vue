@@ -54,19 +54,23 @@
           <span>血液检查</span>
           <div class="info-head">
             <span>项目</span>
-            <span>结果（参考范围）</span>
+            <span>结果</span>
+            <span>参考范围</span>
           </div>
           <div class="info-item">
             <span>红细胞总数RBC1</span>
-            <span>4.73（4.10-5.0）</span>
+            <span>4.73</span>
+            <span>4.10-5.0</span>
           </div>
           <div class="info-item">
             <span>甘油三酯</span>
-            <span>1.92（0.45-1.7）</span>
+            <span>1.92</span>
+            <span>0.45-1.7</span>
           </div>
           <div class="info-item">
             <span>总胆固醇</span>
-            <span>3.62（3.1-5.7）</span>
+            <span>3.62</span>
+            <span>3.1-5.7</span>
           </div>
         </div> -->
       </div>
@@ -171,9 +175,15 @@ export default {
         >span{
           display: inline-block;
           float: left;
-          width: 50%;
+          width: 30%;
           height: 2rem;
           text-align: left;
+          &:nth-child(1){
+            width: 50%;
+          }
+          &:nth-child(2){
+            width: 20%;
+          }
         }
       }
       .info-head >span{
