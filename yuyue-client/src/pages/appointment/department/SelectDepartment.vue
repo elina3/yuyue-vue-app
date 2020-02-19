@@ -19,7 +19,7 @@ export default {
     }
   },
   mounted () {
-    alert('预约之前，请务必前往公众号底部菜单栏填写承诺书！若已填写，请忽略。')
+    alert('预约之前，请务必前往公众号首页，点击底部菜单栏“承诺书”，填写承诺书！若已填写，请忽略。')
     this.loadDepartments()
   },
   methods: {
