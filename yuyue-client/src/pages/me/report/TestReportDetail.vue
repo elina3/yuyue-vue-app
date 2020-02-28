@@ -176,7 +176,7 @@ export default {
           display: inline-block;
           float: left;
           width: 30%;
-          height: 2rem;
+          min-height: 2rem;
           text-align: left;
           &:nth-child(1){
             width: 50%;
