@@ -70,11 +70,11 @@ export default {
           let objs = res.schedules.map(item => {
             return {
               date: new Date(item.date_string),
-              disabled: false,
+              disabled: schedule.is_stopped,
               schedules: item.schedules.map(schedule => {
                 return {
                   id: schedule._id,
-                  title: schedule.start_time_string + '~' + schedule.end_time_string + '（余号：' + (schedule.number_count - schedule.booked) + '）',
+                  title: schedule.start_time_string + '~' + schedule.end_time_string + '（余号：' + (schedule.number_count - schedule.booked) + '）' + (schedule.is_stopped ? ' 已停诊！不可预约！' : ''),
                   number_count: schedule.number_count
                 }
               })

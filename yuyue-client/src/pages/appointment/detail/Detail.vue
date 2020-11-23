@@ -128,7 +128,7 @@ export default {
           res.appointment.start_time = new Date(res.appointment.start_time)
           res.appointment.end_time = new Date(res.appointment.end_time)
           this.appointmentDetail = {
-            status: config.appointment_status[res.appointment.status],
+            status: !res.appointment.canceled && res.appointment.doctor_schedule.is_stopped ? '已停诊' : config.appointment_status[res.appointment.status],
             outpatientType: config.outpatient_type[res.appointment.outpatient_type],
             price: res.appointment.price ? (res.appointment.price / 100) + '元' : '未设置',
             doctor: res.appointment.doctor.nickname,
@@ -150,6 +150,8 @@ export default {
         if (res.appointment.canceled) { // 如果已经取消，就一定隐藏，不管有无取号
           this.hiddenButton = true
         } else if (res.appointment.picked) { // 如果已经取号，就一定隐藏，不管有无取号
+          this.hiddenButton = true
+        }  else if (res.appointment.doctor_schedule.is_stopped) { // 如果已经停诊，就一定隐藏，不管有无取号
           this.hiddenButton = true
         } else {
           this.hiddenButton = false

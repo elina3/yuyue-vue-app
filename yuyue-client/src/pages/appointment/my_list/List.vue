@@ -45,12 +45,13 @@ export default {
         console.log(res)
         if (res.appointments) {
           this.appointments = res.appointments.map(item => {
+            // 已取消时优先显示“已取消”，除了这种情况，如果已停诊时显示“已停诊”，剩余情况显示对应状态
             return {
               id: item._id,
               title: item.department.name + ' ' + item.doctor.nickname + ' ' + config.outpatient_type[item.doctor.outpatient_type] || '',
               description: item.member.nickname || item.IDCard,
               timeRange: new Date(item.start_time).Format('yyyy-MM-dd hh:mm') + '~' + new Date(item.end_time).Format('hh:mm'),
-              status: config.appointment_status[item.status] || ''
+              status: !item.canceled && item.doctor_schedule.is_stopped ? '已停诊' : config.appointment_status[item.status]
             }
           })
           console.log(this.doctors)
