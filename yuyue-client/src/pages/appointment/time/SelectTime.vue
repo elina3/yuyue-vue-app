@@ -19,7 +19,8 @@
           <week-range :init-dates="dateObjs" @onClickDate="onClickDate"></week-range>
       </div>
       <wv-panel class="select-time-range" title="请选择就诊时段">
-        <wv-cell :key="item.id" v-for="item in currentTimeRanges" :title="item.title" is-link :to="{ path: '/appointment/sure', query: { schedule_id: item.id, doctor_id: doctorId }}"></wv-cell>
+        <wv-cell v-if="!item.is_stopped" :key="item.id" v-for="item in currentTimeRanges" :title="item.title" is-link :to="{ path: '/appointment/sure', query: { schedule_id: item.id, doctor_id: doctorId }}"></wv-cell>
+          <wv-cell v-if="item.is_stopped" :key="item.id" v-for="item in currentTimeRanges" :title="item.title"></wv-cell>
         <!-- <wv-cell title="09:30-10:00" is-link :to="{ path: '/appointment/sure', query: { schedule_id: '5c7948e1345d3c7160035f19', doctor_id: doctorId}}"></wv-cell> -->
       </wv-panel>
 
@@ -70,12 +71,13 @@ export default {
           let objs = res.schedules.map(item => {
             return {
               date: new Date(item.date_string),
-              disabled: item.is_stopped,
+              disabled: false,
               schedules: item.schedules.map(schedule => {
                 return {
                   id: schedule._id,
                   title: schedule.start_time_string + '~' + schedule.end_time_string + '（余号：' + (schedule.number_count - schedule.booked) + '）' + (schedule.is_stopped ? ' 已停诊！不可预约！' : ''),
-                  number_count: schedule.number_count
+                  number_count: schedule.number_count,
+                  is_stopped: schedule.is_stopped
                 }
               })
             }
