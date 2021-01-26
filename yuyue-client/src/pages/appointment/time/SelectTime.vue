@@ -70,7 +70,7 @@ export default {
           let objs = res.schedules.map(item => {
             return {
               date: new Date(item.date_string),
-              disabled: schedule.is_stopped,
+              disabled: item.is_stopped,
               schedules: item.schedules.map(schedule => {
                 return {
                   id: schedule._id,

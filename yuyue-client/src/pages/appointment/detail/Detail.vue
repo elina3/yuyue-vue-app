@@ -151,7 +151,7 @@ export default {
           this.hiddenButton = true
         } else if (res.appointment.picked) { // 如果已经取号，就一定隐藏，不管有无取号
           this.hiddenButton = true
-        }  else if (res.appointment.doctor_schedule.is_stopped) { // 如果已经停诊，就一定隐藏，不管有无取号
+        } else if (res.appointment.doctor_schedule.is_stopped) { // 如果已经停诊，就一定隐藏，不管有无取号
           this.hiddenButton = true
         } else {
           this.hiddenButton = false
